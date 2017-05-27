@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1>Hello World</h1>
+<p>Welcome to <%= title %></p>
+<form action="api/create" method="get">
+    <p>
+        <span>name:</span>
+        <input id="name" name="name" type="text" />
+    </p>
+    <p>
+        <span>password:</span>
+        <input id="source" name="source" type="source" />
+    </p>
+    <p><input type="submit" value="submit"></p>
+</form>
+
+<input type="button" value="search" id="search">
+<ul>
+    <li>试试</li>
+    <li>方法</li>
+    <li>给个</li>
+    <li>啊啊</li>
+</ul>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript">
+        
+        $("#search").on("click",function(){
+
+          get();
+
+
+        })
+
+        get();
+        
+        function get(){
+             $("ul").html("loading..")
+            $.ajax({
+                url:"./api/get",
+                success:function(data){
+                    var html=""
+                    console.log(data)
+                    data.map(function(d){
+                      html+='<li>'+ d._id +'-'+ d.name +'-'+ d.insertdate +'</li>'
+                    })
+                   setTimeout(function(){ $("ul").html(html)},1000)
+                },
+                fail:function(e){
+                    console.log(e)
+                }
+
+
+            })
+        }
+
+</script>
+</body>
+</html>
