@@ -13,7 +13,7 @@
         <input id="name" name="name" type="text" />
     </p>
     <p>
-        <span>password:</span>
+        <span>source:</span>
         <input id="source" name="source" type="source" />
     </p>
     <p><input type="submit" value="submit"></p>
@@ -21,10 +21,6 @@
 
 <input type="button" value="search" id="search">
 <ul>
-    <li>试试</li>
-    <li>方法</li>
-    <li>给个</li>
-    <li>啊啊</li>
 </ul>
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript">
@@ -46,7 +42,7 @@
                     var html=""
                     console.log(data)
                     data.map(function(d){
-                      html+='<li>'+ d._id +'-'+ d.name +'-'+ d.insertdate +'</li>'
+                      html+='<li>'+ d._id +'-'+ d.name +'-'+ d.source +'-'+ d.insertdate +'</li>'
                     })
                    setTimeout(function(){ $("ul").html(html)},1000)
                 },
