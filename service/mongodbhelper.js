@@ -17,6 +17,14 @@ var logger = {
     },
 }
 
+// var options = {
+//     db_user: "",
+//     db_pwd: "",
+//     db_host: "localhost",
+//     db_port: 27017,
+//     db_name: "test"
+// };
+
 var options = {
     db_user: "e4bce76fc5b64cfca0337e7501a71c7a",
     db_pwd: "116a429d58cf4fa094103015ea69ddc8",
@@ -24,6 +32,7 @@ var options = {
     db_port: 8908,
     db_name: "kfHpRGvfdxTyCpraUPjY"
 };
+
 
 var dbURL = "mongodb://" + options.db_user + ":" + options.db_pwd + "@" + options.db_host + ":" + options.db_port + "/" + options.db_name;
 mongoose.connect(dbURL);
@@ -49,8 +58,8 @@ process.on('SIGINT', function() {
 
 var DB = function() {
     this.mongoClient = {};
-    var filename = path.join(path.dirname(__dirname).replace('app', ''), '/database/table.js');
-    this.tabConf = JSON.parse(fs.readFileSync(path.normalize(filename)));
+    var filename = 'database/table.js';
+    this.tabConf = JSON.parse(fs.readFileSync(filename));
 };
 
 /**
