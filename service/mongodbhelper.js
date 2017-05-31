@@ -7,13 +7,13 @@ var path = require('path');
 var mongoose = require('mongoose');
 var logger = {
     error: function(e) {
-        console.log("[xue]="+e)
+        console.log("[xue]=" + e)
     },
     info: function(e) {
-        console.log("[xue]="+e)
+        console.log("[xue]=" + e)
     },
     warn: function(e) {
-        console.log("[xue]="+e)
+        console.log("[xue]=" + e)
     },
 }
 
@@ -112,6 +112,7 @@ DB.prototype.save = function(table_name, fields, callback) {
     }
 
     var node_model = this.getConnection(table_name);
+    if (!node_model) callback("No table structure");
     var mongooseEntity = new node_model(fields);
     mongooseEntity.save(function(err, res) {
         if (err) {
@@ -137,6 +138,7 @@ DB.prototype.update = function(table_name, conditions, update_fields, callback) 
         return;
     }
     var node_model = this.getConnection(table_name);
+    if (!node_model) callback("No table structure");
     node_model.update(conditions, {
         $set: update_fields
     }, {
@@ -166,6 +168,8 @@ DB.prototype.updateData = function(table_name, conditions, update_fields, callba
         return;
     }
     var node_model = this.getConnection(table_name);
+    if (!node_model) callback("No table structure");
+
     node_model.findOneAndUpdate(conditions, update_fields, {
         multi: true,
         upsert: true
@@ -200,6 +204,7 @@ DB.prototype.remove = function(table_name, conditions, callback) {
  */
 DB.prototype.find = function(table_name, conditions, fields, callback) {
     var node_model = this.getConnection(table_name);
+    if (!node_model) callback("No table structure");
     node_model.find(conditions, fields || null, {}, function(err, res) {
         if (err) {
             callback(err);
@@ -217,6 +222,7 @@ DB.prototype.find = function(table_name, conditions, fields, callback) {
  */
 DB.prototype.findOne = function(table_name, conditions, callback) {
     var node_model = this.getConnection(table_name);
+    if (!node_model) callback("No table structure");
     node_model.findOne(conditions, function(err, res) {
         if (err) {
             callback(err);
@@ -234,6 +240,7 @@ DB.prototype.findOne = function(table_name, conditions, callback) {
  */
 DB.prototype.findById = function(table_name, _id, callback) {
     var node_model = this.getConnection(table_name);
+    if (!node_model) callback("No table structure");
     node_model.findById(_id, function(err, res) {
         if (err) {
             callback(err);
@@ -251,6 +258,7 @@ DB.prototype.findById = function(table_name, _id, callback) {
  */
 DB.prototype.count = function(table_name, conditions, callback) {
     var node_model = this.getConnection(table_name);
+    if (!node_model) callback("No table structure");
     node_model.count(conditions, function(err, res) {
         if (err) {
             callback(err);
@@ -269,6 +277,7 @@ DB.prototype.count = function(table_name, conditions, callback) {
  */
 DB.prototype.distinct = function(table_name, field, conditions, callback) {
     var node_model = this.getConnection(table_name);
+    if (!node_model) callback("No table structure");
     node_model.distinct(field, conditions, function(err, res) {
         if (err) {
             callback(err);
@@ -287,6 +296,7 @@ DB.prototype.distinct = function(table_name, field, conditions, callback) {
  */
 DB.prototype.where = function(table_name, conditions, options, callback) {
     var node_model = this.getConnection(table_name);
+    if (!node_model) callback("No table structure");
     node_model.find(conditions)
         .select(options.fields || '')
         .sort(options.sort || {})

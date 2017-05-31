@@ -15,10 +15,19 @@ router.get('/', function(req, res) {
 
 router.get('/get', function(req, res) {
 	res.status(200);
-	MongoDbHelper.find(TableName, null, null, function(err, data) {
-		console.log(data);
-		res.json(data);
-		res.end();
+	MongoDbHelper.find(TableName, null, null, function(err, result) {
+		if (err) {
+			res.json({
+				errorCode: -2,
+				errorMessage: err
+			});
+		} else {
+			res.json({
+				errorCode: 1,
+				errorMessage: "成功",
+				datas: result
+			});
+		}
 	});
 
 
@@ -40,7 +49,6 @@ router.get('/create', function(req, res) {
 
 
 	MongoDbHelper.save(TableName, data, function(err, result) {
-		console.log(result);
 		res.json(result);
 		res.end();
 	});
@@ -72,11 +80,18 @@ router.get('/update', function(req, res) {
 		MongoDbHelper.update(TableName, {
 			"_id": goodsId
 		}, data, function(err, result) {
-			console.log(result);
-			res.json({
-				errorCode: result.ok,
-				errorMessage: "成功"
-			});
+
+			if (err) {
+				res.json({
+					errorCode: -2,
+					errorMessage: err
+				});
+			} else {
+				res.json({
+					errorCode: result.ok,
+					errorMessage: "成功"
+				});
+			}
 			res.end();
 		});
 
