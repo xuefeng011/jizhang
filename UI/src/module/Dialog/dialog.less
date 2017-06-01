@@ -1,0 +1,69 @@
+
+.dyy {
+	position: fixed;
+    z-index: 10;
+	top: 0;
+    left: 0;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8)
+}
+
+.default {
+    z-index: 20;
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    right: 0;
+    box-sizing: border-box;
+    width: 310px;
+    margin-left: -155px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #692300;
+    background: #ffcc43;
+    border: dashed 2px #692300;
+    border-radius: 12px;
+
+    h2 {
+        margin-top: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+
+        strong{color: #e04534}
+    }
+    p {
+        font-size: 14px;
+        margin: 6px auto;
+    }
+}
+
+.close {
+    position: absolute; 
+    z-index: 30;
+    right: -10px;
+    top: -10px;
+    width: 32px;
+    height: 32px;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 0 12px 0 0;
+    text-align: center;
+    overflow: hidden;
+
+    background: #520f18;
+    border-radius: 50%;
+    border: solid 1px #f8da38;
+    box-shadow: 0 2px 1px 1px #ef8903 inset,
+                2px -2px 1px 1px #f8da38 inset,
+                -2px -2px 1px 1px #f8da38 inset,
+                0 0 0 2px #480d17 inset,
+                0 -4px 5px 5px #710e25 inset ;
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}

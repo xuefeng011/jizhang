@@ -1,0 +1,48 @@
+@import '../../../styles/variable.less';
+
+.content {
+    .co_bg;
+    position: relative;
+    padding-bottom: 3rem;
+    overflow: hidden;
+} 
+
+.top {
+    position: relative;
+    margin-top: -1rem;
+    width: 5rem;
+    height: 5rem;
+    margin:  1.5rem auto .5rem;
+    box-sizing: border-box;
+    padding: .6rem;
+    z-index: 0;
+    transform: scale(.8);
+   
+
+    &::before {
+        content:'';
+        z-index: -1;
+        position: absolute;
+        top: 0;left: 0;
+        width: 5rem;
+        height: 5rem;
+        .light_bg;
+        background-size: 100% 100%;
+    }
+}
+
+.tip {
+    color: #692300;
+    font-size: .5rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: .2em;
+    strong{color: #c80010;}
+}
+
+.sharebtn {
+    .co_btn;
+    margin-top: .6rem;
+}
+
+
