@@ -17,22 +17,33 @@ var logger = {
     },
 }
 
-// var options = {
-//     db_user: "",
-//     db_pwd: "",
-//     db_host: "localhost",
-//     db_port: 27017,
-//     db_name: "test"
-// };
-
 var options = {
-    db_user: "e4bce76fc5b64cfca0337e7501a71c7a",
-    db_pwd: "116a429d58cf4fa094103015ea69ddc8",
-    db_host: "mongo.duapp.com",
-    db_port: 8908,
-    db_name: "kfHpRGvfdxTyCpraUPjY"
+    db_user: "",
+    db_pwd: "",
+    db_host: "",
+    db_port: 0,
+    db_name: ""
 };
-
+console.log(444444, process.env.NODE_ENV)
+if (process.env.NODE_ENV === 'dev') {
+    console.log("dev start")
+    options = {
+        db_user: "",
+        db_pwd: "",
+        db_host: "localhost",
+        db_port: 27017,
+        db_name: "test"
+    };
+} else {
+    console.log("prod start")
+    options = {
+        db_user: "e4bce76fc5b64cfca0337e7501a71c7a",
+        db_pwd: "116a429d58cf4fa094103015ea69ddc8",
+        db_host: "mongo.duapp.com",
+        db_port: 8908,
+        db_name: "kfHpRGvfdxTyCpraUPjY"
+    };
+}
 
 var dbURL = "mongodb://" + options.db_user + ":" + options.db_pwd + "@" + options.db_host + ":" + options.db_port + "/" + options.db_name;
 mongoose.connect(dbURL);
