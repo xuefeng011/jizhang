@@ -24,7 +24,6 @@ var options = {
     db_port: 0,
     db_name: ""
 };
-console.log(444444, process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'dev') {
     console.log("dev start")
     options = {
