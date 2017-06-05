@@ -92,7 +92,8 @@ class TableModule extends Component {
       loading: true
     });
     reqwest({
-      url: 'http://localhost:18080/products/getall',
+      // url: 'http://localhost:18080/products/getall',
+      url: 'https://gougoustar.duapp.com/products/getall',
       method: 'get',
       data: {
         results: 8,
