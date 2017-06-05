@@ -310,7 +310,8 @@ DB.prototype.where = function(table_name, conditions, options, callback) {
     node_model.find(conditions)
         .select(options.fields || '')
         .sort(options.sort || {})
-        .limit(options.limit || {})
+        .skip(options.skip || 0)
+        .limit(options.limit || 0)
         .exec(function(err, res) {
             if (err) {
                 callback(err);

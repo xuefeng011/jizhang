@@ -3,15 +3,19 @@
         "name": "String",
         "password": "String"
     },
-    "goods": {
-        "name": "String",
-        "pic": "String",
-        "source": "String",
-        "group": "String",
-        "money": "Number",
-        "insertdate": "String",
-        "updatedate": "String",
-        "user": "String"
+    "Products": {
+        "Id": "Number",
+        "SourceId": "Number",
+        "ProductId": "String",
+        "ProductName": "String",
+        "PicUrl": "String",
+        "PicContent": "String",
+        "Price": "String",
+        "Url": "String",
+        "RealPrice": "Number",
+        "Unit": "String",
+        "InsertDate": "Date",
+        "Updatedate": "Date"
     },
     "source": {
         "name": "String",
