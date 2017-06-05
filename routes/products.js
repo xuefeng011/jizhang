@@ -33,13 +33,14 @@ router.get('/get', function(req, res) {
 
 router.get('/getall', function(req, res) {
 	res.status(200);
+	// res.append("Access-Control-Allow-Origin", "*");
+
+
 
 	var results = Number(req.query.results || '10');
 	var page = Number(req.query.page || '1');
 	var sortField = req.query.sortField || 'Id';
-	var sortOrder = Number(req.query.sortOrder || '-1');
-
-
+	var sortOrder = Number(req.query.sortOrder || '-1') > 0 ? 1 : -1;
 
 	var _sort = {}
 
@@ -109,29 +110,45 @@ router.get('/getall', function(req, res) {
 	//username:{$in:["延思","三"]}
 	//Id: {$lt: 50}
 
+	var SourceId = req.query.SourceId || [];
+	var Unit = req.query.Unit || [];
+	var ProductId = req.query.ProductId || [];
 
 	var conditions = {};
+
+	if (SourceId.length > 0) conditions.SourceId = SourceId;
+	if (Unit.length > 0) conditions.Unit = Unit;
+	if (ProductId.length > 0) conditions.ProductId = ProductId;
+
 	var options = {
 		sort: _sort,
-		skip: results * (page - 1) > 0 ? 0 : results * (page - 1),
+		skip: results * (page - 1) < 0 ? 0 : results * (page - 1),
 		limit: results < 0 || results > 100 ? 10 : results
 	};
 
-	console.log(options)
-	MongoDbHelper.where(TableName, conditions, options, function(err, result) {
-		if (err) {
-			res.json({
-				errorCode: -2,
-				errorMessage: err
-			});
-		} else {
-			res.json({
-				errorCode: 1,
-				errorMessage: "成功",
-				datas: result
-			});
-		}
-	});
+	console.log("conditions", conditions)
+
+	// console.log(options)
+	MongoDbHelper.count(TableName, conditions, function(err, cnt) {
+		MongoDbHelper.where(TableName, conditions, options, function(err, result) {
+			if (err) {
+				res.json({
+					errorCode: -2,
+					errorMessage: err,
+					count: cnt || 0
+				});
+			} else {
+				res.json({
+					errorCode: 1,
+					errorMessage: "成功",
+					datas: result,
+					count: cnt
+				});
+			}
+		});
+
+	})
+
 });
 
 
@@ -149,10 +166,11 @@ router.get('/insert', function(req, res) {
 	// }
 
 	var id = req.query.Id;
+	var SourceId = req.query.SourceId || 1;
 
 	var data = {
 		"Id": id,
-		"SourceId": "1",
+		"SourceId": SourceId,
 		"ProductId": id,
 		"ProductName": "apple " + id,
 		"PicUrl": "",
