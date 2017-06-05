@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer');
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: [
-        'webpack-dev-server/client?http://localhost:3000',
+        'webpack-dev-server/client?http://localhost:6789',
         'webpack/hot/only-dev-server',
         './src/app'
     ],

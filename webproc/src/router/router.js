@@ -40,7 +40,7 @@ const App = (
 				}}>
 				
 				<Route 
-					path="home"
+					path="/home"
 					getComponent={(location, callback) => {
 						require.ensure([], function (require) {
 							callback(null, require('../view/Home/Index/HomeContainer.js').default);
