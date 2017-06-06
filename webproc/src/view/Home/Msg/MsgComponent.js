@@ -15,18 +15,14 @@ import {
 } from 'react-router'
 
 
-import co from 'co'
+// import co from 'co'
 
-import {
-    Msg,
-    SuccessFooter
-} from 'react-weui';
+// import {
+//     Msg,
+//     SuccessFooter
+// } from 'react-weui';
 
 class Home extends Component {
-
-    state = {
-        type: 1
-    }
 
     constructor(props) {
         super(props)
@@ -38,39 +34,9 @@ class Home extends Component {
     }
 
     render() {
-        const props = this.props
-        const _issucc = (co.getArgs(props.location.search).type || 1) == 1;
 
-
-
-        return ( < Msg type = {
-                _issucc ? "success" : "warn"
-            }
-            title = {
-                _issucc ? "Action success" : "Action fail"
-            }
-            description = {
-                _issucc ? "Save success" : "Save fail"
-            }
-            buttons = {
-                [{
-                    type: 'primary',
-                    label: 'Ok',
-                    onClick: () => {
-                        this.handleClick("/home")
-                    }
-                }, {
-                    type: 'default',
-                    label: 'Cancel',
-                    onClick: () => {
-                        this.handleClick("/home")
-                    }
-                }]
-            }
-            footer = {
-                SuccessFooter
-            }
-            />
+        return (
+            <div>test</div>
         )
     }
 }
