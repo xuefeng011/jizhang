@@ -4,15 +4,15 @@ import React, {
 } from 'react'
 
 
-import {
-  Tabs,
-  Switch
-} from 'antd';
-const TabPane = Tabs.TabPane;
+// import {
+//   Tabs,
+//   Switch
+// } from 'antd';
+// const TabPane = Tabs.TabPane;
 
-import style from './index.less'
+// import style from './index.less'
 
-import TableModule from 'TableModule'
+// import TableModule from 'TableModule'
 
 
 class Home extends Component {
@@ -34,22 +34,8 @@ class Home extends Component {
 
   render() {
 
-    const {
-      mode
-    } = this.state;
     return (
-      <div>
-            <Switch className={style.topswitch}  onChange={this.handleModeChange}  />
-            <Tabs
-              defaultActiveKey="1"
-              tabPosition={mode}
-              style={{ height: 'auto' }}
-            >
-              <TabPane tab="Home" key="1"><TableModule/></TabPane>
-              <TabPane tab="Detail" key="2">Content of tab 2</TabPane>
-              <TabPane tab="Other" key="3">Content of tab 3</TabPane>
-            </Tabs>
-            </div>
+      <div></div>
     )
   }
 }

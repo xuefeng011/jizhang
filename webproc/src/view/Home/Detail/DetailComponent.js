@@ -1,4 +1,7 @@
-import React, {PropTypes, Component} from 'react'
+import React, {
+	PropTypes,
+	Component
+} from 'react'
 // import Rule from 'Rule'
 // import PopUp from 'PopUp'
 // import Jigsaw from 'Jigsaw'
@@ -6,18 +9,21 @@ import React, {PropTypes, Component} from 'react'
 // import BonusContainer from '../BonusPage/BonusContainer'
 // import style from './home.less'
 
+import {
+	Button
+} from 'antd-mobile';
+
+
 class Home extends Component {
 	constructor(props) {
-        super(props)
-    }
-    componentDidMount() {
+		super(props)
+	}
+	componentDidMount() {
 		console.log("detail/component/index.js")
-    }
+	}
 	render() {
 		return (
-			<div>
-				<h1>detail/component.js</h1>
-			</div>
+			<Button type="primary" size="small" inline>small</Button>
 		)
 	}
 }
@@ -27,5 +33,3 @@ Home.propTypes = {
 }
 
 export default Home
-
-

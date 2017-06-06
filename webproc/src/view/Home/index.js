@@ -31,7 +31,8 @@ class HOME_Page extends Component {
         // }
         return ( < main style = {
                 {
-                    height: "100%"
+                    position: 'relative',
+                    height: '100%'
                 }
             } > {
                 this.props.children
