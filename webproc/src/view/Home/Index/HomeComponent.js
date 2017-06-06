@@ -1,5 +1,5 @@
 import React, {
-  PropTypes,
+  // PropTypes,
   Component
 } from 'react'
 
@@ -12,22 +12,16 @@ import React, {
 
 // import style from './index.less'
 
-// import TableModule from 'TableModule'
+import SearchModule from 'SearchModule'
 
 
 class Home extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      mode: 'top'
-    };
+
   }
-  handleModeChange = (istop) => {
-    this.setState({
-      mode: istop ? 'left' : 'top'
-    });
-  }
+
   componentDidMount() {
     // console.log("home/component/index.js")
   }
@@ -35,13 +29,13 @@ class Home extends Component {
   render() {
 
     return (
-      <div></div>
+      <div><SearchModule/></div>
     )
   }
 }
 
 Home.propTypes = {
-  UserInfo: PropTypes.object.isRequired
+  // UserInfo: PropTypes.object.isRequired
 }
 
 export default Home

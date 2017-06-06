@@ -9,9 +9,7 @@ import React, {
 // import BonusContainer from '../BonusPage/BonusContainer'
 // import style from './home.less'
 
-import {
-	Button
-} from 'antd-mobile';
+// import Listam from 'Listam'
 
 
 class Home extends Component {
@@ -23,7 +21,7 @@ class Home extends Component {
 	}
 	render() {
 		return (
-			<Button type="primary" size="small" inline>small</Button>
+			<div></div>
 		)
 	}
 }
