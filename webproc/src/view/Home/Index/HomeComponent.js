@@ -1,5 +1,5 @@
 import React, {
-  // PropTypes,
+  PropTypes,
   Component
 } from 'react'
 
@@ -12,30 +12,37 @@ import React, {
 
 // import style from './index.less'
 
-import SearchModule from 'SearchModule'
-
+// import SearchModule from 'SearchModule'
+import ListModule from 'ListModule'
 
 class Home extends Component {
   constructor(props) {
     super(props)
-
+    this.state = {
+      value: '',
+      focused: false,
+      showlist: true,
+      datas: [1,2,3,4]
+    }
 
   }
 
   componentDidMount() {
     // console.log("home/component/index.js")
+    this.props.changeTitle('首页');
+    // console.log("this.props",this.props)
   }
 
   render() {
 
     return (
-      <div><SearchModule/></div>
+      <ListModule show={this.state.showlist} datas={this.state.datas} />
     )
   }
 }
 
 Home.propTypes = {
-  // UserInfo: PropTypes.object.isRequired
+  changeTitle: PropTypes.func.isRequired
 }
 
 export default Home

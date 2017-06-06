@@ -41,7 +41,7 @@ class ListModule extends Component {
                   </List>)
 
 
-        return (<div>{isshow?listhtml:''}</div>);
+        return (<div>{isshow?listhtml:'<div>askdfjskfs</div>'}</div>);
     }
 }
 
