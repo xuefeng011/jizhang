@@ -21,6 +21,7 @@ import {
 
 import SideModule from 'SideModule'
 import SearchModule from 'SearchModule'
+import TabbarModule from 'TabbarModule'
 
 import style from './index.less'
 
@@ -85,6 +86,7 @@ class HOME_Page extends Component {
                   
                 </div>
                 <div className="fixed-bottom tc gray" style={{fontSize:"0.25rem"}}>2017 copyright</div>
+                <TabbarModule/>
             </div>
         )
     }
