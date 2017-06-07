@@ -27,21 +27,21 @@ const Item = List.Item;
 class ListModule extends Component {
     constructor(props) {
         super(props)
-        console.log(props)
+            // console.log(props)
     }
 
     render() {
         // console.log(this.props)
         var props = this.props
-        var isshow = props.show || false;
         var datas = props.datas || [];
+        // console.log("listmodule",datas)
 
         const listhtml = (<List renderHeader={() => '满足结果'+datas.length} className="my-list">
                     {datas.map((item,index)=>{return <Item arrow="horizontal" key={Math.random()} onClick={() => {}}  extra={`index${index}`}>{item}</Item>})}
                   </List>)
 
 
-        return (<div>{isshow?listhtml:'<div>askdfjskfs</div>'}</div>);
+        return (<div>{datas.length>0?listhtml:null}</div>);
     }
 }
 

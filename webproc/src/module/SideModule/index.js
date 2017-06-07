@@ -39,25 +39,36 @@ class SideModule extends Component {
 
     componentWillReceiveProps(nextProps) {
         // if (isinit) isinit = false;
-        // console.log("componentWillReceiveProps", nextProps, this.state.open, this.state)
-        if (!nextProps.open && !this.state.open) {
-            this.setState({
-                open: this.state.isinit ? false : true,
-                isinit: false
-            })
-        } else {
-            this.setState({
-                open: nextProps.open,
-                isinit: false
-            })
-        }
+        console.log("componentWillReceiveProps", nextProps, this.state)
+
+        // if(!nextProps.open)
+        // {
+        this.setState({
+            open: nextProps.open
+        })
+        // return;
+        // }
+
+        // if (!nextProps.open && !this.state.open) {
+        //     this.setState({
+        //         open: this.state.isinit ? false : true,
+        //         isinit: false
+        //     })
+        // } else {
+        //     this.setState({
+        //         open:nextProps.open,
+        //         isinit: false
+        //     })
+        // }
     }
 
     onopenclose() {
-        // console.log("onopenclose", this.props.open, this.state.open)
-        this.setState({
-            open: false
-        })
+        console.log("onopenclose", this.props.open, this.state.open)
+        // this.setState({
+        //     open: false
+        // })
+
+        this.props.onCloseClick(false)
     }
 
     render() {
@@ -101,7 +112,8 @@ class SideModule extends Component {
 
 SideModule.propTypes = {
     // handlechange: PropTypes.func.isRequired
-    open: PropTypes.bool.isRequired
+    open: PropTypes.bool.isRequired,
+    onCloseClick:PropTypes.func
 }
 
 SideModule.defaultProps = {

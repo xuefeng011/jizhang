@@ -16,7 +16,7 @@
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
     "no-console": ["error", { allow: ["warn", "error", "log"] }],
-      "no-unused-vars": "warn"
+      "no-unused-vars": "off"
   },
   "Options": "except-parens",
   "plugins": [

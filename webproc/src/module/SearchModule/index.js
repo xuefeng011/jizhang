@@ -1,6 +1,6 @@
 import React, {
-  Component
-  // PropTypes
+  Component,
+  PropTypes
 } from 'react'
 
 
@@ -19,40 +19,38 @@ import ListModule from 'ListModule'
 //     Button
 // } from 'antd-mobile'
 
-var tempdatas = []
+// var tempdatas = []
 
 class SearchModule extends Component {
   constructor(props) {
     super(props)
-    console.log(props)
+    // console.log("searchmodule",props)
+    this.state = {
+      value: '',
+      focused: false,
+      datas: props.datas||[]
+    };
   }
-  state = {
-    value: '',
-    focused: false,
-    showlist: false,
-    datas: []
-  };
-  onChange = (value) => {
-
-
+  
+  onChange(value){
+    var temp = this.state.datas;
+    console.log('[' + value + ']', 'onChange', temp);
     if (value && value.trim().length > 0) {
-      tempdatas.push(value)
+      temp.push(value)
     }
-    // console.log('[' + value + ']', 'onChange', tempdatas);
+     
     this.setState({
       value: value,
-      showlist: !!value,
-      datas: tempdatas
+      datas: temp
     });
-  };
+  }
   clear = () => {
-    tempdatas = []
+    // tempdatas = []
     this.setState({
       value: '',
-      showlist: false,
       datas: []
     });
-  };
+  }
 
   render() {
     return (<div>
@@ -61,23 +59,20 @@ class SearchModule extends Component {
           <SearchBar
             value={this.state.value}
             placeholder="搜索"
-            onSubmit={value => console.log(value, 'onSubmit')}
-            onClear={this.clear}
-            onFocus={() => console.log('onFocus')}
-            onBlur={() => console.log('onBlur')}
-            onCancel={this.clear}
-            onChange={this.onChange}
-            cancelText="X"
-          />
-          <WingBlank><div className="sub-title"></div></WingBlank>
-          <WhiteSpace />
-    <ListModule show={this.state.showlist} datas={this.state.datas}/>
+            onSubmit={value => {}}
+            onClear={this.clear.bind(this)}
+            onFocus={() => {}}
+            onBlur={() => {}}
+            onCancel={this.clear.bind(this)}
+            onChange={this.onChange.bind(this)}
+            cancelText="X" />
+            <ListModule datas={this.state.datas}/>
         </div>);
   }
 }
 
 SearchModule.propTypes = {
-  // datas: PropTypes.array.isRequired
+  datas: PropTypes.array.isRequired
 }
 
 SearchModule.defaultProps = {

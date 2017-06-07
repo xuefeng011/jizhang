@@ -1,0 +1,28 @@
+.tc{
+	text-align: center;
+}
+.tl{
+	text-align: left;
+}
+.tr{
+	text-align: right;
+}
+
+.bg-blue{
+	background: #108ee9;
+}
+.blue{
+	color: #108ee9;
+}
+.white{
+	color: #fff;
+}
+.gray{
+	color: #8ab6f5;
+}
+.fs-42{
+	font-size: 1rem;
+}
+.fm-arial{
+	font-family: "arial"
+}

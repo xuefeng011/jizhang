@@ -13,18 +13,22 @@ import React, {
 // import style from './index.less'
 
 // import SearchModule from 'SearchModule'
+
+import {Flex,WhiteSpace,Grid} from 'antd-mobile'
+
 import ListModule from 'ListModule'
+
+import './index.css'
+
+const data = Array.from(new Array(9)).map((_val, i) => ({
+  icon: '',
+  text: `name${i}`
+}));
+
 
 class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      value: '',
-      focused: false,
-      showlist: true,
-      datas: [1,2,3,4]
-    }
-
   }
 
   componentDidMount() {
@@ -36,7 +40,28 @@ class Home extends Component {
   render() {
 
     return (
-      <ListModule show={this.state.showlist} datas={this.state.datas} />
+      <div>
+         <div className="home-top">
+          <div className="bg-blue white">
+            <Flex>
+              <Flex.Item className="tc gray">总金额(元)</Flex.Item>       
+            </Flex>
+            <WhiteSpace size="xs" />
+            <Flex>
+              <Flex.Item className="tc fm-arial" style={{fontSize:"0.9rem"}}>60,347.79</Flex.Item>       
+            </Flex>
+            <WhiteSpace size="lg" />
+            <Flex>
+              <Flex.Item className="tc gray">昨日收益(元) +60.09</Flex.Item>       
+            </Flex>
+            <WhiteSpace size="lg" />
+          </div>
+          <WhiteSpace size="lg" />
+         </div>
+         <div className="home-body">
+            <Grid data={data} columnNum={2} isCarousel onClick={(_el, index) => alert(index)} />
+         </div>
+       </div>
     )
   }
 }

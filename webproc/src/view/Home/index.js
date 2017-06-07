@@ -14,12 +14,17 @@ import {
     hashHistory
 } from 'react-router';
 import {
-    NavBar
+    NavBar,
+    Popup,
+    Icon
 } from 'antd-mobile';
 
 import SideModule from 'SideModule'
+import SearchModule from 'SearchModule'
 
 import style from './index.less'
+
+require('./am.css')
 
 class HOME_Page extends Component {
     constructor(props) {
@@ -38,13 +43,18 @@ class HOME_Page extends Component {
     }
     rightClick() {
         // console.log("rightClick", this.state.open)
-        this.setState({
-            open: !this.state.open
-        })
+        this.setState({open: !this.state.open})
     }
     searchClick() {
-        console.log("searchClick")
+        this.setState({ open: false})
+
+        Popup.show(<SearchModule datas={[]}/>,{animationType:"slide-down"})
     }
+
+    onClose = () => {
+        Popup.hide();
+      };
+
     render() {
         // console.log(1111111111, this.props.children)
         // if (!this.props.children) {
@@ -57,18 +67,18 @@ class HOME_Page extends Component {
             } </main>)
         }*/
 
-        const rightcontent = <p><b className={style.search} onClick={() => this.searchClick()}></b><b onClick={() => this.rightClick()}>...</b></p>
+        const rightcontent = <p><Icon className={style.search} type="search" size="md" onClick={() => this.searchClick()}/><Icon className={style.more} type="ellipsis"  size="md"  onClick={() => this.rightClick()} /></p>
 
         return (
             <div className="container" style={{ position: 'relative', height: '100%' }}>
-                <NavBar mode="light"
+                <NavBar mode="dark"
                     onLeftClick={() => hashHistory.goBack()}
                     rightContent={rightcontent}
                 >
                     {this.state.title}
                 </NavBar>
                 <div style={{ position: 'relative', height: '100%' }}>
-                        <SideModule open={this.state.open} />
+                        <SideModule open={this.state.open} onCloseClick={()=>{ this.setState({open: false})}}/>
                         {this.props && this.props.children && React.cloneElement(this.props.children, {
                             changeTitle: title => this.setState({ title })
                         }) || 'no content'}
