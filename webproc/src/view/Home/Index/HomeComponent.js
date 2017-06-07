@@ -21,7 +21,7 @@ import ListModule from 'ListModule'
 import './index.css'
 
 const data = Array.from(new Array(9)).map((_val, i) => ({
-  icon: '',
+  icon: 'https://os.alipayobjects.com/rmsportal/IptWdCkrtkAUfjE.png',
   text: `name${i}`
 }));
 
@@ -59,7 +59,7 @@ class Home extends Component {
           <WhiteSpace size="lg" />
          </div>
          <div className="home-body">
-            <Grid data={data} columnNum={2} isCarousel onClick={(_el, index) => alert(index)} />
+            <Grid data={data} columnNum={2} isCarousel onClick={(_el, index) => console.log(index)} />
          </div>
        </div>
     )

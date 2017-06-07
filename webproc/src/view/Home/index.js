@@ -70,7 +70,7 @@ class HOME_Page extends Component {
         const rightcontent = <p><Icon className={style.search} type="search" size="md" onClick={() => this.searchClick()}/><Icon className={style.more} type="ellipsis"  size="md"  onClick={() => this.rightClick()} /></p>
 
         return (
-            <div className="container" style={{ position: 'relative', height: '100%' }}>
+            <div className="container" style={{ position: 'relative' }}>
                 <NavBar mode="dark"
                     onLeftClick={() => hashHistory.goBack()}
                     rightContent={rightcontent}
@@ -84,7 +84,7 @@ class HOME_Page extends Component {
                         }) || 'no content'}
                   
                 </div>
-                <div className="fixed-bottom">底部固定条</div>
+                <div className="fixed-bottom tc gray" style={{fontSize:"0.25rem"}}>2017 copyright</div>
             </div>
         )
     }
