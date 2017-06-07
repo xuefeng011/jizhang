@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>JG-025-1@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="23" cy="23" r="23"></circle>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="46" height="46" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <pattern id="pattern-3" width="8.44897959" height="8.44897959" x="8.55102041" y="2.55102041" patternUnits="userSpaceOnUse">
+            <use xlink:href="#image-4" transform="scale(0.176020408,0.176020408)"></use>
+        </pattern>
+        <image id="image-4" width="48" height="48" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAV9JREFUaAXt2O0NgjAQBmBrt4DoDiawEHEQB1F3MK7BHKxR+2oKQfnseXCX0B/SEr3zucZIz+R57nZ+OOfuZVmeMcWaOEyWZVdjTBHicMW3aZpekMQnOyVJcqiq6hmSUq6Ig3iIyxnf+iRH7iSc8e1SleJCWGyvZsQboBlRA7QiWgCNiB+ANkQnQBOiF6AFMQjQgBgFSEdMAkhGTAZIRcwCSETMBkhDRAEkIaIBUhAkgAQEGbA2AgCDL0Edax2KrO8e3JCcCsDn10CgK/HQ2I0IZ+w9KucXBfo4mGJNHA79JfSBQhzO+FtfKFS567rEb2LrC3VV/vse507Uf2ScSQDiil8DOJOEHeFAtAAaET8AbYhOgCZEL0ALYhCgATEKkI6YBJCMmAyQipgFkIiYDZCGiAJIQkQDpCBIAAkIMmBtBAD/OMizPe+jQBh9j+JbX+hTn+a1r1K437wrfvYd/wV+UgblD/bGFgAAAABJRU5ErkJggg=="></image>
+        <path d="M17.0134341,11.0221804 L17,11.0221804 L17.007305,11.0770616 C17.0024532,11.1282843 17,11.1798189 17,11.2316384 C17,11.2420083 17.0108425,11.2520786 17.0319012,11.2618495 L17.8666667,17.5333333 L29.1333333,17.5333333 L29.9680988,11.2618495 C29.9891575,11.2520786 30,11.2420083 30,11.2316384 C30,11.1798189 29.9975468,11.1282843 29.992695,11.0770616 L30,11.0221804 L29.9865659,11.0221804 C29.7694712,9.33501491 26.9483167,8 23.5,8 C20.0516833,8 17.2305288,9.33501491 17.0134341,11.0221804 Z" id="path-5"></path>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="13" height="9.53333333" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+    </defs>
+    <g id="扁平彩色" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="九宫格" transform="translate(-733.000000, -680.000000)" stroke="#C2C2C2">
+            <g id="基金经理" transform="translate(733.000000, 680.000000)">
+                <use id="Oval-106" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+                <polygon id="Path-340" stroke-width="2" fill-opacity="0.5" fill="url(#pattern-3)" points="23.4464323 11 17 33 23.4464323 40.6153846 29.8928647 33"></polygon>
+                <use id="Combined-Shape" mask="url(#mask-6)" stroke-width="4" fill="#FFFFFF" xlink:href="#path-5"></use>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>JG-006-1@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M3.04272928,28.1818182 L2.99501281,28.1818182 L2.99501281,5.18181818 L3.01018523,5.18181818 C3.28650078,2.29232263 7.30234999,0 12.2158022,0 C17.1292544,0 21.1451036,2.29232263 21.4214192,5.18181818 L21.4365916,5.18181818 L21.4365916,28.1818182 L21.3888751,28.1818182 C20.9161765,25.2712122 16.9896498,23 12.2158022,23 C7.44195463,23 3.51542796,25.2712122 3.04272928,28.1818182 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="18.4415788" height="28.1818182" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="扁平彩色" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="九宫格" transform="translate(-274.000000, -682.000000)">
+            <g id="基金主题-copy-2" transform="translate(277.000000, 682.000000)">
+                <rect id="Rectangle-77" fill="#C2C2C2" x="0" y="5.18181818" width="2.99501281" height="40.8181818" rx="1.49750641"></rect>
+                <path d="M20.5584212,7.34404698 L20.5584212,30.2727273 L20.6146975,30.2727273 C21.1243452,32.5227025 25.0330104,34.2727273 29.7792106,34.2727273 C34.5254108,34.2727273 38.434076,32.5227025 38.9437237,30.2727273 L39,30.2727273 L39,7.27272727 L38.497947,7.27272727 C36.7204074,9.37094156 33.0274868,10.8181823 29.1797786,10.8181823 C25.3758209,10.8181823 22.1251727,9.40366617 20.5584212,7.34404698 Z" id="Combined-Shape-Copy" fill="#C2C2C2"></path>
+                <use id="Combined-Shape" stroke="#C2C2C2" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

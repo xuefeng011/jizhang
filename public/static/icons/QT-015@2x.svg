@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>QT-015@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="扁平彩色" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="其他icon" transform="translate(-390.000000, -451.000000)" fill="#CCCCCC">
+            <path d="M414,451 C400.745143,451 390,461.745143 390,475 C390,488.254857 400.745143,499 414,499 C427.254857,499 438,488.254857 438,475 C438,461.745143 427.254857,451 414,451 L414,451 Z M423,481.149865 L420.149865,484 L413.5,477.350135 L406.850135,484 L404,481.149865 L410.649865,474.5 L404,467.850135 L406.850135,465 L413.5,471.649865 L420.149865,465 L423,467.850135 L416.350135,474.5 L423,481.149865 L423,481.149865 Z" id="Delete-Button-Copy"></path>
+        </g>
+    </g>
+</svg>

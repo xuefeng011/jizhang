@@ -10,10 +10,16 @@ import {
 // import {
 //     hashHistory
 // } from 'react-router'
-import { hashHistory } from 'react-router';
-import { NavBar } from 'antd-mobile';
+import {
+    hashHistory
+} from 'react-router';
+import {
+    NavBar
+} from 'antd-mobile';
 
 import SideModule from 'SideModule'
+
+import style from './index.less'
 
 class HOME_Page extends Component {
     constructor(props) {
@@ -30,10 +36,14 @@ class HOME_Page extends Component {
         // const props = this.props
         // console.log(hashHistory,store,props)         
     }
-     handlechange(){
-         console.log("handlechange")
-        this.setState({ open: !this.state.open })
-
+    rightClick() {
+        // console.log("rightClick", this.state.open)
+        this.setState({
+            open: !this.state.open
+        })
+    }
+    searchClick() {
+        console.log("searchClick")
     }
     render() {
         // console.log(1111111111, this.props.children)
@@ -47,17 +57,18 @@ class HOME_Page extends Component {
             } </main>)
         }*/
 
+        const rightcontent = <p><b className={style.search} onClick={() => this.searchClick()}></b><b onClick={() => this.rightClick()}>...</b></p>
 
         return (
             <div className="container" style={{ position: 'relative', height: '100%' }}>
                 <NavBar mode="light"
                     onLeftClick={() => hashHistory.goBack()}
-                    rightContent={<b onClick={() => this.setState({ open: true })}>...</b>}
+                    rightContent={rightcontent}
                 >
                     {this.state.title}
                 </NavBar>
                 <div style={{ position: 'relative', height: '100%' }}>
-                        <SideModule handlechange={this.handlechange}/>
+                        <SideModule open={this.state.open} />
                         {this.props && this.props.children && React.cloneElement(this.props.children, {
                             changeTitle: title => this.setState({ title })
                         }) || 'no content'}
@@ -72,7 +83,7 @@ class HOME_Page extends Component {
 HOME_Page.propTypes = {
     // UserInfo: PropTypes.object.isRequired,
     children: PropTypes.node
-    // location: React.PropTypes.object
+        // location: React.PropTypes.object
 }
 
 const mapStateToProps = (state) => {

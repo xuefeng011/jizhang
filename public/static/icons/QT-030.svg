@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>QT-030</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M18.6190476,45.9422636 C17.905251,45.3364862 11.724947,40.0023102 5.54464286,31.7619048 C-1.02678575,23 0.0684523868,9.85714286 0.0684523868,9.85714286 C11.0208333,9.85714286 17.5922619,0 17.5922619,0 L18.6532738,0 L19.7142857,0 C19.7142857,0 26.2857143,9.85714286 37.2380952,9.85714286 C37.2380952,9.85714286 38.3333334,23 31.7619048,31.7619048 C25.5816006,40.0023102 19.4012966,45.3364862 18.6875,45.9422636 L18.6875,46 C18.6875,46 18.6759294,45.9903579 18.6532738,45.9712354 C18.6306182,45.9903579 18.6190476,46 18.6190476,46 L18.6190476,45.9422636 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="37.3065476" height="46" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="扁平彩色" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="其他icon" transform="translate(-582.000000, -569.000000)">
+            <g id="盾牌" transform="translate(587.000000, 569.000000)">
+                <use id="Combined-Shape" stroke="#3190FF" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+                <g id="Group-6" transform="translate(11.000000, 13.000000)" fill="#3190FF">
+                    <rect id="Rectangle-17" x="6.46989239" y="7.13975499" width="2.35268814" height="11.3046121"></rect>
+                    <rect id="Rectangle-13" x="0.588172035" y="7.13975499" width="14.7043009" height="2.37991833"></rect>
+                    <rect id="Rectangle-13" transform="translate(11.469355, 4.759837) rotate(-45.000000) translate(-11.469355, -4.759837) " x="6.46989239" y="3.56987749" width="9.9989246" height="2.37991833"></rect>
+                    <rect id="Rectangle-13" transform="translate(4.411290, 4.759837) scale(-1, 1) rotate(-45.000000) translate(-4.411290, -4.759837) " x="-0.588172035" y="3.56987749" width="9.9989246" height="2.37991833"></rect>
+                    <rect id="Rectangle-13" x="0.588172035" y="11.3046121" width="14.7043009" height="2.37991833"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

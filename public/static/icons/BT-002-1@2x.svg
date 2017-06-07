@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>BT-002-1@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M45.9948028,42 C45.9948028,44.209139 44.2102159,46 42,46 L3.99480279,46 C1.78853413,46 0,44.2108635 0,41.9982716 L0,4.00172845 C0,1.79163485 1.78458691,0 3.99480279,0 L36.0051972,0.0842285156 C38.2114659,0.0842285156 40,1.87338042 40,4.08012011 L40,38" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="45.9948028" height="46" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="扁平彩色" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="状态栏" transform="translate(-363.000000, -141.000000)">
+            <g id="资讯" transform="translate(363.000000, 141.000000)">
+                <use id="Rectangle-122" stroke="#9B9B9B" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+                <rect id="Rectangle-123" fill="#9B9B9B" x="11" y="10" width="18" height="2" rx="1"></rect>
+                <rect id="Rectangle-123-Copy" fill="#9B9B9B" x="6" y="18" width="28" height="2" rx="1"></rect>
+                <rect id="Rectangle-123-Copy-2" fill="#9B9B9B" x="6" y="26" width="28" height="2" rx="1"></rect>
+                <rect id="Rectangle-123-Copy-3" fill="#9B9B9B" x="6" y="34" width="28" height="2" rx="1"></rect>
+                <polygon id="Path-125" fill="#9B9B9B" points="46 42 46 5 44 5 44 42"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>QT-018@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <ellipse id="path-1" cx="24" cy="24" rx="24" ry="24"></ellipse>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="48" height="48" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="扁平彩色" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="其他icon" transform="translate(-574.000000, -451.000000)">
+            <g id="Group-3" transform="translate(574.000000, 451.000000)">
+                <use id="Oval-9-Copy-5" stroke="#FF4400" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+                <polygon id="Delete-Button-path" fill="#FF4400" points="34 31.1498655 31.1498655 34 24.5 27.3501345 17.8501345 34 15 31.1498655 21.6498655 24.5 15 17.8501345 17.8501345 15 24.5 21.6498655 31.1498655 15 34 17.8501345 27.3501345 24.5"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

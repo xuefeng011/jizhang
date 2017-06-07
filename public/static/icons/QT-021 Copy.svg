@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>QT-021 Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="13.3818182" width="43.4909091" height="32.6181818" rx="4"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="43.4909091" height="32.6181818" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <path d="M3.51889442,10.6037606 C3.4607242,10.6037606 3.40289885,10.6052546 3.34545455,10.6082065 C3.72714984,10.0285544 4.29171831,9.56224891 4.99324384,9.3069145 L32.7151107,1.00373999 C34.450426,0.372136876 36.3713556,1.27281534 36.9999994,3.00000002 L40.4657173,10.6065182 C40.4203438,10.6046856 40.3747372,10.6037606 40.3289152,10.6037606" id="path-3"></path>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="37.1202627" height="9.80639115" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+    </defs>
+    <g id="扁平彩色" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="其他icon" transform="translate(-483.000000, -569.000000)">
+            <g id="钱包" transform="translate(484.000000, 568.000000)">
+                <use id="Rectangle-5" stroke="#999999" mask="url(#mask-2)" stroke-width="6" xlink:href="#path-1"></use>
+                <path d="M29.2727273,27.0871721 C29.2727273,25.9846665 30.1749654,25.0909091 31.274464,25.0909091 L39.8164451,25.0909091 C40.9219738,25.0909091 41.8181818,25.9897947 41.8181818,27.0871721 L41.8181818,32.2946461 C41.8181818,33.3971517 40.9159437,34.2909091 39.8164451,34.2909091 L31.274464,34.2909091 C30.1689353,34.2909091 29.2727273,33.3920234 29.2727273,32.2946461 L29.2727273,27.0871721 Z M34.7090909,31.7818182 C35.8638681,31.7818182 36.8,30.8456863 36.8,29.6909091 C36.8,28.5361319 35.8638681,27.6 34.7090909,27.6 C33.5543137,27.6 32.6181818,28.5361319 32.6181818,29.6909091 C32.6181818,30.8456863 33.5543137,31.7818182 34.7090909,31.7818182 Z" id="Combined-Shape" fill="#999999"></path>
+                <use id="Combined-Shape" stroke="#999999" mask="url(#mask-4)" stroke-width="6" xlink:href="#path-3"></use>
+            </g>
+        </g>
+    </g>
+</svg>
