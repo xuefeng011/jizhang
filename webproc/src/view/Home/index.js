@@ -13,6 +13,7 @@ import {
 import {
     hashHistory
 } from 'react-router';
+
 import {
     NavBar,
     Popup,

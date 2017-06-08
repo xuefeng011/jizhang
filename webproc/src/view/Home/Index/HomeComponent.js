@@ -60,6 +60,7 @@ class Home extends Component {
          </div>
          <div className="home-body">
             <Grid data={data} columnNum={2} isCarousel onClick={(_el, index) => console.log(index)} />
+            <Grid data={data} columnNum={2} isCarousel onClick={(_el, index) => console.log(index)} />
          </div>
        </div>
     )
