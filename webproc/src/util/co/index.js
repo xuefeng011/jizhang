@@ -177,6 +177,23 @@ const co = {
 		const d = eval("new "+datet.slice(1, -1))
 		return type == 1 ? Number(d.getMonth()+1) + '-' + d.getDate() : d.getFullYear() + '-' + Number(d.getMonth()+1) + '-' + d.getDate()
 	},
+	getFullDate(date){
+		var d= new Date(date || "/Date(1480780800000)/");
+		return {
+			"1":Number(d.getMonth()+1) + '-' + d.getDate(),
+			"M-d":Number(d.getMonth()+1) + '-' + d.getDate(),
+			"2":d.getFullYear() + '-' + Number(d.getMonth()+1) + '-' + d.getDate(),
+			"yy-M-d":d.getFullYear() + '-' + Number(d.getMonth()+1) + '-' + d.getDate(),
+			"3":(d.getMonth()+1) + '-' + d.getDate(),
+			"MM-dd":(d.getMonth()+1) + '-' + d.getDate(),
+			"4":d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(),
+			"yyyy-MM-dd":d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(),
+			"5": d.getHours()+ ':' + d.getMinutes(),
+			"HH:mm": d.getHours()+ ':' + d.getMinutes(),
+			"6":d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate()+ ' ' + d.getHours()+ ':' + d.getMinutes(),
+			"yyyy-MM-dd HH:mm":d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate()+ ' ' + d.getHours()+ ':' + d.getMinutes()
+		}
+	},
 	getDateAddOne(date) {
 		let datet = date || "/Date(1480780800000)/"
 		const d = eval("new "+datet.slice(1, -1))

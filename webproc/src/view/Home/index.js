@@ -11,13 +11,14 @@ import {
 //     hashHistory
 // } from 'react-router'
 import {
-    hashHistory
+    hashHistory,Route 
 } from 'react-router';
 
 import {
     NavBar,
     Popup,
-    Icon
+    Icon,
+    WhiteSpace
 } from 'antd-mobile';
 
 import SideModule from 'SideModule'
@@ -33,7 +34,8 @@ class HOME_Page extends Component {
         super(props)
         this.state = {
             title: '默认',
-            open: false
+            open: false,
+            tabname:this.props.location.pathname
         };
     }
     componentDidMount() {
@@ -71,8 +73,11 @@ class HOME_Page extends Component {
 
         const rightcontent = <p><Icon className={style.search} type="search" size="md" onClick={() => this.searchClick()}/><Icon className={style.more} type="ellipsis"  size="md"  onClick={() => this.rightClick()} /></p>
 
+
+        // console.log(222,this.state )
+
         return (
-            <div className="container" style={{ position: 'relative' }}>
+            <div className="container" style={{ position: 'relative',marginBottom:'1rem' }}>
                 <NavBar mode="dark"
                     onLeftClick={() => hashHistory.goBack()}
                     rightContent={rightcontent}
@@ -86,8 +91,10 @@ class HOME_Page extends Component {
                         }) || 'no content'}
                   
                 </div>
+                <WhiteSpace size="lg" />
                 <div className="fixed-bottom tc gray" style={{fontSize:"0.25rem"}}>2017 copyright</div>
-                <TabbarModule/>
+                <WhiteSpace size="lg" />
+                <TabbarModule tabname={this.state.tabname}/>
             </div>
         )
     }
@@ -95,8 +102,8 @@ class HOME_Page extends Component {
 
 HOME_Page.propTypes = {
     // UserInfo: PropTypes.object.isRequired,
-    children: PropTypes.node
-        // location: React.PropTypes.object
+    children: PropTypes.node,
+        location: React.PropTypes.object
 }
 
 const mapStateToProps = (state) => {

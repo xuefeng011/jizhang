@@ -39,7 +39,7 @@ class SideModule extends Component {
 
     componentWillReceiveProps(nextProps) {
         // if (isinit) isinit = false;
-        console.log("componentWillReceiveProps", nextProps, this.state)
+        // console.log("componentWillReceiveProps", nextProps, this.state)
 
         // if(!nextProps.open)
         // {
@@ -63,7 +63,7 @@ class SideModule extends Component {
     }
 
     onopenclose() {
-        console.log("onopenclose", this.props.open, this.state.open)
+        // console.log("onopenclose", this.props.open, this.state.open)
         // this.setState({
         //     open: false
         // })

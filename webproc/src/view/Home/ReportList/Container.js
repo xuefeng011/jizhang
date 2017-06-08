@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 // import co from 'co'
 // import { ErrorFetchAction, FixUserAction, loginFromAction } from '../../../action'
 // import { fetchAppInitPost, fetchAppStartPost } from '../action'
-import Home from './DetailComponent.js'
+import Home from './Component.js'
 
 const mapDispatchToProps = () => {
 	return{

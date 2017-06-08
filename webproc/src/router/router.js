@@ -47,6 +47,20 @@ const App = (
 						}, 'HomeContainer');
 					}}/>
 				<Route 
+					path="/productlist"
+					getComponent={(location, callback) => {
+						require.ensure([], function (require) {
+							callback(null, require('../view/Home/ProductList/Container.js').default);
+						}, 'ProductList');
+					}}/>
+				<Route 
+					path="/reportlist"
+					getComponent={(location, callback) => {
+						require.ensure([], function (require) {
+							callback(null, require('../view/Home/ReportList/Container.js').default);
+						}, 'ReportList');
+					}}/>
+				<Route 
 					path="detail"
 					getComponent={(location, callback) => {
 						require.ensure([], function (require) {

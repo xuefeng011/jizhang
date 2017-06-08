@@ -34,7 +34,7 @@ class SearchModule extends Component {
   
   onChange(value){
     var temp = this.state.datas;
-    console.log('[' + value + ']', 'onChange', temp);
+    // console.log('[' + value + ']', 'onChange', temp);
     if (value && value.trim().length > 0) {
       temp.push(value)
     }

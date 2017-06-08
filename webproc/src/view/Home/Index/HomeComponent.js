@@ -14,9 +14,10 @@ import React, {
 
 // import SearchModule from 'SearchModule'
 
-import {Flex,WhiteSpace,Grid} from 'antd-mobile'
+import {Flex,WhiteSpace,Grid,Icon} from 'antd-mobile'
 
 import ListModule from 'ListModule'
+import CardModule from 'CardModule'
 
 import './index.css'
 
@@ -25,6 +26,7 @@ const data = Array.from(new Array(9)).map((_val, i) => ({
   text: `name${i}`
 }));
 
+// import eyepng from './eye.svg'
 
 class Home extends Component {
   constructor(props) {
@@ -60,7 +62,13 @@ class Home extends Component {
          </div>
          <div className="home-body">
             <Grid data={data} columnNum={2} isCarousel onClick={(_el, index) => console.log(index)} />
-            <Grid data={data} columnNum={2} isCarousel onClick={(_el, index) => console.log(index)} />
+            <CardModule />
+            <WhiteSpace size="md" />
+            <CardModule />
+            <WhiteSpace size="md" />
+            <CardModule />
+            <WhiteSpace size="md" />
+            <WhiteSpace size="md" />
          </div>
        </div>
     )

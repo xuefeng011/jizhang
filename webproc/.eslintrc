@@ -15,8 +15,10 @@
     "strict": [2, "never"],
     "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
+     "react/no-danger": "off",
     "no-console": ["error", { allow: ["warn", "error", "log"] }],
-      "no-unused-vars": "off"
+      "no-unused-vars": "off",
+       "comma-dangle": "off"
   },
   "Options": "except-parens",
   "plugins": [

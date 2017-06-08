@@ -12,19 +12,19 @@ import { Router, Route, hashHistory, IndexRoute, Link } from 'react-router';
 
 import { TabBar, Icon } from 'antd-mobile';
 
-import home from "./home.svg"; 
-import home_o from "./home-o.svg"; 
-import rate from "./rate.svg"; 
-import rate_o from "./rate-o.svg"; 
-import book from "./book.svg"; 
-import book_o from "./book-o.svg"; 
+import home from "./img/home.svg"; 
+import home_o from "./img/home-o.svg"; 
+import rate from "./img/rate.svg"; 
+import rate_o from "./img/rate-o.svg"; 
+import book from "./img/book.svg"; 
+import book_o from "./img/book-o.svg"; 
 
 class TabbarModule extends Component {
     constructor(props) {
         super(props)
         // console.log(props)
         this.state = {
-            selectedTab: 'blueTab',
+            selectedTab: this.props.tabname,
             hidden: false
         };
     }
@@ -55,38 +55,37 @@ class TabbarModule extends Component {
                     icon={{ uri: home }}
                     selectedIcon={{ uri: home_o }}
                     title="生活"
-                    key="生活"
-                    selected={this.state.selectedTab === 'blueTab'}
-                    onPress={() => this. onClickChange("/home","blueTab") }
+                    key="home"
+                    selected={this.state.selectedTab === "/home"}
+                    onPress={() => this. onClickChange("/home","/home") }
                 >
                     {/*<div>test</div>*/}
                 </TabBar.Item>
                 <TabBar.Item
                     icon={<Icon type="koubei-o" size="md" />}
                     selectedIcon={<Icon type="koubei" size="md" />}
-                    title="口碑"
-                    key="口碑"
-                    selected={this.state.selectedTab === 'redTab'}
-                    onPress={() => this. onClickChange("/detail","redTab") }
+                    title="产品"
+                    key="productlist"
+                    selected={this.state.selectedTab === '/productlist'}
+                    onPress={() => this. onClickChange("/productlist",'/productlist') }
                 >
                 </TabBar.Item>
                 <TabBar.Item
                     icon={{ uri: rate }}
                     selectedIcon={{ uri: rate_o }}
-                    title="朋友"
-                    key="朋友"
-                    selected={this.state.selectedTab === 'greenTab'}
-                    onPress={() => this. onClickChange("/detail","greenTab") }
+                    title="报表"
+                    key="reportlist"
+                    selected={this.state.selectedTab === "/reportlist"}
+                    onPress={() => this. onClickChange("/reportlist","/reportlist") }
                 >
-                    {this.renderContent('朋友')}
                 </TabBar.Item>
                 <TabBar.Item
                     icon={{ uri: book }}
                     selectedIcon={{ uri: book_o }}
                     title="我的"
-                    key="我的"
-                    selected={this.state.selectedTab === 'yellowTab'}
-                    onPress={() => this. onClickChange("/detail","yellowTab") }
+                    key="msg"
+                    selected={this.state.selectedTab === "/msg"}
+                    onPress={() => this. onClickChange("/msg","/msg") }
                 >
                 </TabBar.Item>
             </TabBar>
@@ -95,7 +94,7 @@ class TabbarModule extends Component {
 }
 
 TabbarModule.propTypes = {
-    // datas: PropTypes.array.isRequired
+    tabname: PropTypes.string
 }
 
 TabbarModule.defaultProps = {
