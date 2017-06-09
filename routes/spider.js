@@ -4,7 +4,7 @@ var router = express.Router();
 var superagent = require('superagent');
 var cheerio = require('cheerio');
 
-var targetUrl = 'https://cnodejs.or111g/';
+var targetUrl = 'https://cnodejs.org/';
 
 
 
