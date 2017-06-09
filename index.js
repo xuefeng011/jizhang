@@ -5,11 +5,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+var cluster = require('cluster');
+var numCPUs = require('os').cpus().length;
+
 var routes = require('./routes/index');
 var api = require('./routes/api');
 var sellect = require('./routes/sellect');
 var products = require('./routes/products');
 var spider = require('./routes/spider');
+var task = require('./routes/task');
+
 
 var app = express();
 
@@ -47,6 +53,7 @@ app.use('/api', api);
 app.use('/sellect', sellect);
 app.use('/products', products);
 app.use('/spider', spider);
+app.use('/task', task);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -84,7 +91,20 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(18080);
+// app.listen(18080);
+
+//多线程
+if (cluster.isMaster) {
+  for (var i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
+  console.log(`-----------START port[18080] pid=[${process.pid}] version=[${process.version}] platform=[${process.platform}] env=[${process.env.NODE_ENV}] execPath=[${process.execPath}]-----------`)
+  app.listen(18080);
+}
 
 
 module.exports = app;

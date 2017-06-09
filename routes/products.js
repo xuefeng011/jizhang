@@ -15,7 +15,31 @@ router.get('/', function(req, res) {
 
 router.get('/get', function(req, res) {
 	res.status(200);
-	MongoDbHelper.find(TableName, null, null, function(err, result) {
+	MongoDbHelper.count(TableName, {}, function(err, cnt) {
+		MongoDbHelper.find(TableName, null, null, function(err, result) {
+			if (err) {
+				res.json({
+					errorCode: -2,
+					errorMessage: err,
+					count:cnt,
+					datas:[]
+				});
+			} else {
+				res.json({
+					errorCode: 1,
+					errorMessage: "成功",
+					count:cnt,
+					datas: result,
+					
+				});
+			}
+		});
+	});
+});
+
+router.get('/removeall', function(req, res) {
+	res.status(200);
+	MongoDbHelper.remove(TableName, {}, function(err, result) {
 		if (err) {
 			res.json({
 				errorCode: -2,
@@ -187,6 +211,57 @@ router.get('/insert', function(req, res) {
 		res.json(result);
 		res.end();
 	});
+});
+
+router.get('/insertgroup', function(req, res) {
+	res.status(200);
+
+	var data = []
+
+	for (var i = 1; i < 10000000; i++) {
+		data.push({
+			"Id": i,
+			"SourceId": 3,
+			"ProductId": i,
+			"ProductName": "apple " + i,
+			"PicUrl": "",
+			"PicContent": "",
+			"Price": "",
+			"Url": "",
+			"RealPrice": Math.random() * 100,
+			"Unit": "个",
+			"InsertDate": new Date(),
+			"Updatedate": ""
+		})
+
+	}
+
+	function insertMongodb() {
+		return new Promise(function(resolve) {
+			data.map(function(item) {
+				MongoDbHelper.save(TableName, item, function(err, result) {
+					if (err) {
+						reject("error");
+					} else {
+						resolve(result);
+					}
+				});
+			})
+		});
+	};
+
+
+	insertMongodb().then(function(data, item) {
+		res.json({
+			errorCode: 1,
+			errorMessage: "成功",
+			data: data,
+			item: item
+		});
+		res.end();
+	})
+
+
 });
 
 
