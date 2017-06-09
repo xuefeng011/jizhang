@@ -8,10 +8,12 @@
     "prod": "set NODE_ENV=development&&node index.js"
   },
   "dependencies": {
+    "async": "^2.4.1",
     "body-parser": "~1.15.1",
     "cheerio": "^1.0.0-rc.1",
     "cookie-parser": "~1.4.3",
     "ejs": "~2.4.1",
+    "eventproxy": "^0.3.5",
     "express": "~4.13.4",
     "mongoose": "^4.10.2",
     "superagent": "^3.5.2"
