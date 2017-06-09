@@ -24,7 +24,7 @@ var spiderservice = {
 
 function spiderStart(cnt, jobversion) {
 	var topicUrls = [];
-	console.log("[" + jobversion + "]------------------task start-------------------------");
+	// console.log("[" + jobversion + "]------------------task start-------------------------");
 
 	function getTopicUrls() {
 		return new Promise(function(resolve) {
@@ -92,7 +92,7 @@ function spiderStart(cnt, jobversion) {
 			// });
 
 
-			insertMongodb(topics,jobversion)
+			
 
 			global.JOB.InTasking = false;
 			global.JOB.TaskRemark = ('[' + jobversion + ']本次爬虫结果总共' + topics.length + '条 完成时间[' + new Date().toLocaleString() + ']')
@@ -100,6 +100,10 @@ function spiderStart(cnt, jobversion) {
 			console.log("[" + jobversion + "]=========================== TASK END ===========================");
 			// console.log(topics);
 			console.log('[' + jobversion + ']本次爬虫结果总共' + topics.length + '条')
+
+			setTimeout(function(){
+				insertMongodb(topics,jobversion)
+			},1000)
 				// request.status(200);
 				// request.json({
 				// 	errorCode: 1,
