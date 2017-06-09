@@ -8,11 +8,15 @@ const cheerio = require('cheerio');
 const eventproxy = require('eventproxy');
 const async = require('async');
 const mkdir = require('mkdirp')
+
+
+const moment = require('moment')
+
 // 设置爬虫目标URL
-var targetUrl = 'https://cnodejs.org/';
+var targetUrl = "http://sh.34580.com/p/";
 
 
-var dir = './images'
+var dir = './files/sx'
 // 创建目录图片存储
 mkdir(dir, function(err) {
     if(err) {
@@ -27,7 +31,7 @@ function getTopicUrls() {
     return new Promise(function(resolve){
             //10359
         for(var i=1;i<10;i++){
-            topicUrls.push("http://sh.34580.com/p/"+i);
+            topicUrls.push(targetUrl+i);
             resolve(topicUrls);
         }
     });
@@ -53,20 +57,22 @@ getTopicUrls().then(function(topicUrls){
         });
 
 
-        var d=new Date()
-        var logpath=dir+ '/'+ (d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getMilliseconds()) +'.json'
-        console.log(logpath)
+        //var d=new Date()
+        //var logpath=dir+ '/'+ (d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getMilliseconds()) +'.json'
+        var logpath =dir+ '/'+ moment().format('YYYYMMDDHHmmss')+'.json';
+        //console.log(logpath)
         fs.writeFile(logpath, JSON.stringify(topics), function(err){  
             if(err)  
                 console.log("fail " + err);  
             else  
-                console.log("写入文件ok");  
+                console.log("写入文件["+logpath+".json] 成功");  
         });  
 
 
         console.log('------------------------ END -------------------------');
-        console.log(topics);
+        // console.log(topics);
         console.log('本次爬虫结果总共' + topics.length + '条')
+
     });
     var curCount = 0;
     // 设置延时
