@@ -92,6 +92,7 @@ app.use(function(err, req, res, next) {
 
 
 app.listen(18080);
+console.log(`-----------START port[18080] pid=[${process.pid}] version=[${process.version}] platform=[${process.platform}] env=[${process.env.NODE_ENV}] execPath=[${process.execPath}]-----------`)
 
 // //多线程
 // if (cluster.isMaster) {
