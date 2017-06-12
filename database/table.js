@@ -4,12 +4,12 @@
         "password": "String"
     },
     "Products": {
-        "Id": "String",
-        "SourceId": "String",
+        "Id": "Number",
+        "SourceId": "Number",
         "ProductId": "String",
         "ProductName": "String",
         "PicUrl": "String",
-        "Price": "String",
+        "Price": "Number",
         "Weight": "String",
         "InsertDate": "Date",
         "Updatedate": "Date",
@@ -17,20 +17,21 @@
             "Url": "String",
             "PicContent": "String",
             "Origin": "String",
-            "CommentCnt": "String",
-            "SoldCnt": "String",
+            "CommentCnt": "Number",
+            "SoldCnt": "Number",
             "Unit": "String",
             "UnitPrice": "String",
             "ScPrice": "String"
         },
         "Source": {
-            "SourceId": "String",
+            "SourceId": "Number",
             "SourceName": "String",
             "Category1": "String",
             "Category2": "String"
         },
         "RelationIds": "String",
-        "KeyWords": "String"
+        "KeyWords": "String",
+        "Version": "Number"
     },
     "source": {
         "name": "String",

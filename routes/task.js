@@ -80,7 +80,7 @@ router.get('/set', function(req, request) {
 		console.log(`[TASK] already ${global.JOB.Version}_${process.pid}`)
 		request.json({
 			errorCode: -1,
-			errorMessage:`[TASK] already ${global.JOB.Version}_${process.pid}`,
+			errorMessage: `[TASK] already ${global.JOB.Version}_${process.pid}`,
 			JOB: global.JOB
 		});
 		request.end()
@@ -101,8 +101,13 @@ router.get('/set', function(req, request) {
 			///--------------
 			///  start job
 			///--------------
+			///
+			///  cnt 数量
+			///  jobname
+			///  source type : 5 食行
 			///--------------
-			SpiderService.start(req.query.cnt || 10, jobname)
+			///--------------
+			SpiderService.start(req.query.cnt || 10, jobname, req.query.sourcetype || 5)
 		});
 		request.status(200);
 		request.json({

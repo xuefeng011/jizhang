@@ -263,8 +263,23 @@ router.get('/insert', function(req, res) {
 	// 	"KeyWords": "String"
 	// }
 
+	var data = req.query||{}
 
-	MongoDbHelper.save(TableName, req.query, function(err, result) {
+	if(!!data.Id) data.Id = parseInt(data.Id,10)
+	if(!!data.SourceId) data.SourceId = parseInt(data.SourceId,10)
+	if(!!data.Price) data.Price = parseFloat(data.Price)
+
+	if(!!data.Others && !!data.Others.CommentCnt) data.Others.CommentCnt = parseInt(data.Others.CommentCnt,10)
+	if(!!data.Others && !!data.Others.SoldCnt) data.Others.SoldCnt = parseInt(data.Others.SoldCnt,10)
+
+	if(!!data.Source && !!data.Source.SourceId) data.Source.SourceId = parseInt(data.Source.SourceId,10)
+
+	if(!!data.Version) data.Version = parseFloat(data.Version)
+
+
+
+
+	MongoDbHelper.save(TableName, data, function(err, result) {
 		if (err) {
 			console.log('insert error', err)
 			res.json({
@@ -273,7 +288,7 @@ router.get('/insert', function(req, res) {
 			res.end();
 		} else {
 			// console.log('insert success', result)
-			
+
 			res.json(result);
 			res.end();
 		}
