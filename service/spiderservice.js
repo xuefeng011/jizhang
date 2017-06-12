@@ -49,6 +49,7 @@ function getObj(topicPair) {
 		"ProductName": $(".name h1").text().trim(),
 		"PicUrl":  $("#_middleImage").attr("src").trim(),
 		"Price": checkNumber($(".p-price").text()),
+		"Weight": $(".p-weight").text().replace("(","").replace(")","").trim(),
 		"InsertDate": new Date(),
 		"Updatedate": "",
 		"Others": {
@@ -57,7 +58,6 @@ function getObj(topicPair) {
 			"Origin": $(".summary_info .info_L .dd").eq(0).text().replace("(*)","").trim(),
 			"CommentCnt": checkNumber($(".summary_info .info_R .dd").eq(1).text().replace("条评论","")),
 			"SoldCnt": checkNumber($(".summary_info .info_R .dd").eq(0).text()),
-			"Weight": $(".p-weight").text().replace("(","").replace(")","").trim(),
 			"Unit":$(".p-weight").text().replace("(","").replace(")","").trim(),
 			"UnitPrice":$(".sh-price").text().trim(),
 			"ScPrice": $(".sc-price").text().trim()

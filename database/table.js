@@ -10,6 +10,7 @@
         "ProductName": "String",
         "PicUrl": "String",
         "Price": "Number",
+        "Weight": "String",
         "InsertDate": "Date",
         "Updatedate": "Date",
         "Others": {
@@ -18,7 +19,6 @@
             "Origin": "String",
             "CommentCnt": "Number",
             "SoldCnt": "Number",
-            "Weight": "String",
             "Unit": "String",
             "UnitPrice": "String",
             "ScPrice": "String"
