@@ -273,6 +273,7 @@ router.get('/insert', function(req, res) {
 			res.end();
 		} else {
 			// console.log('insert success', result)
+			
 			res.json(result);
 			res.end();
 		}
