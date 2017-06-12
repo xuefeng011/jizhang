@@ -10,8 +10,14 @@ var TableName = "Products";
 var superagent = require('superagent');
 
 
+var logger = require('../service/logger').logger('normal');
+
+
+
 router.get('/', function(req, res) {
 	res.status(200);
+	logger.info("logger.info");
+	console.log("console.log");
 	res.json("test");
 	res.end();
 });
@@ -20,7 +26,7 @@ router.get('/', function(req, res) {
 router.get('/get', function(req, res) {
 	res.status(200);
 
-	// console.log('get', req.query)
+	console.log('get', req.query)
 
 	MongoDbHelper.count(TableName, {}, function(err, cnt) {
 		MongoDbHelper.find(TableName, null, null, function(err, result) {

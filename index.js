@@ -17,7 +17,34 @@ var spider = require('./routes/spider');
 var task = require('./routes/task');
 
 
+// var logger = require('./service/logger').logger('sys');
+
+//log4
+// var log4js = require('log4js');
+
 var app = express();
+
+
+
+//log4
+// log4js.configure({
+//   appenders: [
+//     { type: 'console' }, //控制台输出
+//     {
+//       type: 'file', //文件输出
+//       filename: 'logs/access.log',
+//       maxLogSize: 1024,
+//       backups: 3,
+//       category: 'normal'
+//     }
+//   ],
+//   replaceConsole: true
+// });
+// var logger = log4js.getLogger('normal');
+// logger.setLevel('INFO');
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,7 +61,32 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.all('*', function(req, res, next) {
+
+
+
+//log4js
+// var log4js = require('log4js');
+// log4js.configure({
+//     appenders: [
+//         {"type": "console", "category": "console"}]   //控制台输出
+// });
+// var logger = log4js.getLogger('console');
+// logger.setLevel('INFO');
+// app.use(log4js.connectLogger(logger, { level: log4js.levels.INFO }));
+
+
+// module.exports.logger=function(name){
+//   var logger = log4js.getLogger(name);
+//   logger.setLevel('INFO');
+//   return logger;
+// }
+// app.use(app.router);
+
+
+
+
+
+app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
@@ -56,7 +108,7 @@ app.use('/spider', spider);
 app.use('/task', task);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -67,7 +119,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
+  app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -81,7 +133,7 @@ if (app.get('env') === 'development') {
 // console.log(222222222222222, app.get('env'))
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
@@ -95,7 +147,7 @@ app.listen(18080);
 
 global.codeVersion = "1.0.7";
 
-console.log(`-----------START port[18080] pid=[${process.pid}] version=[${process.version}] platform=[${process.platform}] env=[${process.env.NODE_ENV}] execPath=[${process.execPath}]-----------`)
+// logger.warn(`-----------START port[18080] pid=[${process.pid}] version=[${process.version}] platform=[${process.platform}] env=[${process.env.NODE_ENV}] execPath=[${process.execPath}]-----------`)
 
 // //多线程
 // if (cluster.isMaster) {
