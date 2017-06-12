@@ -103,7 +103,7 @@ function spiderStart(cnt, jobversion) {
 		var curCount = 0;
 		// 设置延时
 		function concurrentGet(url, callback) {
-			var delay = parseInt((Math.random() * 30000000) % 5000, 10);
+			var delay = parseInt((Math.random() * 30000000) % 10000, 10);
 			curCount++;
 			setTimeout(function() {
 				var remark = `[${jobversion}]现在的并发数是${curCount}，正在抓取的是${url}，耗时${delay}毫秒`;
