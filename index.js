@@ -92,6 +92,9 @@ app.use(function(err, req, res, next) {
 
 
 app.listen(18080);
+
+global.codeVersion = "1.0.1";
+
 console.log(`-----------START port[18080] pid=[${process.pid}] version=[${process.version}] platform=[${process.platform}] env=[${process.env.NODE_ENV}] execPath=[${process.execPath}]-----------`)
 
 // //多线程
