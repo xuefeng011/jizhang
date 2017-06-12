@@ -44,22 +44,22 @@ function getObj(topicPair) {
 	var id = topicUrl.split("/")[4]
 	return ({
 		"Id": id,
-		"SourceId":5,
+		"SourceId": 5,
 		"ProductId": id,
 		"ProductName": $(".name h1").text().trim(),
-		"PicUrl":  $("#_middleImage").attr("src").trim(),
+		"PicUrl": $("#_middleImage").attr("src").trim(),
 		"Price": checkNumber($(".p-price").text()),
-		"Weight": $(".p-weight").text().replace("(","").replace(")","").trim(),
+		"Weight": $(".p-weight").text().replace("(", "").replace(")", "").trim(),
 		"InsertDate": new Date(),
 		"Updatedate": "",
 		"Others": {
 			"Url": topicUrl,
 			"PicContent": "",
-			"Origin": $(".summary_info .info_L .dd").eq(0).text().replace("(*)","").trim(),
-			"CommentCnt": checkNumber($(".summary_info .info_R .dd").eq(1).text().replace("条评论","")),
+			"Origin": $(".summary_info .info_L .dd").eq(0).text().replace("(*)", "").trim(),
+			"CommentCnt": checkNumber($(".summary_info .info_R .dd").eq(1).text().replace("条评论", "")),
 			"SoldCnt": checkNumber($(".summary_info .info_R .dd").eq(0).text()),
-			"Unit":$(".p-weight").text().replace("(","").replace(")","").trim(),
-			"UnitPrice":$(".sh-price").text().trim(),
+			"Unit": $(".p-weight").text().replace("(", "").replace(")", "").trim(),
+			"UnitPrice": $(".sh-price").text().trim(),
 			"ScPrice": $(".sc-price").text().trim()
 		},
 		"Source": {
@@ -103,7 +103,7 @@ function spiderStart(cnt, jobversion) {
 		var curCount = 0;
 		// 设置延时
 		function concurrentGet(url, callback) {
-			var delay = parseInt((Math.random() * 30000000) % 10000, 10);
+			var delay = parseInt((Math.random() * 30000000) % 1000, 10);
 			curCount++;
 			setTimeout(function() {
 				var remark = `[${jobversion}]现在的并发数是${curCount}，正在抓取的是${url}，耗时${delay}毫秒`;
@@ -126,7 +126,7 @@ function spiderStart(cnt, jobversion) {
 		// mapLimit(arr, limit, iterator, [callback])
 		// 异步回调
 		console.log('[' + jobversion + ']=========================== Task START ===========================');
-		async.mapLimit(topicUrls, 1, function(topicUrl, callback) {
+		async.mapLimit(topicUrls, 5, function(topicUrl, callback) {
 			concurrentGet(topicUrl, callback);
 		});
 	})
@@ -136,15 +136,34 @@ function insertMongodb(item, jobversion) {
 
 	//console.log('[' + jobversion + ']------------------------ DB START -------------------------');
 
-	var TableName = "Products";
+	// var TableName = "Products";
 
-	MongoDbHelper.save(TableName, item, function(err, result) {
-		if (err) {
-			console.log('[' + jobversion + ']------------------------ DB ERROR -------------------------' , err);
-		} else {
-			console.log('[' + jobversion + ']------------------------ DB SUCCESS -------------------------');
-		}
-	});
+	// MongoDbHelper.save(TableName, item, function(err, result) {
+	// if (err) {
+	// 	console.log('[' + jobversion + ']------------------------ DB ERROR -------------------------', err);
+	// } else {
+	// 	console.log('[' + jobversion + ']------------------------ DB SUCCESS -------------------------');
+	// }
+	// });
+	var url = "";
+	if (!!process.env && !!process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
+		url = "http://localhost:18080/products/insert";
+	} else {
+		url = "https://gougoustar.duapp.com/products/get"
+	}
+
+	superagent.get(url)
+		.query(item)
+		.end(function(err, result) {
+			if (err) {
+				console.log('[' + jobversion + ']------------------------ DB ERROR -------------------------', err);
+			} else {
+				console.log('[' + jobversion + ']------------------------ DB SUCCESS -------------------------');
+			}
+
+		});
+
+
 }
 
 

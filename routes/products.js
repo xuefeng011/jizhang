@@ -6,6 +6,10 @@ var MongoDbHelper = require('../service/mongodbhelper');
 
 var TableName = "Products";
 
+
+var superagent = require('superagent');
+
+
 router.get('/', function(req, res) {
 	res.status(200);
 	res.json("test");
@@ -15,6 +19,9 @@ router.get('/', function(req, res) {
 
 router.get('/get', function(req, res) {
 	res.status(200);
+
+	console.log('get', req.query)
+
 	MongoDbHelper.count(TableName, {}, function(err, cnt) {
 		MongoDbHelper.find(TableName, null, null, function(err, result) {
 			if (err) {
@@ -175,38 +182,28 @@ router.get('/getall', function(req, res) {
 
 });
 
-
-router.get('/insert', function(req, res) {
+router.get('/test', function(req, res) {
 	res.status(200);
-	// var data = {
-	// 	"name": req.query.name || '',
-	// 	"pic": req.query.pic || '',
-	// 	"source": req.query.source || '',
-	// 	"group": req.query.group || '',
-	// 	"money": req.query.money || '',
-	// 	"insertdate": new Date().valueOf(),
-	// 	"updatedate": '',
-	// 	"user": req.query.user || ''
-	// }
-
-	var id = req.query.Id;
-	var SourceId = req.query.SourceId || 1;
 
 	var data = {
-		"Id": id,
-		"SourceId": SourceId,
+		"Id": 1,
+		"SourceId": 1,
 		"ProductId": "String",
 		"ProductName": "String",
 		"PicUrl": "String",
-		"Price": "String",
+		"Price": 1,
+		"Weight": "String",
 		"InsertDate": new Date(),
-		"Updatedate": new Date(),
+		"Updatedate": "",
 		"Others": {
-			"SoldCnt": 0,
 			"Url": "String",
-			"RealPrice": 1,
+			"PicContent": "String",
+			"Origin": "String",
+			"CommentCnt": 1,
+			"SoldCnt": 1,
 			"Unit": "String",
-			"PicContent": "String"
+			"UnitPrice": "String",
+			"ScPrice": "String"
 		},
 		"Source": {
 			"SourceId": 1,
@@ -214,14 +211,68 @@ router.get('/insert', function(req, res) {
 			"Category1": "String",
 			"Category2": "String"
 		},
-		"Relations":"a,b,c,d"
+		"RelationIds": "String",
+		"KeyWords": "String"
 	}
 
-	MongoDbHelper.save(TableName, data, function(err, result) {
+	superagent.get("http://localhost:18080/products/insert")
+		.query(data)
+		.end(function(err, result) {
+			if (err) {
+				return console.log('error:', err)
+			}
+			res.json({
+				res: result
+			});
+			res.end();
+		});
+});
+
+
+router.get('/insert', function(req, res) {
+	res.status(200);
+
+	//console.log('insert', req.query)
+	// var data = {
+	// 	"Id": 1,
+	// 	"SourceId": 1,
+	// 	"ProductId": "String",
+	// 	"ProductName": "String",
+	// 	"PicUrl": "String",
+	// 	"Price": 1,
+	// 	"Weight": "String",
+	// 	"InsertDate": new Date(),
+	// 	"Updatedate": "",
+	// 	"Others": {
+	// 		"Url": "String",
+	// 		"PicContent": "String",
+	// 		"Origin": "String",
+	// 		"CommentCnt": 1,
+	// 		"SoldCnt": 1,
+	// 		"Unit": "String",
+	// 		"UnitPrice": "String",
+	// 		"ScPrice": "String"
+	// 	},
+	// 	"Source": {
+	// 		"SourceId": 1,
+	// 		"SourceName": "String",
+	// 		"Category1": "String",
+	// 		"Category2": "String"
+	// 	},
+	// 	"RelationIds": "String",
+	// 	"KeyWords": "String"
+	// }
+
+
+	MongoDbHelper.save(TableName, req.query, function(err, result) {
 		if (err) {
-			res.json({error:err});
+			console.log('insert error', err)
+			res.json({
+				error: err
+			});
 			res.end();
 		} else {
+			// console.log('insert success', result)
 			res.json(result);
 			res.end();
 		}
