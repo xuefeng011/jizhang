@@ -149,7 +149,7 @@ function insertMongodb(item, jobversion) {
 	if (!!process.env && !!process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
 		url = "http://localhost:18080/products/insert";
 	} else {
-		url = "https://gougoustar.duapp.com/products/get"
+		url = "https://gougoustar.duapp.com/products/insert"
 	}
 
 	superagent.get(url)

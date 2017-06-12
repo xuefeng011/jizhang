@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
 router.get('/get', function(req, res) {
 	res.status(200);
 
-	console.log('get', req.query)
+	// console.log('get', req.query)
 
 	MongoDbHelper.count(TableName, {}, function(err, cnt) {
 		MongoDbHelper.find(TableName, null, null, function(err, result) {
