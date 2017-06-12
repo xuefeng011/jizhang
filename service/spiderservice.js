@@ -11,13 +11,14 @@ var targetUrl = "http://sh.34580.com/p/";
 
 var MongoDbHelper = require('./mongodbhelper');
 
+var logger = require('./logger').logger('normal');
 
 var spiderservice = {
 	start: function(cnt, jobversion, sourcetype) {
 		if (!!cnt && !!jobversion) {
 			spiderStart(parseInt(cnt), jobversion, parseInt(sourcetype))
 		} else {
-			console.log("spiderStart noparam")
+			logger.info("spiderStart noparam")
 		}
 	}
 }
@@ -89,7 +90,7 @@ function getObj(topicPair, _sourceType) {
 					"Version": 0
 				};
 			} catch (e) {
-				console.log(`[${topicUrl}]  error [${e}]`)
+				logger.info(`[${topicUrl}]  error [${e}]`)
 				result = null;
 			}
 			break;
@@ -130,7 +131,7 @@ function getObj(topicPair, _sourceType) {
 					"Version": 0
 				};
 			} catch (e) {
-				console.log(`[${topicUrl}]  error [${e}]`)
+				logger.info(`[${topicUrl}]  error [${e}]`)
 				result = null;
 			}
 			break;
@@ -145,7 +146,7 @@ function spiderStart(cnt, jobversion, sourceType) {
 	var st = 0;
 	var et = st + cnt;
 	var url = "";
-	// console.log(1111111111111111111,cnt, jobversion, sourceType)
+	// logger.info(1111111111111111111,cnt, jobversion, sourceType)
 	switch (sourceType) {
 		case 5:
 		case '5':
@@ -171,17 +172,17 @@ function spiderStart(cnt, jobversion, sourceType) {
 		});
 	};
 	getTopicUrls().then(function(topicUrls) {
-		// console.log('-------------',topicUrls)
+		// logger.info('-------------',topicUrls)
 		var ep = new eventproxy();
 		ep.after('crawled', topicUrls.length, function(topics) {
 
 			global.JOB.InTasking = false;
 			global.JOB.TaskRemark = (`[${jobversion}]本次爬虫结果总共${topics.length}条 完成时间[${new Date().toLocaleString()}]`)
-			console.log("[" + jobversion + "]=========================== TASK END ===========================");
+			logger.warn("[" + jobversion + "]=========================== TASK END ===========================");
 			global.enddate = new Date();
 
 			var used = parseInt((global.enddate.getTime() - global.startdate.getTime()) / 1000, 10);
-			console.log(`[${jobversion}]本次爬虫结果总共${topics.length}条  耗时=[${used}]秒`)
+			logger.warn(`[${jobversion}]本次爬虫结果总共${topics.length}条  耗时=[${used}]秒`)
 
 		});
 		var curCount = 0;
@@ -193,13 +194,13 @@ function spiderStart(cnt, jobversion, sourceType) {
 				var remark = `[${jobversion}]现在的并发数是${curCount}，正在抓取的是${url}，耗时${delay}毫秒`;
 				global.JOB.InTasking = true;
 				global.JOB.TaskRemark = remark
-				console.log(remark)
+				logger.info(remark)
 				superagent.get(url)
 					.end(function(err, res) {
-						// console.log('fetch－－' + url + '－－successfully');
+						// logger.info('fetch－－' + url + '－－successfully');
 						var obj = null
 						if (err || (typeof res) == "undefined" || !res.text) {
-							console.log(1111111111111111,err)
+							logger.warn("superagenterror",err)
 							obj = null
 							ep.emit('crawled', obj);
 						} else {
@@ -216,7 +217,7 @@ function spiderStart(cnt, jobversion, sourceType) {
 		// 使用async控制异步抓取    
 		// mapLimit(arr, limit, iterator, [callback])
 		// 异步回调
-		console.log('[' + jobversion + ']=========================== Task START ===========================');
+		logger.warn('[' + jobversion + ']=========================== Task START ===========================');
 		global.startdate = new Date();
 		async.mapLimit(topicUrls, 50, function(topicUrl, callback) {
 			concurrentGet(topicUrl, callback);
@@ -224,7 +225,7 @@ function spiderStart(cnt, jobversion, sourceType) {
 	})
 }
 
-function insertMongodb(item, jobversion, url) {
+function insertMongodb(item, jobversion, _url) {
 	var url = "";
 	if (!!process.env && !!process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
 		url = "http://localhost:18080/products/insert";
@@ -232,7 +233,7 @@ function insertMongodb(item, jobversion, url) {
 		url = "https://gougoustar.duapp.com/products/insert"
 	}
 	if (item == null) {
-		console.log('[' + jobversion + ']------- DB NONE -------', url);
+		logger.info('[' + jobversion + ']------- DB NONE -------', _url);
 		return;
 	}
 
@@ -240,9 +241,9 @@ function insertMongodb(item, jobversion, url) {
 		.query(item)
 		.end(function(err, result) {
 			if (err) {
-				console.log('[' + jobversion + ']------- DB ERROR -------', err, url);
+				logger.info('[' + jobversion + ']------- DB ERROR -------', err, _url);
 			} else {
-				console.log('[' + jobversion + ']------------------ DB SUCCESS -------', url);
+				logger.info('[' + jobversion + ']------------------ DB SUCCESS -------', _url);
 			}
 		});
 }

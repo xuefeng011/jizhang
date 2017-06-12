@@ -24,13 +24,22 @@ URL `/products/getall`
 
 |参数名|必选|类型|说明|
 |-------|-------|-------|-------|
-|results|no|int|每页数量|
-|page|no|int|第几页|
-|sortField|no|string|排序字段|
-|sortOrder|no|int|1/-1|
-|SourceId|no|array|筛选|
-|Unit|no|array|筛选|
-|ProductId|no|array|筛选|
+|pagesize|no|int|每页数量|
+|pageindex|no|int|第几页|
+|conditions|no|object| SourceId: 6,Id: [62788, 62772]|
+|options|no|object| Id: 1|
+
+```
+conditions:
+{
+    SourceId: 6,
+    Id: [62788, 62772]
+},
+options: {
+    Id: 1
+}
+
+```
 
 ### 3）存数据
 URL `/products/insert`

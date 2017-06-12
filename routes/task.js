@@ -7,6 +7,7 @@ var schedule = require("node-schedule");
 
 var SpiderService = require('../service/spiderservice');
 
+var logger = require('../service/logger').logger('normal');
 
 global.JOB = {
 	Version: "",
@@ -41,7 +42,7 @@ router.get('/cancel', function(req, request) {
 	if (global.JOB.HasRun && !!global.JOB.j) {
 		request.status(200);
 		global.JOB.j.cancel();
-		console.log(`[TASK] cancel ${global.JOB.Version}_${process.pid}`)
+		logger.info(`[TASK] cancel ${global.JOB.Version}_${process.pid}`)
 		request.json({
 			errorCode: -1,
 			errorMessage: `[TASK] cancel ${global.JOB.Version}_${process.pid}`
@@ -56,7 +57,7 @@ router.get('/cancel', function(req, request) {
 		request.end()
 	} else {
 		request.status(200);
-		console.log(`[TASK] none ${global.JOB.Version}_${process.pid}`)
+		logger.info(`[TASK] none ${global.JOB.Version}_${process.pid}`)
 		request.json({
 			errorCode: -1,
 			errorMessage: `[TASK] none ${global.JOB.Version}_${process.pid}`
@@ -77,7 +78,7 @@ router.get('/set', function(req, request) {
 
 	if (global.JOB.HasRun) {
 		request.status(200);
-		console.log(`[TASK] already ${global.JOB.Version}_${process.pid}`)
+		logger.info(`[TASK] already ${global.JOB.Version}_${process.pid}`)
 		request.json({
 			errorCode: -1,
 			errorMessage: `[TASK] already ${global.JOB.Version}_${process.pid}`,
@@ -93,9 +94,9 @@ router.get('/set', function(req, request) {
 			TaskRemark: "SETing"
 		}
 		var jobname = `${global.JOB.Version}_${processid}_${RULETIME}`
-		console.log(`[TASK] set  ${jobname}`);
+		logger.info(`[TASK] set  ${jobname}`);
 		global.JOB.j = schedule.scheduleJob(rule, function() {
-			console.log(`[TASK] start  ${jobname}`);
+			logger.info(`[TASK] start  ${jobname}`);
 
 			///--------------
 			///--------------
