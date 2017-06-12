@@ -24,7 +24,7 @@ var options = {
     db_port: 0,
     db_name: ""
 };
-if (process.env.NODE_ENV === 'dev') {
+if (!!process.env && !!process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
     console.log("dev start")
     options = {
         db_user: "",
