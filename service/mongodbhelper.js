@@ -43,7 +43,9 @@ if (process.env.NODE_ENV === 'dev') {
         db_name: "kfHpRGvfdxTyCpraUPjY"
     };
 }
+
 mongoose.Promise = global.Promise;  
+
 var dbURL = "mongodb://" + options.db_user + ":" + options.db_pwd + "@" + options.db_host + ":" + options.db_port + "/" + options.db_name;
 mongoose.connect(dbURL);
 
