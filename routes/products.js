@@ -6,17 +6,17 @@ var MongoDbHelper = require('../service/mongodbhelper');
 
 var TableName = "Products";
 
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
 	res.status(200);
 	res.json("test");
 	res.end();
 });
 
 
-router.get('/get', function (req, res) {
+router.get('/get', function(req, res) {
 	res.status(200);
-	MongoDbHelper.count(TableName, {}, function (err, cnt) {
-		MongoDbHelper.find(TableName, null, null, function (err, result) {
+	MongoDbHelper.count(TableName, {}, function(err, cnt) {
+		MongoDbHelper.find(TableName, null, null, function(err, result) {
 			if (err) {
 				res.json({
 					errorCode: -2,
@@ -37,9 +37,9 @@ router.get('/get', function (req, res) {
 	});
 });
 
-router.get('/removeall', function (req, res) {
+router.get('/removeall', function(req, res) {
 	res.status(200);
-	MongoDbHelper.remove(TableName, {}, function (err, result) {
+	MongoDbHelper.remove(TableName, {}, function(err, result) {
 		if (err) {
 			res.json({
 				errorCode: -2,
@@ -55,7 +55,7 @@ router.get('/removeall', function (req, res) {
 	});
 });
 
-router.get('/getall', function (req, res) {
+router.get('/getall', function(req, res) {
 	res.status(200);
 	// res.append("Access-Control-Allow-Origin", "*");
 
@@ -153,8 +153,8 @@ router.get('/getall', function (req, res) {
 	console.log("conditions", conditions)
 
 	// console.log(options)
-	MongoDbHelper.count(TableName, conditions, function (err, cnt) {
-		MongoDbHelper.where(TableName, conditions, options, function (err, result) {
+	MongoDbHelper.count(TableName, conditions, function(err, cnt) {
+		MongoDbHelper.where(TableName, conditions, options, function(err, result) {
 			if (err) {
 				res.json({
 					errorCode: -2,
@@ -176,7 +176,7 @@ router.get('/getall', function (req, res) {
 });
 
 
-router.get('/insert', function (req, res) {
+router.get('/insert', function(req, res) {
 	res.status(200);
 	// var data = {
 	// 	"name": req.query.name || '',
@@ -195,25 +195,40 @@ router.get('/insert', function (req, res) {
 	var data = {
 		"Id": id,
 		"SourceId": SourceId,
-		"ProductId": id,
-		"ProductName": "apple " + id,
-		"PicUrl": "",
-		"PicContent": "",
-		"Price": "",
-		"Url": "",
-		"RealPrice": Math.random() * 100,
-		"Unit": "个",
+		"ProductId": "String",
+		"ProductName": "String",
+		"PicUrl": "String",
+		"Price": "String",
 		"InsertDate": new Date(),
-		"Updatedate": ""
+		"Updatedate": new Date(),
+		"Others": {
+			"SoldCnt": 0,
+			"Url": "String",
+			"RealPrice": 1,
+			"Unit": "String",
+			"PicContent": "String"
+		},
+		"Source": {
+			"SourceId": 1,
+			"SourceName": "String",
+			"Category1": "String",
+			"Category2": "String"
+		},
+		"Relations":"a,b,c,d"
 	}
 
-	MongoDbHelper.save(TableName, data, function (err, result) {
-		res.json(result);
-		res.end();
+	MongoDbHelper.save(TableName, data, function(err, result) {
+		if (err) {
+			res.json({error:err});
+			res.end();
+		} else {
+			res.json(result);
+			res.end();
+		}
 	});
 });
 
-router.get('/insertgroup', function (req, res) {
+router.get('/insertgroup', function(req, res) {
 	res.status(200);
 
 	var data = []

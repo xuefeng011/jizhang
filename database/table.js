@@ -9,13 +9,28 @@
         "ProductId": "String",
         "ProductName": "String",
         "PicUrl": "String",
-        "PicContent": "String",
-        "Price": "String",
-        "Url": "String",
-        "RealPrice": "Number",
-        "Unit": "String",
+        "Price": "Number",
         "InsertDate": "Date",
-        "Updatedate": "Date"
+        "Updatedate": "Date",
+        "Others": {
+            "Url": "String",
+            "PicContent": "String",
+            "Origin": "String",
+            "CommentCnt": "Number",
+            "SoldCnt": "Number",
+            "Weight": "String",
+            "Unit": "String",
+            "UnitPrice": "String",
+            "ScPrice": "String"
+        },
+        "Source": {
+            "SourceId": "Number",
+            "SourceName": "String",
+            "Category1": "String",
+            "Category2": "String"
+        },
+        "RelationIds": "String",
+        "KeyWords": "String"
     },
     "source": {
         "name": "String",
