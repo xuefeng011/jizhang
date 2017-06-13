@@ -35,12 +35,19 @@ if (!!process.env && !!process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
     };
 } else {
     console.log("prod start")
-    options = {
-        db_user: "e4bce76fc5b64cfca0337e7501a71c7a",
-        db_pwd: "116a429d58cf4fa094103015ea69ddc8",
-        db_host: "mongo.duapp.com",
-        db_port: 8908,
-        db_name: "kfHpRGvfdxTyCpraUPjY"
+    // options = {
+    //     db_user: "e4bce76fc5b64cfca0337e7501a71c7a",
+    //     db_pwd: "116a429d58cf4fa094103015ea69ddc8",
+    //     db_host: "mongo.duapp.com",
+    //     db_port: 8908,
+    //     db_name: "kfHpRGvfdxTyCpraUPjY"
+    // };
+       options = {
+        db_user: "",
+        db_pwd: "",
+        db_host: "localhost",
+        db_port: 27017,
+        db_name: "test"
     };
 }
 
