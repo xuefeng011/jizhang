@@ -61,7 +61,7 @@ class ListModule extends Component {
     bindscroll() {
         var obj = $('.my-list');
 
-        obj.css({'overflow-y':'scroll','height':'10rem' })
+        obj.css({'overflow-y':'scroll','height':'10rem',"-webkit-overflow-scrolling": "touch"})
 
          // console.log(obj.scrollTop())
          obj.scroll(function() {
