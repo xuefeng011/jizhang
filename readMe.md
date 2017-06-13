@@ -85,3 +85,30 @@ URL `/task/set`
 |min|no|int|任务时间 每个小时第几分钟|
 |cnt|no|int|URL数|
 
+
+
+
+# WEB
+
+```
+$.ajax({
+        url: "http://localhost:18080/products/getall",
+        data: {
+            pagesize: 5,
+            pageindex: 1,
+            conditions: {
+                SourceId: 6,
+                //Id: [62788, 62772],
+                Id:{"$gt":1,"$lte":62788}  
+            },
+            options: {
+                Id: 1
+            }
+        },
+        success: function(res) {
+            console.table(res.Datas)
+        }
+    }
+)
+
+```

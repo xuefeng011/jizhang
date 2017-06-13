@@ -63,8 +63,8 @@ class ListModule extends Component {
 
         obj.css({'overflow-y':'scroll','height':'10rem' })
 
-         console.log(obj.scrollTop())
-        obj.scroll(function() {
+         // console.log(obj.scrollTop())
+         obj.scroll(function() {
             //if (obj.scrollTop() <= 0) {
 
             //} 
@@ -72,7 +72,7 @@ class ListModule extends Component {
             var viewH = obj.height(), //可见高度  
                 contentH = obj.get(0).scrollHeight, //内容高度  
                 scrollTop = obj.scrollTop(); //滚动高度 
-            console.log(scrollTop)
+            // console.log(scrollTop)
             if (scrollTop / (contentH - viewH) >= 0.95) { //到达底部100px时,加载新内容  
 
 
@@ -101,8 +101,9 @@ class ListModule extends Component {
                 listhtml = (<List renderHeader={() => '满足结果'+this.state.datas.length} className="my-list">
                     {this.state.datas.map((item,index)=>{
                         // console.log(moment().format(item.InsertDate,"YYYY"))
-                        return <Item extra="10:30" arrow="horizontal" key={Math.random()}  align="middle" thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png" multipleLine>
-                                {`${item.ProductName}`} <Brief>{co.getFullDate(item.InsertDate)["6"]}</Brief>
+                        //{co.getFullDate(item.InsertDate)["6"]}
+                        return <Item extra={item.Price==0?'N/A':`¥${item.Price}(${item.Others.Unit})`} arrow="horizontal" key={Math.random()}  align="middle" thumb={`${item.PicUrl}`} multipleLine>
+                                {`${item.ProductName}`} <Brief>{`${item.Source.SourceName} ${item.Source.Category1} ${item.Source.Category2}`}</Brief>
                                 </Item>
                     })}
                   </List>);

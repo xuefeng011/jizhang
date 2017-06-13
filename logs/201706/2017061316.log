@@ -1,0 +1,122 @@
+[2017-06-13 16:28:37.403] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-13 16:28:55.512] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-13 16:29:02.753] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-13 16:29:48.350] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 3 } { SourceId: '6', Id: [ '62788', '62772' ] }
+[2017-06-13 16:29:56.087] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 3 } { SourceId: '6', Id: [ '62788', '62772' ] }
+[2017-06-13 16:30:00.010] [INFO] normal - [TASK] start  2017-6-13 09:29:24_12608_30
+[2017-06-13 16:30:00.012] [WARN] normal - [2017-6-13 09:29:24_12608_30]=========================== Task START ===========================
+[2017-06-13 16:30:00.029] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是25，正在抓取的是http://sh.34580.com/p/1，耗时13毫秒
+[2017-06-13 16:30:00.110] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是24，正在抓取的是http://sh.34580.com/p/0，耗时94毫秒
+[2017-06-13 16:30:00.112] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是23，正在抓取的是http://sh.34580.com/p/17，耗时98毫秒
+[2017-06-13 16:30:00.185] [INFO] normal - [2017-6-13 09:29:24_12608_30]------- DB NONE ------- 5
+[2017-06-13 16:30:00.193] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是22，正在抓取的是http://sh.34580.com/p/9，耗时177毫秒
+[2017-06-13 16:30:00.221] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是21，正在抓取的是http://sh.34580.com/p/3，耗时206毫秒
+[2017-06-13 16:30:00.320] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是20，正在抓取的是http://sh.34580.com/p/18，耗时305毫秒
+[2017-06-13 16:30:00.340] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是19，正在抓取的是http://sh.34580.com/p/13，耗时326毫秒
+[2017-06-13 16:30:00.382] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是18，正在抓取的是http://sh.34580.com/p/20，耗时367毫秒
+[2017-06-13 16:30:00.388] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是17，正在抓取的是http://sh.34580.com/p/23，耗时374毫秒
+[2017-06-13 16:30:00.399] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是16，正在抓取的是http://sh.34580.com/p/22，耗时385毫秒
+[2017-06-13 16:30:00.407] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是15，正在抓取的是http://sh.34580.com/p/14，耗时393毫秒
+[2017-06-13 16:30:00.447] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是14，正在抓取的是http://sh.34580.com/p/2，耗时432毫秒
+[2017-06-13 16:30:00.458] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是13，正在抓取的是http://sh.34580.com/p/16，耗时443毫秒
+[2017-06-13 16:30:00.468] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是12，正在抓取的是http://sh.34580.com/p/10，耗时453毫秒
+[2017-06-13 16:30:00.481] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是11，正在抓取的是http://sh.34580.com/p/19，耗时467毫秒
+[2017-06-13 16:30:00.529] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是10，正在抓取的是http://sh.34580.com/p/6，耗时514毫秒
+[2017-06-13 16:30:00.582] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是9，正在抓取的是http://sh.34580.com/p/15，耗时567毫秒
+[2017-06-13 16:30:00.800] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是8，正在抓取的是http://sh.34580.com/p/11，耗时742毫秒
+[2017-06-13 16:30:00.923] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是7，正在抓取的是http://sh.34580.com/p/21，耗时820毫秒
+[2017-06-13 16:30:00.924] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是6，正在抓取的是http://sh.34580.com/p/5，耗时884毫秒
+[2017-06-13 16:30:00.934] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:01.039] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是5，正在抓取的是http://sh.34580.com/p/24，耗时931毫秒
+[2017-06-13 16:30:01.040] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是4，正在抓取的是http://sh.34580.com/p/4，耗时936毫秒
+[2017-06-13 16:30:01.042] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是3，正在抓取的是http://sh.34580.com/p/7，耗时957毫秒
+[2017-06-13 16:30:01.042] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是2，正在抓取的是http://sh.34580.com/p/12，耗时972毫秒
+[2017-06-13 16:30:01.043] [INFO] normal - [2017-6-13 09:29:24_12608_30]现在的并发数是1，正在抓取的是http://sh.34580.com/p/8，耗时987毫秒
+[2017-06-13 16:30:01.051] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:01.154] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:01.249] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:01.255] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:01.622] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:01.633] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:01.652] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:01.845] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.144] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.148] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.250] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.250] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.254] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.258] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.399] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.741] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.766] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.773] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.774] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.775] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.777] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:02.778] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:03.953] [WARN] normal - [2017-6-13 09:29:24_12608_30]=========================== TASK END ===========================
+[2017-06-13 16:30:03.954] [WARN] normal - [2017-6-13 09:29:24_12608_30]本次爬虫结果总共25条  耗时=[3]秒
+[2017-06-13 16:30:03.970] [INFO] normal - [2017-6-13 09:29:24_12608_30]------------------ DB SUCCESS ------- 5
+[2017-06-13 16:30:58.921] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6', Id: [ '62788', '62772' ] }
+[2017-06-13 16:31:22.491] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:32:12.446] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6', Id: [ '62788', '62772' ] }
+[2017-06-13 16:33:52.279] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6', Id: { '$gt': '62786', '$lte': '62788' } }
+[2017-06-13 16:33:58.980] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6', Id: { '$gt': '1', '$lte': '62788' } }
+[2017-06-13 16:42:13.545] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:43:07.002] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:43:08.355] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:43:11.187] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:45:49.940] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:45:53.530] [WARN] normal - conditions { sort: { Id: 1 }, skip: 5, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:45:57.587] [WARN] normal - conditions { sort: { Id: 1 }, skip: 10, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:46:08.755] [WARN] normal - conditions { sort: { Id: 1 }, skip: 15, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:46:11.752] [WARN] normal - conditions { sort: { Id: 1 }, skip: 20, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:46:28.758] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:46:31.698] [WARN] normal - conditions { sort: { Id: 1 }, skip: 5, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:48:28.714] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:49:50.584] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:50:02.938] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:52:24.309] [WARN] normal - conditions { sort: { Id: 1 }, skip: 5, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:54:59.067] [WARN] normal - conditions { sort: { Id: 1 }, skip: 10, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:55:21.355] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:55:24.049] [WARN] normal - conditions { sort: { Id: 1 }, skip: 5, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:55:25.751] [WARN] normal - conditions { sort: { Id: 1 }, skip: 10, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:55:27.387] [WARN] normal - conditions { sort: { Id: 1 }, skip: 15, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:55:34.592] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:55:36.298] [WARN] normal - conditions { sort: { Id: 1 }, skip: 5, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:55:37.942] [WARN] normal - conditions { sort: { Id: 1 }, skip: 10, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:55:39.406] [WARN] normal - conditions { sort: { Id: 1 }, skip: 15, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:55:41.362] [WARN] normal - conditions { sort: { Id: 1 }, skip: 20, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:55:53.202] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6' }
+[2017-06-13 16:56:55.688] [WARN] normal - conditions { sort: { Id: -1 }, skip: 0, limit: 15 } {}
+[2017-06-13 16:56:59.558] [WARN] normal - conditions { sort: { Id: -1 }, skip: 15, limit: 15 } {}
+[2017-06-13 16:57:02.942] [WARN] normal - conditions { sort: { Id: -1 }, skip: 30, limit: 15 } {}
+[2017-06-13 16:57:06.501] [WARN] normal - conditions { sort: { Id: -1 }, skip: 45, limit: 15 } {}
+[2017-06-13 16:57:09.663] [WARN] normal - conditions { sort: { Id: -1 }, skip: 60, limit: 15 } {}
+[2017-06-13 16:57:12.000] [WARN] normal - conditions { sort: { Id: -1 }, skip: 75, limit: 15 } {}
+[2017-06-13 16:57:13.552] [WARN] normal - conditions { sort: { Id: -1 }, skip: 90, limit: 15 } {}
+[2017-06-13 16:57:15.103] [WARN] normal - conditions { sort: { Id: -1 }, skip: 105, limit: 15 } {}
+[2017-06-13 16:57:16.180] [WARN] normal - conditions { sort: { Id: -1 }, skip: 120, limit: 15 } {}
+[2017-06-13 16:57:17.096] [WARN] normal - conditions { sort: { Id: -1 }, skip: 135, limit: 15 } {}
+[2017-06-13 16:57:17.891] [WARN] normal - conditions { sort: { Id: -1 }, skip: 150, limit: 15 } {}
+[2017-06-13 16:57:17.995] [WARN] normal - conditions { sort: { Id: -1 }, skip: 150, limit: 15 } {}
+[2017-06-13 16:57:25.683] [WARN] normal - conditions { sort: { Id: -1 }, skip: 180, limit: 15 } {}
+[2017-06-13 16:57:29.348] [WARN] normal - conditions { sort: { Id: -1 }, skip: 195, limit: 15 } {}
+[2017-06-13 16:58:13.143] [WARN] normal - conditions { sort: { Id: -1 }, skip: 0, limit: 15 } {}
+[2017-06-13 16:58:15.366] [WARN] normal - conditions { sort: { Id: -1 }, skip: 15, limit: 15 } {}
+[2017-06-13 16:58:19.929] [WARN] normal - conditions { sort: { Id: -1 }, skip: 30, limit: 15 } {}
+[2017-06-13 16:58:22.553] [WARN] normal - conditions { sort: { Id: -1 }, skip: 45, limit: 15 } {}
+[2017-06-13 16:58:25.606] [WARN] normal - conditions { sort: { Id: -1 }, skip: 60, limit: 15 } {}
+[2017-06-13 16:59:22.358] [WARN] normal - conditions { sort: { Id: -1 }, skip: 0, limit: 15 } {}
+[2017-06-13 16:59:39.600] [WARN] normal - conditions { sort: { Id: -1 }, skip: 0, limit: 15 } {}
+[2017-06-13 16:59:45.426] [WARN] normal - conditions { sort: { Id: -1 }, skip: 15, limit: 15 } {}
+[2017-06-13 16:59:49.340] [WARN] normal - conditions { sort: { Id: -1 }, skip: 30, limit: 15 } {}
+[2017-06-13 16:59:51.069] [WARN] normal - conditions { sort: { Id: -1 }, skip: 45, limit: 15 } {}
+[2017-06-13 16:59:52.322] [WARN] normal - conditions { sort: { Id: -1 }, skip: 60, limit: 15 } {}
+[2017-06-13 16:59:53.499] [WARN] normal - conditions { sort: { Id: -1 }, skip: 75, limit: 15 } {}
+[2017-06-13 16:59:54.456] [WARN] normal - conditions { sort: { Id: -1 }, skip: 90, limit: 15 } {}
+[2017-06-13 16:59:55.109] [WARN] normal - conditions { sort: { Id: -1 }, skip: 105, limit: 15 } {}
+[2017-06-13 16:59:55.976] [WARN] normal - conditions { sort: { Id: -1 }, skip: 120, limit: 15 } {}
+[2017-06-13 16:59:56.016] [WARN] normal - conditions { sort: { Id: -1 }, skip: 120, limit: 15 } {}
+[2017-06-13 16:59:56.390] [WARN] normal - conditions { sort: { Id: -1 }, skip: 120, limit: 15 } {}
+[2017-06-13 16:59:56.940] [WARN] normal - conditions { sort: { Id: -1 }, skip: 120, limit: 15 } {}

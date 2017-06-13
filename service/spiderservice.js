@@ -156,7 +156,7 @@ function spiderStart(cnt, jobversion, sourceType) {
 			break;
 		case 6:
 		case '6':
-			st = 62756;
+			st = 10000;
 			et = st + cnt;
 			url = "http://www.yiguo.com/product/#index#.html";
 			break;

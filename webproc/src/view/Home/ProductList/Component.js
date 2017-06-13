@@ -31,11 +31,14 @@ class Home extends Component {
 		this.state = {
 			datas: [],
 			pagination: {
-				page: 1,
-				sortField: "Id",
-				sortOrder: -1,
-				results: 10,
-				ProductId: [1]
+				pagesize: 15,
+				pageindex: 1,
+				conditions: {
+					// SourceId: 6
+				},
+				options: {
+					Id: -1
+				}
 			},
 			isLoading: "",
 			isOver: false
@@ -54,29 +57,42 @@ class Home extends Component {
 			loading: true
 		});
 
+		// var data = {
+		// 	pagesize: 15,
+		// 	pageindex: 1,
+		// 	conditions: {
+		// 		// SourceId: 6,
+		// 		//Id: [62788, 62772],
+		// 		Id: {
+
+		// 		}
+		// 	},
+		// 	options: {
+		// 		Id: -1
+		// 	}
+		// }
+
 		reqwest({
 			url: 'https://gougoustar.duapp.com/products/getall',
 			method: 'get',
-			data: {
-				...this.state.pagination
-			},
+			data: this.state.pagination,
 			type: 'json'
 		}).then((data) => {
 
-			const pagination = this.state.pagination
-			const datas = this.state.datas;
+			const _pagination = this.state.pagination
+			const _datas = this.state.datas;
 
-			if (!!data.datas && data.datas.length > 0) {
-				data.datas.map((item) => {
-					datas.push(item)
+			if (!!data.Datas && data.Datas.length > 0) {
+				data.Datas.map((item) => {
+					_datas.push(item)
 				})
 
-				pagination.page = pagination.page + 1
+				_pagination.pageindex = _pagination.pageindex + 1
 
 				this.setState({
 					loading: false,
-					pagination: pagination,
-					datas: datas
+					pagination: _pagination,
+					datas: _datas
 				});
 			} else {
 				this.setState({
