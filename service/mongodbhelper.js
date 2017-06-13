@@ -45,8 +45,8 @@ if (!!process.env && !!process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
        options = {
         db_user: "",
         db_pwd: "",
-        db_host: "localhost",
-        db_port: 27017,
+        db_host: "127.0.0.1",
+        db_port: 27019,
         db_name: "test"
     };
 }
