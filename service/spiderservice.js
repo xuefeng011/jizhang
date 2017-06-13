@@ -237,15 +237,26 @@ function insertMongodb(item, jobversion, _url) {
 		return;
 	}
 
-	superagent.get(url)
-		.query(item)
-		.end(function(err, result) {
-			if (err) {
-				logger.info('[' + jobversion + ']------- DB ERROR -------', err, _url);
-			} else {
-				logger.info('[' + jobversion + ']------------------ DB SUCCESS -------', _url);
-			}
-		});
+	// superagent.get(url)
+	// 	.query(item)
+	// 	.end(function(err, result) {
+	// 		if (err) {
+	// 			logger.info('[' + jobversion + ']------- DB ERROR -------', err, _url);
+	// 		} else {
+	// 			logger.info('[' + jobversion + ']------------------ DB SUCCESS -------', _url);
+	// 		}
+	// 	});
+
+
+	var TableName = "Products";
+
+	MongoDbHelper.save(TableName, item, function(err, result) {
+		if (err) {
+			console.log('[' + jobversion + '] mm------------------------ DB ERROR -------------------------' , err);
+		} else {
+			console.log('[' + jobversion + '] mm------------------------ DB SUCCESS -------------------------');
+		}
+	});
 }
 
 
