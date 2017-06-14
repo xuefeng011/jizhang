@@ -1,5 +1,5 @@
 module.exports.logger = function(name) {
-	if (!!process.env && !!process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
+	if (!!process.env && !!process.env.NEEDLOG4JS && process.env.NEEDLOG4JS == "true") {
 
 		var log4js = require('log4js');
 
@@ -31,10 +31,27 @@ module.exports.logger = function(name) {
 
 		var cc = console;
 		return cc;
+
 	} else {
 
 		var cc = console;
-		return cc;
+		return {
+			error: function() {
+				console.error(`${new Date()}`, arguments)
+			},
+			info: function() {
+				console.info(`${new Date()}`, arguments)
+			},
+			warn: function() {
+				console.warn(`${new Date()}`, arguments)
+			},
+			log: function() {
+				console.log(`${new Date()}`, arguments)
+			}
+		}
+
+
+
 	}
 
 }

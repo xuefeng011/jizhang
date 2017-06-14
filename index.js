@@ -132,6 +132,11 @@ if (app.get('env') === 'development') {
 }
 
 
+
+console.log("[Env=PATH_JZ]",(!!process.env && !!process.env.PATH_JZ)?process.env.PATH_JZ:"none")
+console.log("[Env=NEEDLOG4JS]",(!!process.env && !!process.env.NEEDLOG4JS)?process.env.NEEDLOG4JS:"none")
+
+
 // console.log(222222222222222, app.get('env'))
 // production error handler
 // no stacktraces leaked to user

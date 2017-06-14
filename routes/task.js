@@ -10,11 +10,11 @@ var SpiderService = require('../service/spiderservice');
 var logger = require('../service/logger').logger('normal');
 
 global.JOB = {
-	Version: "",
+	Version: new Date().toLocaleString(),
 	HasRun: false,
 	j: null,
 	InTasking: false,
-	TaskRemark: ""
+	TaskRemark: "init"
 };
 
 router.get('/', function(req, res) {
@@ -93,7 +93,7 @@ router.get('/set', function(req, request) {
 			InTasking: false,
 			TaskRemark: "SETing"
 		}
-		var jobname = `${global.JOB.Version}_${processid}_${RULETIME}`
+		var jobname = `(TASK${global.JOB.Version}_${processid}_${RULETIME})`
 		logger.info(`[TASK] set  ${jobname}`);
 		global.JOB.j = schedule.scheduleJob(rule, function() {
 			logger.info(`[TASK] start  ${jobname}`);

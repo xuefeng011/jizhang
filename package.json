@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "dev": "set NODE_ENV=dev&&node index.js",
+    "dev": "set NODE_ENV=dev&set NEEDLOG4JS=false&&node index.js",
     "prod": "set NODE_ENV=development&&node index.js"
   },
   "dependencies": {
