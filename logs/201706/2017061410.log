@@ -1,0 +1,22 @@
+[2017-06-14 10:06:56.740] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:07:00.119] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:07:07.325] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:07:49.203] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:07:59.642] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:06.168] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:09.992] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:10.534] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:10.903] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:11.149] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:11.349] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:11.602] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:16.928] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:17.477] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:17.726] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:08:18.476] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:09:22.024] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:09:31.662] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:09:40.511] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:33:46.616] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:33:57.766] [WARN] normal - conditions { sort: {}, skip: 0, limit: 3 } {}
+[2017-06-14 10:44:56.708] [WARN] normal - conditions { sort: { Id: 1 }, skip: 0, limit: 5 } { SourceId: '6', Id: { '$gt': '1', '$lte': '62788' } }

@@ -35,14 +35,14 @@ if (!!process.env && !!process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
     };
 } else {
     console.log("prod start")
-    // options = {
-    //     db_user: "e4bce76fc5b64cfca0337e7501a71c7a",
-    //     db_pwd: "116a429d58cf4fa094103015ea69ddc8",
-    //     db_host: "mongo.duapp.com",
-    //     db_port: 8908,
-    //     db_name: "kfHpRGvfdxTyCpraUPjY"
-    // };
-       options = {
+        // options = {
+        //     db_user: "e4bce76fc5b64cfca0337e7501a71c7a",
+        //     db_pwd: "116a429d58cf4fa094103015ea69ddc8",
+        //     db_host: "mongo.duapp.com",
+        //     db_port: 8908,
+        //     db_name: "kfHpRGvfdxTyCpraUPjY"
+        // };
+    options = {
         db_user: "",
         db_pwd: "",
         db_host: "127.0.0.1",
@@ -51,26 +51,41 @@ if (!!process.env && !!process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
     };
 }
 
-mongoose.Promise = global.Promise;  
+
+global.MongoConnected = false;
+
+mongoose.Promise = global.Promise;
 
 var dbURL = "mongodb://" + options.db_user + ":" + options.db_pwd + "@" + options.db_host + ":" + options.db_port + "/" + options.db_name;
 mongoose.connect(dbURL);
 
 mongoose.connection.on('connected', function(err) {
-    if (err) logger.error('Database connection failure');
+    if (err) {
+        logger.error('Database connection failure');
+        global.MongoConnected = false;
+    } else {
+        logger.error('Mongoose Connected Success');
+        global.MongoConnected = true;
+    }
 });
 
 mongoose.connection.on('error', function(err) {
+
     logger.error('Mongoose connected error ' + err);
+
 });
 
 mongoose.connection.on('disconnected', function() {
+    // mongoose.connect(dbURL);
     logger.error('Mongoose disconnected');
+    global.MongoConnected = false;
+    mongoose.connect(dbURL);
+    logger.error('Mongoose disconnected Reconnect');
 });
 
 process.on('SIGINT', function() {
     mongoose.connection.close(function() {
-        logger.info('Mongoose disconnected through app termination');
+        logger.info('Mongoose Exit');
         process.exit(0);
     });
 });
@@ -86,12 +101,13 @@ var DB = function() {
  * @param table_name 表名称(集合名称)
  */
 DB.prototype.getConnection = function(table_name) {
+
     if (!table_name) return;
     if (!this.tabConf[table_name]) {
         logger.error('No table structure');
         return false;
     }
-
+    // console.log(111,mongoose)
     var client = this.mongoClient[table_name];
     if (!client) {
         //构建用户信息表结构
@@ -130,6 +146,14 @@ DB.prototype.save = function(table_name, fields, callback) {
         return false;
     }
 
+
+    if (!global.MongoConnected) {
+        logger.error('Mongoose is disconnected');
+        callback('Mongoose is disconnected')
+        return;
+    }
+
+
     var node_model = this.getConnection(table_name);
     if (!node_model) callback("No table structure");
     var mongooseEntity = new node_model(fields);
@@ -156,6 +180,13 @@ DB.prototype.update = function(table_name, conditions, update_fields, callback) 
         });
         return;
     }
+
+    if (!global.MongoConnected) {
+        logger.error('Mongoose is disconnected');
+        callback('Mongoose is disconnected')
+        return;
+    }
+
     var node_model = this.getConnection(table_name);
     if (!node_model) callback("No table structure");
     node_model.update(conditions, {
@@ -186,6 +217,12 @@ DB.prototype.updateData = function(table_name, conditions, update_fields, callba
         });
         return;
     }
+    if (!global.MongoConnected) {
+        logger.error('Mongoose is disconnected');
+        callback('Mongoose is disconnected')
+        return;
+    }
+
     var node_model = this.getConnection(table_name);
     if (!node_model) callback("No table structure");
 
@@ -204,6 +241,13 @@ DB.prototype.updateData = function(table_name, conditions, update_fields, callba
  * @param callback 回调方法
  */
 DB.prototype.remove = function(table_name, conditions, callback) {
+
+    if (!global.MongoConnected) {
+        logger.error('Mongoose is disconnected');
+        callback('Mongoose is disconnected')
+        return;
+    }
+
     var node_model = this.getConnection(table_name);
     node_model.remove(conditions, function(err, res) {
         if (err) {
@@ -222,6 +266,13 @@ DB.prototype.remove = function(table_name, conditions, callback) {
  * @param callback 回调方法
  */
 DB.prototype.find = function(table_name, conditions, fields, callback) {
+
+    if (!global.MongoConnected) {
+        logger.error('Mongoose is disconnected');
+        callback('Mongoose is disconnected')
+        return;
+    }
+
     var node_model = this.getConnection(table_name);
     if (!node_model) callback("No table structure");
     node_model.find(conditions, fields || null, {}, function(err, res) {
@@ -240,6 +291,13 @@ DB.prototype.find = function(table_name, conditions, fields, callback) {
  * @param callback 回调方法
  */
 DB.prototype.findOne = function(table_name, conditions, callback) {
+
+    if (!global.MongoConnected) {
+        logger.error('Mongoose is disconnected');
+        callback('Mongoose is disconnected')
+        return;
+    }
+
     var node_model = this.getConnection(table_name);
     if (!node_model) callback("No table structure");
     node_model.findOne(conditions, function(err, res) {
@@ -258,6 +316,13 @@ DB.prototype.findOne = function(table_name, conditions, callback) {
  * @param callback 回调方法
  */
 DB.prototype.findById = function(table_name, _id, callback) {
+
+    if (!global.MongoConnected) {
+        logger.error('Mongoose is disconnected');
+        callback('Mongoose is disconnected')
+        return;
+    }
+
     var node_model = this.getConnection(table_name);
     if (!node_model) callback("No table structure");
     node_model.findById(_id, function(err, res) {
@@ -276,6 +341,13 @@ DB.prototype.findById = function(table_name, _id, callback) {
  * @param callback 回调方法
  */
 DB.prototype.count = function(table_name, conditions, callback) {
+
+    if (!global.MongoConnected) {
+        logger.error('Mongoose is disconnected');
+        callback('Mongoose is disconnected')
+        return;
+    }
+
     var node_model = this.getConnection(table_name);
     if (!node_model) callback("No table structure");
     node_model.count(conditions, function(err, res) {
@@ -295,6 +367,13 @@ DB.prototype.count = function(table_name, conditions, callback) {
  * @param callback 回调方法
  */
 DB.prototype.distinct = function(table_name, field, conditions, callback) {
+
+    if (!global.MongoConnected) {
+        logger.error('Mongoose is disconnected');
+        callback('Mongoose is disconnected')
+        return;
+    }
+
     var node_model = this.getConnection(table_name);
     if (!node_model) callback("No table structure");
     node_model.distinct(field, conditions, function(err, res) {
@@ -314,6 +393,13 @@ DB.prototype.distinct = function(table_name, field, conditions, callback) {
  * @param callback 回调方法
  */
 DB.prototype.where = function(table_name, conditions, options, callback) {
+
+    if (!global.MongoConnected) {
+        logger.error('Mongoose is disconnected');
+        callback('Mongoose is disconnected')
+        return;
+    }
+
     var node_model = this.getConnection(table_name);
     if (!node_model) callback("No table structure");
     node_model.find(conditions)
