@@ -111,4 +111,23 @@ $.ajax({
     }
 )
 
+
+$.ajax({
+        url: "http://localhost:18080/follows/getall",
+        data: {
+            pagesize: 5,
+            pageindex: 1,
+            conditions: {
+               FollowId:3
+            },
+            options: {
+                FollowId: -1
+            }
+        },
+        success: function(res) {
+            console.table(res.Datas)
+        }
+    }
+)
+
 ```

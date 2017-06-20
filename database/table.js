@@ -3,6 +3,15 @@
         "name": "String",
         "password": "String"
     },
+    "Follows": {
+        "FollowId": "Number",
+        "Name": "String",
+        "SourceId": "Number",
+        "Price": "Number",
+        "Unit": "String",
+        "InsertDate": "Date",
+        "Updatedate": "Date"
+    },
     "Products": {
         "Id": "Number",
         "SourceId": "Number",

@@ -16,6 +16,9 @@ var products = require('./routes/products');
 var spider = require('./routes/spider');
 var task = require('./routes/task');
 
+var follows = require('./routes/follows');
+
+
 
 
 
@@ -108,6 +111,8 @@ app.use('/sellect', sellect);
 app.use('/products', products);
 app.use('/spider', spider);
 app.use('/task', task);
+app.use('/follows', follows);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
