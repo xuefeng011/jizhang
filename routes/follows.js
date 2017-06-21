@@ -9,6 +9,7 @@ var TableName = "Follows";
 
 var superagent = require('superagent');
 
+var _ = require('underscore')
 
 var logger = require('../service/logger').logger('normal');
 
@@ -62,6 +63,33 @@ router.get('/get', function(req, res) {
 		});
 	});
 });
+
+
+
+router.get('/getbygroup', function(req, res) {
+	res.status(200);
+	MongoDbHelper.count(TableName, {}, function(err, cnt) {
+		MongoDbHelper.find(TableName, null, null, function(err, result) {
+			if (err) {
+				res.json({
+					errorCode: -2,
+					errorMessage: err,
+					count: cnt,
+					datas: []
+				});
+			} else {
+				res.json({
+					errorCode: 1,
+					errorMessage: "成功",
+					count: cnt,
+					datas: DataByGroup(result),
+
+				});
+			}
+		});
+	});
+});
+
 
 router.get('/removeall', function(req, res) {
 	res.status(200);
@@ -177,20 +205,21 @@ router.get('/insertOrUpdate', function(req, res) {
 
 		} else {
 
-			findresult.sort(function(a, b) {
-				if (a.FollowId > b.FollowId) {
-					return -1
-				} else {
-					return 1
-				}
+
+			var maxitem = _.sortBy(findresult, function(item) {
+				return -item['FollowId']
 			})
 
-			// console.log(1111, findresult[0])
+			var maxfollowid = !maxitem || maxitem.length <= 0 ? 1 : parseInt(maxitem[0]["FollowId"]) + 1;
+
+			// console.log("findresult max",maxitem[0], maxfollowid)
 			data = {
-				"FollowId": _FollowId > 0 ? _FollowId : (findresult[0]["FollowId"]) + 1,
+				"FollowId": _FollowId > 0 ? _FollowId : maxfollowid,
 				"Name": req.query.Name || "",
 				"SourceId": parseInt(req.query.SourceId || 5),
 				"Price": parseFloat(req.query.Price || 0.0),
+				"SourceProductNo": req.query.SourceProductNo || '-',
+				"InsertUser": 'x',
 				"Unit": req.query.Unit || '-',
 				"InsertDate": new Date(),
 				"Updatedate": ""
@@ -216,6 +245,46 @@ router.get('/insertOrUpdate', function(req, res) {
 	});
 
 });
+
+
+function DataByGroup(_datas) {
+
+	var groupbyfollowids = _.groupBy(_datas, 'FollowId')
+
+	var tempresult = [];
+	_.each(groupbyfollowids, function(item) {
+
+		var sorts = _.sortBy(item, -'InsertDate');
+
+		var last = sorts[0]
+		var lasttwo = sorts.length <= 1 ? last : sorts[1]
+
+		var change = last["Price"] - lasttwo["Price"];
+		var changetype = 0;
+		if (change > 0) {
+			changetype = 1;
+		} else if (change < 0) {
+			changetype = -1;
+		} else {
+			changetype = 0;
+		}
+
+		tempresult.push({
+			"Name": _.first(item)["Name"],
+			"Unit": _.first(item)["Unit"],
+			"Price": last["Price"],
+			"ChangeType":changetype,
+			"Change":change,
+			"MinPrice": _.min(item, 'Price')["Price"],
+			"MaxPrice": _.max(item, 'Price')["Price"],
+			"InsertDate": last["InsertDate"],
+			"Datas": sorts
+		})
+
+	})
+	return tempresult;
+
+}
 
 
 

@@ -19,6 +19,7 @@
     "log4js": "^1.1.1",
     "mongoose": "^4.10.2",
     "node-schedule": "^1.2.3",
-    "superagent": "^3.5.2"
+    "superagent": "^3.5.2",
+    "underscore": "^1.8.3"
   }
 }

@@ -86,6 +86,97 @@ URL `/task/set`
 |cnt|no|int|URL数|
 
 
+## （三）產品跟蹤
+
+|参数名|必选|类型|说明|
+|-------|-------|-------|-------|
+|FollowId|no|int|自增ID |
+|Name|no|String|產品名|
+|SourceId|no|Number| 來源   5:sx  6:yg |
+|SourceProductNo|no|String| 關聯產品ID|
+|Price|no|Number| 價格|
+|Unit|no|String| 單位|
+|InsertUser|no|String| 執行|
+|InsertDate|no|Date| 插入日期|
+|Updatedate|no|Date| 更新日期|
+
+### 1）获取所有产品
+URL `/follows/get`
+
+返回实例
+```
+{
+    "errorCode": 1,
+    "errorMessage": "成功",
+    "count": 15,
+    "datas": [
+        {
+            "_id": "5948f024aabc3e398475a921",
+            "FollowId": 1,
+            "Name": "",
+            "SourceId": 5,
+            "Price": 666,
+            "Unit": "-",
+            "InsertUser": "x",
+            "InsertDate": "2017-06-20T09:51:32.603Z",
+            "Updatedate": null,
+            "__v": 0
+        }
+    ]
+}
+
+```
+
+### 2）获取所有产品（分页筛选）
+URL `/follows/getall`
+
+|参数名|必选|类型|说明|
+|-------|-------|-------|-------|
+|pagesize|no|int|每页数量|
+|pageindex|no|int|第几页|
+|conditions|no|object| 篩選|
+|options|no|object| 排序字段|
+
+```
+conditions:
+{
+    SourceId: 6,
+    FollowId: [62788, 62772]
+},
+options: {
+    FollowId: -1
+}
+
+```
+
+### 3）新增和更新
+URL `/follows/insertOrUpdate`
+
+入參
+|参数名|必选|类型|说明|
+|-------|-------|-------|-------|
+|_id|no|int|標識，有值就更新 沒有就新增數據|
+
+
+```
+{
+    "FollowId": "Number",
+    "Name": "String",
+    "SourceId": "Number",
+    "SourceProductNo": "String",
+    "Price": "Number",
+    "Unit": "String",
+    "InsertUser": "String",
+    "InsertDate": "Date",
+    "Updatedate": "Date"
+}
+```
+
+
+
+### 4）清空
+URL `/follows/removeall`
+
 
 
 # WEB

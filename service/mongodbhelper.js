@@ -7,13 +7,13 @@ var path = require('path');
 var mongoose = require('mongoose');
 var logger = {
     error: function(e) {
-        console.log("[xue]=" + e)
+        console.log("[DB]=" + e)
     },
     info: function(e) {
-        console.log("[xue]=" + e)
+        console.log("[DB]=" + e)
     },
     warn: function(e) {
-        console.log("[xue]=" + e)
+        console.log("[DB]=" + e)
     },
 }
 
@@ -35,13 +35,13 @@ if (!!process.env && !!process.env.NODE_ENV && process.env.NODE_ENV === 'dev') {
     };
 } else {
     console.log("prod start")
-        options = {
-            db_user: "e4bce76fc5b64cfca0337e7501a71c7a",
-            db_pwd: "116a429d58cf4fa094103015ea69ddc8",
-            db_host: "mongo.duapp.com",
-            db_port: 8908,
-            db_name: "kfHpRGvfdxTyCpraUPjY"
-        };
+    options = {
+        db_user: "e4bce76fc5b64cfca0337e7501a71c7a",
+        db_pwd: "116a429d58cf4fa094103015ea69ddc8",
+        db_host: "mongo.duapp.com",
+        db_port: 8908,
+        db_name: "kfHpRGvfdxTyCpraUPjY"
+    };
     // options = {
     //     db_user: "",
     //     db_pwd: "",
@@ -79,9 +79,27 @@ mongoose.connection.on('disconnected', function() {
     // mongoose.connect(dbURL);
     logger.error('Mongoose disconnected');
     global.MongoConnected = false;
-    mongoose.connect(dbURL);
-    logger.error('Mongoose disconnected Reconnect');
+    startTask();
 });
+
+var hastask = false;
+
+function startTask() {
+    if (hastask) {
+        // logger.error('Mongoose has already task');
+        return
+    }
+    hastask = true;
+    // logger.error('Mongoose set task');
+    setTimeout(function() {
+        hastask = false;
+        logger.error('Mongoose Try Connect Again');
+        mongoose.connect(dbURL);
+    },10000)
+
+
+}
+
 
 process.on('SIGINT', function() {
     mongoose.connection.close(function() {

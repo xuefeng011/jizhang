@@ -7,8 +7,11 @@
         "FollowId": "Number",
         "Name": "String",
         "SourceId": "Number",
+        "SourceProductNo": "String",
         "Price": "Number",
         "Unit": "String",
+        "Img": "String",
+        "InsertUser": "String",
         "InsertDate": "Date",
         "Updatedate": "Date"
     },

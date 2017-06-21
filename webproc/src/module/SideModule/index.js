@@ -14,6 +14,8 @@ import {
 
 // let isinit = true;
 
+import png from './1.png'
+
 class SideModule extends Component {
     constructor(props) {
         super(props)
@@ -76,12 +78,12 @@ class SideModule extends Component {
             {[...Array(2).keys()].map((i, index) => {
                 if (index === 0) {
                     return (<List.Item key={index}
-                        thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
+                        thumb={png}
                         multipleLine
                     >Categor111y</List.Item>);
                 }
                 return (<List.Item key={index}
-                    thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
+                    thumb={png}
                 >Categ222ory{index}</List.Item>);
             })}
         </List>);

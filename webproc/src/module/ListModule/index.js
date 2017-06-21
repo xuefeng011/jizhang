@@ -5,11 +5,14 @@ import React, {
 
 // import style from './index.less'
 import {
-    List
+    List,
+    Icon
 } from 'antd-mobile'
 
 const Item = List.Item;
 const Brief = Item.Brief;
+
+import defaultpng from './default.svg'
 
 
 // <Item>标题文字</Item>
@@ -30,14 +33,16 @@ import co from 'co'
 import $ from 'jquery'
 
 
+import style from './index.less'
+
 class ListModule extends Component {
     constructor(props) {
         super(props)
-        // console.log(333333333333,props)
+            // console.log(333333333333,props)
         this.state = {
                 datas: props.datas || [],
                 type: props.type || 'normal'
-                // html: props.html || '<span>yyyyyyyyyyyy</span>'
+                    // html: props.html || '<span>yyyyyyyyyyyy</span>'
             }
             // console.log(props)
     }
@@ -61,10 +66,14 @@ class ListModule extends Component {
     bindscroll() {
         var obj = $('.my-list');
 
-        obj.css({'overflow-y':'scroll','height':'10rem',"-webkit-overflow-scrolling": "touch"})
+        obj.css({
+            'overflow-y': 'scroll',
+            'height': '10rem',
+            "-webkit-overflow-scrolling": "touch"
+        })
 
-         // console.log(obj.scrollTop())
-         obj.scroll(function() {
+        // console.log(obj.scrollTop())
+        obj.scroll(function() {
             //if (obj.scrollTop() <= 0) {
 
             //} 
@@ -84,7 +93,7 @@ class ListModule extends Component {
     render() {
         // console.log(this.props)
         var props = this.props
-            // console.log("listmodule", props, this.state.datas)
+        console.log("listmodule", props, this.state.datas)
 
         let listhtml = "";
 
@@ -105,6 +114,41 @@ class ListModule extends Component {
                         return <Item extra={item.Price==0?'N/A':`¥${item.Price}(${item.Others.Unit})`} arrow="horizontal" key={Math.random()}  align="middle" thumb={`${item.PicUrl}`} multipleLine>
                                 {`${item.ProductName}`} <Brief>{`${item.Source.SourceName} ${item.Source.Category1} ${item.Source.Category2}`}</Brief>
                                 </Item>
+                    })}
+                  </List>);
+                break;
+            case "follows":
+                listhtml = (<List renderHeader={() => '满足结果'+this.state.datas.length} className="my-list">
+                    {this.state.datas.map((item,index)=>{
+                        // // console.log(moment().format(item.InsertDate,"YYYY"))
+                        // //{co.getFullDate(item.InsertDate)["6"]}
+                        // return <Item extra={`¥${item.Price}(${item.Unit})`} arrow="horizontal" key={Math.random()}  align="middle" thumb={defaultpng} multipleLine>
+                        //         {`${item.Name}`} <Brief>{co.getFullDate(item.InsertDate)["6"]}</Brief>
+                        //         </Item>
+
+                    var changehtml ="";
+
+                    switch (item.ChangeType)
+                    {
+                        case 1:changehtml= (<span className={style.changered} >+{item.Change}</span>);break;
+                        case -1:changehtml= (<span className={style.changegreen} >{item.Change}</span>);break;
+                        case 0:changehtml= (<span className={style.change} >{item.Change}</span>);break;
+                    }
+
+                    return (<div  key={Math.random()} className="am-list-item am-list-item-middle">
+                                <div className="am-list-thumb"><img src={defaultpng} /></div>
+                                    <div className="am-list-line am-list-line-multiple">
+                                    <div className="am-list-content">
+                                        {item.Name}
+                                        <div className="am-list-brief">{co.getFullDate(item.InsertDate)["6"]}</div>
+                                    </div>
+                                    <div className={style.flex}>
+                                         <div className={style.flexitem}><b>¥</b><span className={style.price}>{item.Price}</span></div>
+                                         <div className={style.flexitemcol}>{changehtml}<span className={style.unit}>({item.Unit})</span></div>
+                                    </div>
+                                    <div className="am-list-arrow am-list-arrow-horizontal" aria-hidden="true"></div>
+                                </div>
+                            </div>)
                     })}
                   </List>);
                 break;

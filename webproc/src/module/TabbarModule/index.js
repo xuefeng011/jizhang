@@ -35,7 +35,7 @@ class TabbarModule extends Component {
     }
 
     onClickChange(target,tabname) {
-        hashHistory.replace(target)
+        hashHistory.push(target)
         this.setState({
             selectedTab: tabname
         });
@@ -65,9 +65,9 @@ class TabbarModule extends Component {
                     icon={<Icon type="koubei-o" size="md" />}
                     selectedIcon={<Icon type="koubei" size="md" />}
                     title="产品"
-                    key="productlist"
-                    selected={this.state.selectedTab === '/productlist'}
-                    onPress={() => this. onClickChange("/productlist",'/productlist') }
+                    key="follows"
+                    selected={this.state.selectedTab === '/follows'}
+                    onPress={() => this. onClickChange("/follows",'/follows') }
                 >
                 </TabBar.Item>
                 <TabBar.Item

@@ -79,7 +79,7 @@ class HOME_Page extends Component {
         return (
             <div className="container" style={{ position: 'relative',marginBottom:'1rem' }}>
                 <NavBar mode="dark"
-                    onLeftClick={() => hashHistory.goBack()}
+                    onLeftClick={() => {hashHistory.goBack()}}
                     rightContent={rightcontent}
                 >
                     {this.state.title}
