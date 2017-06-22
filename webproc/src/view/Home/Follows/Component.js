@@ -119,7 +119,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-	UserInfo: PropTypes.object.isRequired
+	DataInfo: PropTypes.object
 }
 
 export default Home

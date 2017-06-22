@@ -5,15 +5,15 @@ import { connect } from 'react-redux'
 // import { fetchAppInitPost, fetchAppStartPost } from '../action'
 import Home from './DetailComponent.js'
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (props) => {
 	return{
-		
+		// DataInfo: props.DataInfo
 	}	
 }
 
 const mapStateToProps = (state) => {
     return {
-        UserInfo: state.UserInfo
+        DetailItem: state.DataInfo.detailItem
     }
 }
 

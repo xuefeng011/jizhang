@@ -3,6 +3,8 @@ import React, {
     PropTypes
 } from 'react'
 
+import {hashHistory} from 'react-router'
+
 // import style from './index.less'
 import {
     List,
@@ -14,6 +16,8 @@ const Brief = Item.Brief;
 
 import defaultpng from './default.svg'
 
+
+import store from '../../store/index'
 
 // <Item>标题文字</Item>
 // <Item arrow="horizontal" onClick={() => {}}>标题文字</Item>
@@ -57,10 +61,20 @@ class ListModule extends Component {
     componentDidMount() {
 
 
-        this.bindscroll();
+        //this.bindscroll();
 
 
 
+    }
+
+    showdetail(data){
+        //console.log(data)
+
+        const dispatch = store.dispatch
+
+        dispatch({type: 'DETAIL_ITEM', item: {detailItem:data}})
+
+        hashHistory.push("/detail",data)
     }
 
     bindscroll() {
@@ -93,7 +107,7 @@ class ListModule extends Component {
     render() {
         // console.log(this.props)
         var props = this.props
-        console.log("listmodule", props, this.state.datas)
+        // console.log("listmodule", props, this.state.datas)
 
         let listhtml = "";
 
@@ -135,7 +149,7 @@ class ListModule extends Component {
                         case 0:changehtml= (<span className={style.change} >{item.Change}</span>);break;
                     }
 
-                    return (<div  key={Math.random()} className="am-list-item am-list-item-middle">
+                    return (<div onClick={()=>{this.showdetail(item)}}  key={item.FollowId} className="am-list-item am-list-item-middle">
                                 <div className="am-list-thumb"><img src={defaultpng} /></div>
                                     <div className="am-list-line am-list-line-multiple">
                                     <div className="am-list-content">

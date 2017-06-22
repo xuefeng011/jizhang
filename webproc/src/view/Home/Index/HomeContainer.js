@@ -45,7 +45,7 @@ const mapDispatchToProps = () => {
 
 const mapStateToProps = (state) => {
 	return {
-		UserInfo: state.UserInfo
+		DataInfo: state.DataInfo
 	}
 }
 

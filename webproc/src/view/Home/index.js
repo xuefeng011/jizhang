@@ -108,7 +108,7 @@ HOME_Page.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        UserInfo: state.UserInfo
+        DataInfo: state.DataInfo
     };
 }
 

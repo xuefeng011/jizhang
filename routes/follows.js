@@ -254,12 +254,12 @@ function DataByGroup(_datas) {
 	var tempresult = [];
 	_.each(groupbyfollowids, function(item) {
 
-		var sorts = _.sortBy(item, -'InsertDate');
+		var sorts = _.sortBy(item, function(item){ return -(new Date(item['InsertDate']))});
 
 		var last = sorts[0]
 		var lasttwo = sorts.length <= 1 ? last : sorts[1]
 
-		var change = last["Price"] - lasttwo["Price"];
+		var change = parseFloat(last["Price"] - lasttwo["Price"]).toFixed(2);
 		var changetype = 0;
 		if (change > 0) {
 			changetype = 1;
@@ -271,6 +271,7 @@ function DataByGroup(_datas) {
 
 		tempresult.push({
 			"Name": _.first(item)["Name"],
+			"FollowId": _.first(item)["FollowId"],
 			"Unit": _.first(item)["Unit"],
 			"Price": last["Price"],
 			"ChangeType":changetype,
