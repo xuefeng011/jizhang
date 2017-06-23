@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>underscore test</title>
+	<script src="https://cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
+
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	
+	function insert(data)
+	{
+		$.ajax({
+		        url: "http://localhost:18080/follows/insertOrUpdate",
+		        data: {
+		           "InsertUser":data["InsertUser"],
+		           "InsertDate":data["InsertDate"],
+		           "SourceId":data["SourceId"],
+		           "SourceName":data["SourceName"],
+		           "Price":data["Price"],
+		           "Unit":data["Unit"],
+		           "Name":data["Name"],
+		           "FollowId":data["FollowId"]
+		        },
+		        success: function(res) {
+		            console.log(res.datas)
+		        }
+		    }
+		)
+	}
+
+	function test()
+	{
+		insert({
+		           "InsertUser":"xue",
+		           "InsertDate":"xue",
+		           "SourceId":6,
+		           "SourceName":"永辉超市",
+		           "Price":1.55,
+		           "Unit":"个",
+		           "Name":"酱油瓶子",
+		           "FollowId":"1002"
+		        })
+	}
+
+</script>
+</body>
+</html>

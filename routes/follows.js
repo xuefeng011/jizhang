@@ -217,12 +217,13 @@ router.get('/insertOrUpdate', function(req, res) {
 				"FollowId": _FollowId > 0 ? _FollowId : maxfollowid,
 				"Name": req.query.Name || "",
 				"SourceId": parseInt(req.query.SourceId || 5),
+				"SourceName": req.query.SourceName || '-',
 				"Price": parseFloat(req.query.Price || 0.0),
 				"SourceProductNo": req.query.SourceProductNo || '-',
-				"InsertUser": 'x',
+				"InsertUser":  req.query.InsertUser || '-',
 				"Unit": req.query.Unit || '-',
-				"InsertDate": new Date(),
-				"Updatedate": ""
+				"InsertDate": new Date((req.query.InsertDate || new Date())),
+				"Updatedate": new Date((req.query.Updatedate || new Date()))
 			};
 
 			MongoDbHelper.save(TableName, data, function(saveerr, saveresult) {

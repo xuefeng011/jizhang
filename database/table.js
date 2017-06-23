@@ -7,6 +7,7 @@
         "FollowId": "Number",
         "Name": "String",
         "SourceId": "Number",
+        "SourceName": "String",
         "SourceProductNo": "String",
         "Price": "Number",
         "Unit": "String",

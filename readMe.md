@@ -93,6 +93,7 @@ URL `/task/set`
 |FollowId|no|int|自增ID |
 |Name|no|String|產品名|
 |SourceId|no|Number| 來源   5:sx  6:yg |
+|SourceName|no|String| 來源   5:sx  6:yg |
 |SourceProductNo|no|String| 關聯產品ID|
 |Price|no|Number| 價格|
 |Unit|no|String| 單位|
@@ -220,5 +221,134 @@ $.ajax({
         }
     }
 )
+
+```
+
+
+```
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-07",
+    "SourceId": 5,
+    "SourceName": "食行生鲜",
+    "Price": 0.99,
+    "Unit": "个",
+    "Name": "酱油瓶子",
+    "FollowId": "1001"
+});
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-07",
+    "SourceId": 6,
+    "SourceName": "永辉超市",
+    "Price": 1.55,
+    "Unit": "个",
+    "Name": "酱油瓶子",
+    "FollowId": "1001"
+});
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-08",
+    "SourceId": 5,
+    "SourceName": "食行生鲜",
+    "Price": 1.08,
+    "Unit": "个",
+    "Name": "酱油瓶子",
+    "FollowId": "1001"
+});
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-08",
+    "SourceId": 6,
+    "SourceName": "永辉超市",
+    "Price": 1.56,
+    "Unit": "个",
+    "Name": "酱油瓶子",
+    "FollowId": "1001"
+});
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-09",
+    "SourceId": 6,
+    "SourceName": "永辉超市",
+    "Price": 1.57,
+    "Unit": "个",
+    "Name": "酱油瓶子",
+    "FollowId": "1001"
+});
+
+/************/
+
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-07",
+    "SourceId": 5,
+    "SourceName": "食行生鲜",
+    "Price": 12.4,
+    "Unit": "斤",
+    "Name": "韭菜",
+    "FollowId": "1002"
+});
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-07",
+    "SourceId": 6,
+    "SourceName": "永辉超市",
+    "Price": 22.3,
+    "Unit": "斤",
+    "Name": "韭菜",
+    "FollowId": "1002"
+});
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-08",
+    "SourceId": 5,
+    "SourceName": "食行生鲜",
+    "Price": 11.2,
+    "Unit": "斤",
+    "Name": "韭菜",
+    "FollowId": "1002"
+});
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-08",
+    "SourceId": 6,
+    "SourceName": "永辉超市",
+    "Price": 13.2,
+    "Unit": "斤",
+    "Name": "韭菜",
+    "FollowId": "1002"
+});
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-10",
+    "SourceId": 6,
+    "SourceName": "永辉超市",
+    "Price": 11.3,
+    "Unit": "斤",
+    "Name": "韭菜",
+    "FollowId": "1002"
+});
+
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-10",
+    "SourceId": 6,
+    "SourceName": "永辉超市",
+    "Price": 77,
+    "Unit": "200g",
+    "Name": "吐司面包",
+    "FollowId": "1003"
+});
 
 ```
