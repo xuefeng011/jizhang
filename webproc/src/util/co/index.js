@@ -3,8 +3,8 @@ require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
 const co = {
-	//ServerUrl:'https://gougoustar.duapp.com/',
-	ServerUrl:'http://localhost:18080/',
+	// ServerUrl:'https://gougoustar.duapp.com/',
+	ServerUrl:/gougoustar/ig.test(location.host)?'https://gougoustar.duapp.com/':'http://localhost:18080/',
 	openTtjj: function() {
 		if (sessionStorage["common.fundinstalled"] == 'true') {
 			if (sessionStorage["common.plant"].indexOf('ios') >= 0) {
