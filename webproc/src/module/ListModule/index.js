@@ -68,13 +68,13 @@ class ListModule extends Component {
     }
 
     showdetail(data){
-        //console.log(data)
+        // console.log(data)
 
         const dispatch = store.dispatch
 
         dispatch({type: 'DETAIL_ITEM', item: {detailItem:data}})
 
-        hashHistory.push("/detail",data)
+        hashHistory.push("/detail/?FollowId="+data.FollowId,data)
     }
 
     bindscroll() {

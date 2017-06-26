@@ -68,8 +68,10 @@ router.get('/get', function(req, res) {
 
 router.get('/getbygroup', function(req, res) {
 	res.status(200);
-	MongoDbHelper.count(TableName, {}, function(err, cnt) {
-		MongoDbHelper.find(TableName, null, null, function(err, result) {
+	var conditions = req.query.conditions || {}
+
+	MongoDbHelper.count(TableName, conditions, function(err, cnt) {
+		MongoDbHelper.find(TableName, conditions, null, function(err, result) {
 			if (err) {
 				res.json({
 					errorCode: -2,
@@ -273,6 +275,7 @@ function DataByGroup(_datas) {
 		tempresult.push({
 			"Name": _.first(item)["Name"],
 			"FollowId": _.first(item)["FollowId"],
+			"InsertUser": _.first(item)["InsertUser"],
 			"Unit": _.first(item)["Unit"],
 			"Price": last["Price"],
 			"ChangeType":changetype,

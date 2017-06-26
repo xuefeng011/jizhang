@@ -6,7 +6,7 @@ import React, {
 import co from 'co'
 
 
-import _ from 'underscore'
+// import _ from 'underscore'
 
 // import ReactHighstock from 'react-highcharts/ReactHighstock.src'
 // import Highlight from 'react-highlight'
@@ -182,47 +182,14 @@ class DatasChartModule extends Component {
     }
 
     render() {
-        const item = this.props.DetailItem;
+        const series = this.props.series;
         // console.log('chart',item)
-        if (!item) {
+        if (!series) {
             return null;
         }
 
-        // console.log('chart2',item)
-        let datas = item.Datas;
-        let categories = []
-        let series = []
-
-        let tempseriesitem = []
-        let tempseriesitemName = ""
-        datas = _.groupBy(datas, 'SourceId');
-
-
-        const colors = ['#FFF','blue','green','#F40','gray','pink']
-        let index = 0;
-        // console.log(2222222,datas)
-        _.each(datas, function(groupitem) {
-            index++;
-            tempseriesitem = [];
-            tempseriesitemName = ""
-
-            _.each(_.sortBy(groupitem,'InsertDate'), function(dataitem) {
-                tempseriesitemName = dataitem.SourceName;
-                tempseriesitem.push([new Date(dataitem.InsertDate).valueOf(),dataitem.Price])
-            })
-            series.push({
-                name: tempseriesitemName,
-                data: tempseriesitem,
-                color:colors[index]
-            });
-            
-        });
-
-        // config.xAxis.categories = categories
+       
         config.series = series
-
-        // console.log(111111111,series);
-
 
         return (
             <div>
@@ -233,7 +200,7 @@ class DatasChartModule extends Component {
 }
 
 DatasChartModule.propTypes = {
-    DetailItem: PropTypes.object
+    series: PropTypes.array
 }
 
 DatasChartModule.defaultProps = {

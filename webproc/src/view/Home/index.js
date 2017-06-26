@@ -92,7 +92,7 @@ class HOME_Page extends Component {
                   
                 </div>
                 <WhiteSpace size="lg" />
-                <div className="fixed-bottom tc gray" style={{fontSize:"0.25rem"}}>2017 copyright</div>
+                {/*<div className="fixed-bottom tc gray" style={{fontSize:"0.25rem"}}>2017 copyright</div>*/}
                 <WhiteSpace size="lg" />
                 <TabbarModule tabname={this.state.tabname}/>
             </div>

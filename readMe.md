@@ -128,7 +128,9 @@ URL `/follows/get`
 
 ```
 
-### 2）获取所有产品（分页筛选）
+### 2.1）获取所有产品（分页筛选）
+URL `/follows/getall`
+### 2.1）获取所有产品（source分组）
 URL `/follows/getall`
 
 |参数名|必选|类型|说明|
@@ -149,6 +151,8 @@ options: {
 }
 
 ```
+
+
 
 ### 3）新增和更新
 URL `/follows/insertOrUpdate`
@@ -351,4 +355,26 @@ insert({
     "FollowId": "1003"
 });
 
+
+
+
+
+/**********************************************/
+
+
+
+
+
+$.ajax({
+    url: "http://localhost:18080/follows/getbygroup",
+    data: {
+      conditions: {
+             FollowId: [1001,1002],
+        } 
+    },
+    success: function(res) {
+            console.log(res.datas)
+        }
+    }
+)
 ```
