@@ -27,6 +27,9 @@ import co from 'co'
 
 import defaultpng from './404.png'
 
+import style from './index.less'
+
+
 class Detail extends React.Component {
 	state = {
 		moneyfocused: false,
@@ -95,8 +98,8 @@ class Detail extends React.Component {
               <img src={defaultpng} style={{width:'60%',height:window.innerWidth*0.6,border:'0px dashed gray'}} />
           </div>
           </List.Item>
-          <List.Item >
-              <DatasChartModule DetailItem={item}/>
+          <List.Item className={style.charts} >
+              <DatasChartModule DetailItem={item} style={{height:window.innerHeight,width:window.innerWidth}}/>
           </List.Item>
         </List>
       </div>

@@ -64,7 +64,7 @@ const App = (
 					path="detail"
 					getComponent={(location, callback) => {
 						require.ensure([], function (require) {
-							callback(null, require('../view/Home/Detail/DetailContainer.js').default);
+							callback(null, require('../view/Home/Detail/Container.js').default);
 						}, 'DetailContainer');
 					}}/>
 				<Route 
