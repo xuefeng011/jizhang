@@ -22,6 +22,7 @@ URL `/products/get`
 ### 2）获取所有产品（分页筛选）
 URL `/products/getall`
 
+
 |参数名|必选|类型|说明|
 |-------|-------|-------|-------|
 |pagesize|no|int|每页数量|
