@@ -7,7 +7,8 @@ import React, {
 import {
   List,
   InputItem,
-  WhiteSpace
+  WhiteSpace,
+  Toast
 } from 'antd-mobile';
 
 
@@ -21,9 +22,6 @@ import {
 } from 'react-router'
 
 
-import {
-  createForm
-} from 'rc-form';
 
 import co from 'co'
 
@@ -35,6 +33,8 @@ import style from './index.less'
 import _ from 'underscore'
 
 
+import service from '../../../services/index'
+
 
 class Detail extends React.Component {
   state = {
@@ -43,6 +43,7 @@ class Detail extends React.Component {
   constructor(props) {
     super(props)
       // this.props=store.getState()
+    this.state = props.DetailItem
   }
 
   componentWillMount() {
@@ -55,65 +56,62 @@ class Detail extends React.Component {
 
   }
 
-  checkinit(){
-     const props = this.props;
-    // console.log(6666,this.props)
 
-    if (!props.DetailItem) {
-      hashHistory.push('/follows')
+  checkinit() {
+    if (!this.state) {
+      this.getData();
     }
   }
 
- 
+  getData() {
 
-  testNum() {
-    return {
-      normalize: (v, prev) => {
-        return v;
-        // if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
-        //   if (v === '.') {
-        //     return '0.';
-        //   }
-        //   return prev;
-        // }
-        // return v;
-      },
-    }
+    Toast.loading('Loading...', 1, () => {
+      const props = this.props
+      var FollowId = co.getArgs(props.location.search).FollowId || 0;
+      if (FollowId <= 0) {
+        hashHistory.push('/follows')
+        return;
+      }
+      service.getfollowgroupByFollowId(FollowId).then((datas) => {
+        this.setState(datas[0])
+      }).catch(() => {
+        console.log('error')
+        hashHistory.push('/follows')
+        return;
+      });
+    }, true);
+  }
+
+  onflesh() {
+    this.getData();
+    //console.log('onfless')
+
   }
   render() {
 
-    // console.log(3333333333333333,this.props)
-    // this.checkinit()
-    
+    const {
+      transDataGroup
+    } = this.props;
 
-    const {DetailItem,transDataGroup} = this.props;
+    // console.log(this.state)
 
-    if(!DetailItem)
-    {
+    if (!this.state) {
       return null;
     }
 
-    const item = DetailItem
+    const item = this.state
 
-    // console.log("DetailItem",item)
     const props = this.props
 
-    let errors;
-
-    const {
-      getFieldProps,
-      getFieldError
-    } = props.form;
-
     const series = transDataGroup(item);
-    //<InputItem {...getFieldProps('money2', this.testNum())}  editable={false}  type="money" value="xx" clear maxLength={10} >数字键盘</InputItem>
+
     return (
       <div>
         <List renderHeader={() => `[${item.FollowId}] ${item.Name}`}>
-          <InputItem editable={false} value={"¥ "+item.Price}>最新价格</InputItem>
+          <InputItem editable={false} value={item.Price} extra="¥" > 最新价格</InputItem>
           <InputItem editable={false} value={item.Unit} >单位</InputItem>
-          <InputItem editable={false} value={"¥ "+item.MaxPrice} >最大金额</InputItem>
-          <InputItem editable={false} value={"¥ "+item.MinPrice} >最小金额</InputItem>
+          <InputItem editable={false} value={item.MaxPrice}  extra="¥" >最大金额</InputItem>
+          <InputItem editable={false} value={item.MinPrice}  extra="¥" >最小金额</InputItem>
           <InputItem editable={false} value={co.getFullDate(item.InsertDate)["6"]} >最近更新</InputItem>
           <InputItem editable={false} value={item.InsertUser} >数据来源</InputItem>
           <WhiteSpace size="lgg" />
@@ -122,7 +120,7 @@ class Detail extends React.Component {
           </List.Item>
           <WhiteSpace size="lgg" />
           <List.Item className={style.lists} >
-              <DatasListModule series={series} datas={item.Datas} itemData={item} />
+              <DatasListModule onfresh={()=>this.onflesh()} series={series} datas={item.Datas} itemData={item} />
           </List.Item>
           <WhiteSpace size="lgg" />
           <List.Item >
@@ -141,7 +139,7 @@ Detail.propTypes = {
   data: PropTypes.object,
   form: PropTypes.object,
   transDataGroup: PropTypes.func,
-  DetailItem:PropTypes.object
+  DetailItem: PropTypes.object
 }
 
-export default createForm()(Detail);
+export default Detail;

@@ -9,7 +9,8 @@ import {
     List,
     Popup,
     Button,
-    Icon
+    Icon,
+    Toast
 } from 'antd-mobile';
 
 import co from 'co'
@@ -19,13 +20,16 @@ import EditModule from 'EditModule'
 import editpng from './edit.png'
 
 
+import service from '../../services/index'
+
+
 const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 let maskProps;
 if (isIPhone) {
-  // Note: the popup content will not scroll.
-  maskProps = {
-    onTouchStart: e => e.preventDefault(),
-  };
+    // Note: the popup content will not scroll.
+    maskProps = {
+        onTouchStart: e => e.preventDefault(),
+    };
 }
 
 
@@ -33,26 +37,50 @@ if (isIPhone) {
 class DatasListModule extends Component {
     constructor(props) {
         super(props)
-            // console.log(props)
     }
     onChange = (key) => {
         // console.log(a, b, c, d);
     }
-    onClick = (itemData,data) => {
-        console.log(data);
+
+    datas = {}
+
+    submit() {
+
+        Toast.loading('Loading...',1 , () => {
+            const props = this.props;
+            service.setFollowdataById(this.datas)
+                .then((result) => {
+                    console.log('fetchalldatas', result)
+
+                    Toast.success('Load success !!!', 1, () => {
+                        this.onClose('cancel');
+                        props.onfresh();
+                    },true);
+
+
+                })
+                .catch(() => {
+                    console.log('error')
+                });
+        },true);
+
+    }
+
+    onClick = (itemData, data) => {
+        var _this = this;
 
         Popup.show(<div>
         <List renderHeader={() => (
             <div style={{ position: 'relative',fontSize:"0.35rem" ,fontWeight:"bold",textAlign:"center" }}>编辑<span style={{position: 'absolute', right: 3, top: -5, }}
             onClick={() => this.onClose('cancel')}><Icon type="cross" /></span></div>)} className="popup-list">
 
-            <EditModule itemData={itemData} data={data} />
+            <EditModule collectData={(datas)=>{this.datas=datas}} itemData={itemData} data={data} />
 
       </List>
       <ul style={{ padding: '0.18rem 0.3rem', listStyle: 'none' }}>
         <li></li>
         <li style={{ marginTop: '0.18rem' }}>
-          <Button type="primary" onClick={() => this.onClose('cancel')}>更新</Button>
+          <Button type="primary" onClick={() => this.submit('cancel')}>更新</Button>
         </li>
       </ul></div>, {
             animationType: 'slide-up',
@@ -90,7 +118,7 @@ class DatasListModule extends Component {
                         item.data.map(function(data,index){
                           return (<List.Item key={data[2]._id} onClick={()=>_this.onClick(itemData,data[2])}>
                             <span style={{float:"left"}}><img src={editpng} /> {co.getFullDate(data[0])[6]}</span>
-                            <span style={{float:"right"}}><b>¥</b>{data[1]}</span>
+                            <span style={{float:"right"}}>{data[1]} <b style={{color:"#888",fontSize: "30px"}}>¥</b></span>
                             </List.Item>)
                         })
                     }
@@ -113,7 +141,8 @@ class DatasListModule extends Component {
 DatasListModule.propTypes = {
     itemData: PropTypes.object,
     series: PropTypes.array,
-    datas: PropTypes.array
+    datas: PropTypes.array,
+    onfresh: PropTypes.func
 }
 
 DatasListModule.defaultProps = {

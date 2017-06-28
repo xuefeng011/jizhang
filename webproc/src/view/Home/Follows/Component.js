@@ -14,7 +14,8 @@ import './index.css'
 import {
 	List,
 	Tag,
-	Flex
+	Flex,
+	Toast
 } from 'antd-mobile'
 
 const Item = List.Item;
@@ -24,9 +25,9 @@ import ListModule from 'ListModule'
 
 import co from 'co'
 
-// import 'whatwg-fetch'
 
-import reqwest from 'reqwest';
+import service from '../../../services/index'
+
 
 class Home extends Component {
 	constructor(props) {
@@ -49,52 +50,24 @@ class Home extends Component {
 	}
 	componentDidMount() {
 		// console.log("detail/component/index.js",this.props)
-		this.fetch()
+		Toast.loading('Loading...', 1, () => {
+			this.fetch()
+		}, true);
 	}
 
 	fetch() {
-		// console.log(this.state)
-
-		//if(this.state.isOver) return;
 		this.setState({
 			loading: true
 		});
 
-		// var data = {
-		// 	pagesize: 15,
-		// 	pageindex: 1,
-		// 	conditions: {
-		// 		// SourceId: 6,
-		// 		//Id: [62788, 62772],
-		// 		Id: {
-
-		// 		}
-		// 	},
-		// 	options: {
-		// 		Id: -1
-		// 	}
-		// }
-
-		reqwest({
-			url: co.ServerUrl+'follows/getbygroup',
-			method: 'get',
-			data: this.state.pagination,
-			type: 'json'
-		}).then((data) => {
-
-			const _pagination = this.state.pagination
+		service.getfollowgroup().then((datas) => {
 			const _datas = this.state.datas;
-
-			if (!!data.datas && data.datas.length > 0) {
-				data.datas.map((item) => {
+			if (!!datas && datas.length > 0) {
+				datas.map((item) => {
 					_datas.push(item)
 				})
-
-				_pagination.pageindex = _pagination.pageindex + 1
-
 				this.setState({
 					loading: false,
-					pagination: _pagination,
 					datas: _datas
 				});
 			} else {
@@ -103,9 +76,8 @@ class Home extends Component {
 					isOver: true
 				});
 			}
-
-
-
+		}).catch(() => {
+			console.log('error')
 		});
 	}
 

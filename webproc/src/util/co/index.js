@@ -4,7 +4,7 @@ require('isomorphic-fetch');
 
 const co = {
 	// ServerUrl:'https://gougoustar.duapp.com/',
-	ServerUrl:/gougoustar/ig.test(location.host)?'https://gougoustar.duapp.com/':'http://localhost:18080/',
+	ServerUrl: /gougoustar/ig.test(location.host) ? 'https://gougoustar.duapp.com/' : 'http://localhost:18080/',
 	openTtjj: function() {
 		if (sessionStorage["common.fundinstalled"] == 'true') {
 			if (sessionStorage["common.plant"].indexOf('ios') >= 0) {
@@ -58,9 +58,9 @@ const co = {
 		}
 	},
 	getEnv: function() {
-		if(navigator.userAgent.toLowerCase().indexOf("ttjj") > -1) return 'ttjj'
-		if(navigator.userAgent.toLowerCase().indexOf("micromessenger") > -1) return 'wx'
-		if( location.href.toLowerCase().indexOf('isin=dc') > -1) return 'dc'
+		if (navigator.userAgent.toLowerCase().indexOf("ttjj") > -1) return 'ttjj'
+		if (navigator.userAgent.toLowerCase().indexOf("micromessenger") > -1) return 'wx'
+		if (location.href.toLowerCase().indexOf('isin=dc') > -1) return 'dc'
 		return 'wap'
 	},
 	setServer() {
@@ -69,7 +69,7 @@ const co = {
 	},
 	getArgs(search) {
 		let qs
-		if(search) {
+		if (search) {
 			qs = search.length > 0 ? search.slice(1) : ""
 		} else {
 			qs = location.search.length > 0 ? location.search.slice(1) : ""
@@ -85,12 +85,12 @@ const co = {
 		for (i = 0; i < len; i += 1) {
 
 			item = items[i].split("=");
-         
+
 			// 查询字符串应该是被编码过的，所以解码
 			name = (item[0]);
 			value = (item[1]);
 
-			if (name.length) {             
+			if (name.length) {
 				args[name] = value;
 			}
 		}
@@ -137,24 +137,24 @@ const co = {
 		return arr.join("");
 	},
 	getArrRandom(arr) {
-		const n =Math.floor(Math.random() * arr.length + 1) - 1
+		const n = Math.floor(Math.random() * arr.length + 1) - 1
 		return arr[n]
 	},
 	getPreNum(num) {
 		const n = String(num)
-		const r =  n.slice(0, n.indexOf('.'))
+		const r = n.slice(0, n.indexOf('.'))
 		return r
 	},
 	getSufNum(num) {
 		const n = String(num)
-		const r = n.slice(n.indexOf('.')+1)
+		const r = n.slice(n.indexOf('.') + 1)
 		return r
 	},
 	getChiNum(num) {
 		let n = Number(num)
 		return n.toString().split('').reverse().join('').replace('0000', '万').split('').reverse().join('')
 	},
-	formatMoney(s, type) {  
+	formatMoney(s, type) {
 		if (/[^0-9\.]/.test(s))
 			return "0";
 		if (s == null || s == "")
@@ -174,36 +174,85 @@ const co = {
 		}
 		return s;
 	},
-	getDate(date,type) {
+	getDate(date, type) {
 		let datet = date || "/Date(1480780800000)/"
-		const d = eval("new "+datet.slice(1, -1))
-		return type == 1 ? Number(d.getMonth()+1) + '-' + d.getDate() : d.getFullYear() + '-' + Number(d.getMonth()+1) + '-' + d.getDate()
+		const d = eval("new " + datet.slice(1, -1))
+		return type == 1 ? Number(d.getMonth() + 1) + '-' + d.getDate() : d.getFullYear() + '-' + Number(d.getMonth() + 1) + '-' + d.getDate()
 	},
-	getFullDate(date){
-		var d= new Date(date || "/Date(1480780800000)/");
+	PadLeft(data,totalWidth, paddingChar) {
+		var _this = this;
+		if (paddingChar != null) {
+			return _this.PadHelper(data,totalWidth, paddingChar, false);
+		} else {
+			return _this.PadHelper(data,totalWidth, ' ', false);
+		}
+	},
+	PadRight(data,totalWidth, paddingChar) {
+		var _this = this;
+		if (paddingChar != null) {
+			return _this.PadHelper(data,totalWidth, paddingChar, true);
+		} else {
+			return _this.PadHelper(data,totalWidth, ' ', true);
+		}
+
+	},
+	PadHelper(data,totalWidth, paddingChar, isRightPadded) {
+		var _this = this;
+		data = String(data)
+		if (data.length < totalWidth) {
+			var paddingString = new String();
+			for (let i = 1; i <= (totalWidth - data.length); i++) {
+				paddingString += paddingChar;
+			}
+
+			if (isRightPadded) {
+				return (data + paddingString);
+			} else {
+				return (paddingString + data);
+			}
+		} else {
+			return data;
+		}
+	},
+	getFullDate(date) {
+		var _this = this;
+
+		if(!date)
+		{
+			return {
+				"1":"",
+				"2":"",
+				"3":"",
+				"4":"",
+				"5":"",
+				"6":"",
+			};
+		}
+
+		var d = new Date(date || "/Date(1480780800000)/");
 		return {
-			"1":Number(d.getMonth()+1) + '-' + d.getDate(),
-			"M-d":Number(d.getMonth()+1) + '-' + d.getDate(),
-			"2":d.getFullYear() + '-' + Number(d.getMonth()+1) + '-' + d.getDate(),
-			"yy-M-d":d.getFullYear() + '-' + Number(d.getMonth()+1) + '-' + d.getDate(),
-			"3":(d.getMonth()+1) + '-' + d.getDate(),
-			"MM-dd":(d.getMonth()+1) + '-' + d.getDate(),
-			"4":d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(),
-			"yyyy-MM-dd":d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(),
-			"5": d.getHours()+ ':' + d.getMinutes(),
-			"HH:mm": d.getHours()+ ':' + d.getMinutes(),
-			"6":d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate()+ ' ' + d.getHours()+ ':' + d.getMinutes(),
-			"yyyy-MM-dd HH:mm":d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate()+ ' ' + d.getHours()+ ':' + d.getMinutes()
+			"1": Number(d.getMonth() + 1) + '-' + d.getDate(),
+			"M-d": Number(d.getMonth() + 1) + '-' + d.getDate(),
+			"2": d.getFullYear() + '-' + Number(d.getMonth() + 1) + '-' + d.getDate(),
+			"yy-M-d": d.getFullYear() + '-' + Number(d.getMonth() + 1) + '-' + d.getDate(),
+			"3": (d.getMonth() + 1) + '-' + d.getDate(),
+			"MM-dd": (d.getMonth() + 1) + '-' + d.getDate(),
+			"4": d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(),
+			"yyyy-MM-dd": d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(),
+			"5": d.getHours() + ':' + d.getMinutes(),
+			"HH:mm": d.getHours() + ':' + d.getMinutes(),
+			"6": d.getFullYear() + '-' + _this.PadLeft((d.getMonth() + 1),2,'0') + '-' + _this.PadLeft(d.getDate(),2,'0') + ' ' + _this.PadLeft(d.getHours(),2,'0') + ':' + _this.PadLeft(d.getMinutes(),2,'0'),
+			"yyyy-MM-dd HH:mm": d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes()
 		}
 	},
 	getDateAddOne(date) {
 		let datet = date || "/Date(1480780800000)/"
-		const d = eval("new "+datet.slice(1, -1))
-		return Number(d.getMonth()+1) + '月' + Number(d.getDate() + 1) + '日'
+		const d = eval("new " + datet.slice(1, -1))
+		return Number(d.getMonth() + 1) + '月' + Number(d.getDate() + 1) + '日'
 	},
 	getDateAddHour(date, hour) {
 		let datet = date || "/Date(1480780800000)/"
-		const d = eval("new "+datet.slice(1, -1))
+		const d = eval("new " + datet.slice(1, -1))
 		let e = Date.parse(d)
 		e = Number(e) + hour * 3600000
 		e = new Date(e)
@@ -237,13 +286,13 @@ const co = {
 	},
 	createmd5(data, line) {
 		const _getNumber = function(data) {
-            if (data) {
-                if (!isNaN(Number(data))) {
-                    return Number(data);
-                }
-            }
-            return 0
-        }
+			if (data) {
+				if (!isNaN(Number(data))) {
+					return Number(data);
+				}
+			}
+			return 0
+		}
 		let result = 0
 		if (data && data.length > 0) {
 			for (var i = 0; i < data.length; i++) {
@@ -264,26 +313,36 @@ const co = {
 			return
 		}
 		setTimeout(function() {
-			const result = fetch("https://acttg.eastmoney.com/pub/" + id,{mode:'no-cors', method:'POST'})
+			const result = fetch("https://acttg.eastmoney.com/pub/" + id, {
+				mode: 'no-cors',
+				method: 'POST'
+			})
 			result.then(res => {
-				if (res.ok) {null}
+				if (res.ok) {
+					null
+				}
 			})
 		}, 10);
 	},
-	CNT2(location, name){
+	CNT2(location, name) {
 		const _that = this
 		const env = store.getState().UserInfo.Env
 		const obj = {
-			env:env || _that.getEnv(),
-			page:'201704pintu',
-			flocation:location,
-			fname:name
+			env: env || _that.getEnv(),
+			page: '201704pintu',
+			flocation: location,
+			fname: name
 		}
 		const data = _that.setObjToQue(obj)
 		setTimeout(function() {
-			const result = fetch("https://acttg.eastmoney.com/pub/ttjjapp_activity_1_1?" + data,{mode:'no-cors', method:'POST'})
+			const result = fetch("https://acttg.eastmoney.com/pub/ttjjapp_activity_1_1?" + data, {
+				mode: 'no-cors',
+				method: 'POST'
+			})
 			result.then(res => {
-				if (res.ok) {null}
+				if (res.ok) {
+					null
+				}
 			})
 		}, 10);
 	},
@@ -343,10 +402,10 @@ const co = {
 
 co.app = {
 	goShare() {
-		location.href='http://ttjj-huodong-weixin-share/'
+		location.href = 'http://ttjj-huodong-weixin-share/'
 	},
 	goLogin() {
-		location.href = 'emfundapp:tradeLogin()'	
+		location.href = 'emfundapp:tradeLogin()'
 	},
 	checkLogin() {
 		location.href = 'emfundapp:nativeLogin({"callbackMethodName": "window.checkLoginCallback"})'
@@ -356,9 +415,9 @@ co.app = {
 		location.href = 'emfundapp:headerInfo({"name":"分享","event":"window.nativeShare()","backevent":"","title":"' + document.title + '","vifylogin":""})';
 	},
 	fixShare(id, title, desc, pic) {
-		let link = "http://fundact.eastmoney.com/ztapi/common/Redirect?activeid="+id;
+		let link = "http://fundact.eastmoney.com/ztapi/common/Redirect?activeid=" + id;
 		if (location.host.toLowerCase().indexOf("fundhdtest") > -1 || location.host.toLowerCase().indexOf("localhost") > -1) {
-			link = "http://fundact.eastmoney.com/ztapitest/common/Redirect?activeid="+id;
+			link = "http://fundact.eastmoney.com/ztapitest/common/Redirect?activeid=" + id;
 		}
 		const wxinfo = ({
 			"resultCode": 0,
@@ -455,8 +514,7 @@ co.dc = {
 		var _this = this;
 		var strdhlfx = "1";
 
-		if(_this.AppVersion()<"6.0")
-		{
+		if (_this.AppVersion() < "6.0") {
 			console.log("您的APP版本过低不能分享!!!");
 			// return false;
 		}
@@ -489,7 +547,10 @@ co.dc = {
 	},
 	ClickShare: function() {
 		var _this = this;
-		var jsonStr = JSON.stringify(Object.assign({},{"callbackname": "window.callbackShare","type": "weixin,qq,pengyouquan"}, _this.ShareInfo));
+		var jsonStr = JSON.stringify(Object.assign({}, {
+			"callbackname": "window.callbackShare",
+			"type": "weixin,qq,pengyouquan"
+		}, _this.ShareInfo));
 		if (_this.IsIos) { //IOS
 			try {
 				var ss = document.getElementsByTagName('input')
@@ -497,7 +558,9 @@ co.dc = {
 					ss[0].blur();
 					document.removeEventListener('touchend', ss[0], false);
 				}
-			} catch (e) {console.log(e)}
+			} catch (e) {
+				console.log(e)
+			}
 			window.location = "onwebshareclicked:" + jsonStr;
 		} else { //Android
 			window.eastmoney.onShareClicked(jsonStr);
@@ -531,8 +594,7 @@ co.dc = {
 	}
 }
 
-co.wx = {	
-}
+co.wx = {}
 
 co.defineCookie = {
 	get(key) {
