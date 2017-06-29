@@ -26,6 +26,14 @@ Object.extend = function(destination, source) { // 一个静态方法表示继�
 	return destination; // 返回扩展后的对象
 }
 
+Object.except = function(destination, source,propx) { // 一个静态方法表示继承, 目标对象将拥有源对象的所有属性和方法
+	for (var property in source) {
+		console.log(0,property)
+		if(property!="_id" ) destination[property] = source[property]
+	}
+	return destination; // 返回扩展后的对象
+}
+
 
 
 router.get('/', function(req, res) {
@@ -182,15 +190,22 @@ router.get('/insertOrUpdate', function(req, res) {
 		// console.log("find",findresult)
 
 		if (!!_ID) {
-			data = findresult[0] || {};
+			var data = {
+				"FollowId": _FollowId,
+				"Name": req.query.Name || "",
+				"SourceId": parseInt(req.query.SourceId || 5),
+				"SourceName": req.query.SourceName || '-',
+				"Price": parseFloat(req.query.Price || 0.0),
+				"SourceProductNo": req.query.SourceProductNo || '-',
+				"InsertUser":  req.query.InsertUser || '-',
+				"Unit": req.query.Unit || '-',
+				"InsertDate": new Date((req.query.InsertDate || new Date())),
+				"Updatedate": new Date()
+			};
 
-			console.log('1111111111111',data)
-			Object.extend(data, req.query || {}),
-				data["Updatedate"] = new Date();
+			
 
-			delete data._id
-
-			console.log('22222222222222',data)
+			// console.log('3333333',updatedata)
 
 			MongoDbHelper.update(TableName, conditions, data, function(updateerr, updateresult) {
 				if (updateerr) {
