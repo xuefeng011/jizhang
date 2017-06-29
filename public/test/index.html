@@ -11,7 +11,8 @@
 	function insert(data)
 	{
 		$.ajax({
-		        url: "https://gougoustar.duapp.com/follows/insertOrUpdate",
+		        //url: "https://gougoustar.duapp.com/follows/insertOrUpdate",
+		        url: "http://localhost:18080/follows/insertOrUpdate",
 		        data: {
 		           "InsertUser":data["InsertUser"],
 		           "InsertDate":data["InsertDate"],
@@ -33,7 +34,7 @@
 	{
 		insert({
 		           "InsertUser":"xue",
-		           "InsertDate":"xue",
+		           "InsertDate":new Date(),
 		           "SourceId":6,
 		           "SourceName":"永辉超市",
 		           "Price":1.55,

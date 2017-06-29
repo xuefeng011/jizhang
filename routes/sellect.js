@@ -1,20 +1,54 @@
 var express = require('express');
 var router = express.Router();
 
-
 var MongoDbHelper = require('../service/mongodbhelper');
 
 
-router.get('/test/:tablename', function(req, res) {
+var TableName = "sellections";
+
+var logger = require('../service/logger').logger('normal');
+
+router.get('/', function(req, res) {
 	res.status(200);
-	res.json("sellect" + req.params.tablename);
+	res.json("test");
 	res.end();
 });
 
 
-router.get('/get/:tablename', function(req, res) {
+router.get('/get', function(req, res) {
 	res.status(200);
-	MongoDbHelper.find(req.params.tablename || 'notable', null, null, function(err, result) {
+
+	MongoDbHelper.find(TableName, null, null, function(err, result) {
+		if (err) {
+			res.json({
+				errorCode: -2,
+				errorMessage: err,
+				datas: []
+			});
+		} else {
+			res.json({
+				errorCode: 1,
+				errorMessage: "成功",
+				datas: result,
+
+			});
+		}
+	});
+
+});
+
+
+router.get('/remove', function(req, res) {
+	res.status(200);
+
+	var _ID = req.query._id || '';
+	var conditions = null;
+
+	if (!!_ID) conditions = {
+		"_id": _ID
+	};
+
+	MongoDbHelper.remove(TableName, conditions, function(err, result) {
 		if (err) {
 			res.json({
 				errorCode: -2,
@@ -27,120 +61,72 @@ router.get('/get/:tablename', function(req, res) {
 				datas: result
 			});
 		}
-
-		res.end();
 	});
 });
 
-router.get('/set/:tablename', function(req, res) {
+
+router.get('/insertOrUpdate', function(req, res) {
 	res.status(200);
 
-	if (!req.query.name) {
-		res.json({
-			errorCode: -1,
-			errorMessage: "参数不正确"
+	var _ID = req.query._id || '';
+	var conditions = {
+		"_id": _ID
+	};
+
+	if (!!_ID) {
+
+		var data = {
+			"Type": req.query.Type || 0,
+			"Key": req.query.Key || "",
+			"Value": req.query.Value || ""
+		};
+
+		MongoDbHelper.update(TableName, conditions, data, function(updateerr, updateresult) {
+			if (updateerr) {
+				res.json({
+					errorCode: -1,
+					errorMessage: "更新失败" + updateerr
+				});
+				res.end();
+			} else {
+				res.json({
+					errorCode: 1,
+					errorMessage: "更新成功",
+					updateresult: updateresult
+				});
+				res.end();
+			}
 		});
-		res.end();
-		return;
+
+	} else {
+
+		var data = {
+			"Type": req.query.Type || 0,
+			"Key": req.query.Key || "",
+			"Value": req.query.Value || ""
+		};
+
+		MongoDbHelper.save(TableName, data, function(saveerr, saveresult) {
+			if (saveerr) {
+				res.json({
+					errorCode: -5,
+					errorMessage: "新增失败" + saveerr
+				});
+				res.end();
+			} else {
+				res.json({
+					errorCode: 1,
+					errorMessage: "新增成功",
+					datas: saveresult
+				});
+				res.end();
+			}
+		});
 	}
 
-	var data = {
-		"name": req.query.name || '-',
-		"insertdate": new Date().valueOf(),
-		"updatedate": "",
-		"user": "sys"
-	}
 
-	MongoDbHelper.save(req.params.tablename || 'notable', data, function(err, result) {
-		if (err) {
-			res.json({
-				errorCode: -2,
-				errorMessage: err
-			});
-		} else {
-			res.json({
-				errorCode: result.ok,
-				errorMessage: "成功"
-			});
-		}
-		res.end();
-	});
 });
 
-router.get('/update/:tablename', function(req, res) {
-	res.status(200);
-
-	if (!req.query.name) {
-		res.json({
-			errorCode: -1,
-			errorMessage: "参数不正确"
-		});
-		res.end();
-		return;
-	}
-
-
-	var conditions = !!req.query.id ? {
-		"_id": req.query.id
-	} : null;
-
-
-
-	var data = {
-		"name": req.query.name || '-',
-		"updatedate": new Date().valueOf(),
-		"user": "sys"
-	}
-
-	MongoDbHelper.update(req.params.tablename || 'notable', conditions, data, function(err, result) {
-		if (err) {
-			res.json({
-				errorCode: -2,
-				errorMessage: err
-			});
-		} else {
-			res.json({
-				errorCode: result.ok,
-				errorMessage: "成功"
-			});
-		}
-		res.end();
-	});
-});
-
-
-router.get('/del/:tablename', function(req, res) {
-	res.status(200);
-
-	if (!req.query.id) {
-		res.json({
-			errorCode: -1,
-			errorMessage: "参数不正确"
-		});
-		res.end();
-		return;
-	}
-
-	var queryid = req.query.id || '-';
-
-
-	MongoDbHelper.remove(req.params.tablename || 'notable', {
-		"_id": queryid
-	}, function(err, result) {
-		if (err) {
-			res.json({
-				errorCode: -2,
-				errorMessage: err
-			});
-		} else {
-			res.json({
-				errorCode: result.ok,
-				errorMessage: "成功"
-			});
-		}
-		res.end();
-	});
-});
 
 
 module.exports = router;

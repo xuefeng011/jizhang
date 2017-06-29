@@ -26,10 +26,10 @@ Object.extend = function(destination, source) { // 一个静态方法表示继�
 	return destination; // 返回扩展后的对象
 }
 
-Object.except = function(destination, source,propx) { // 一个静态方法表示继承, 目标对象将拥有源对象的所有属性和方法
+Object.except = function(destination, source, propx) { // 一个静态方法表示继承, 目标对象将拥有源对象的所有属性和方法
 	for (var property in source) {
-		console.log(0,property)
-		if(property!="_id" ) destination[property] = source[property]
+		console.log(0, property)
+		if (property != "_id") destination[property] = source[property]
 	}
 	return destination; // 返回扩展后的对象
 }
@@ -77,25 +77,28 @@ router.get('/get', function(req, res) {
 router.get('/getbygroup', function(req, res) {
 	res.status(200);
 	var conditions = req.query.conditions || {}
-
+	console.log("getbygroup conditions",JSON.stringify(conditions));
 	MongoDbHelper.count(TableName, conditions, function(err, cnt) {
-		MongoDbHelper.find(TableName, conditions, null, function(err, result) {
-			if (err) {
-				res.json({
-					errorCode: -2,
-					errorMessage: err,
-					count: cnt,
-					datas: []
-				});
-			} else {
-				res.json({
-					errorCode: 1,
-					errorMessage: "成功",
-					count: cnt,
-					datas: DataByGroup(result),
-
-				});
-			}
+		MongoDbHelper.distinct(TableName, "FollowId", conditions, function(err, resultcondition) {
+			MongoDbHelper.find(TableName, {"FollowId":resultcondition}, null, function(err, result) {
+				if (err) {
+					res.json({
+						errorCode: -2,
+						errorMessage: err,
+						count: cnt,
+						resultcondition:resultcondition,
+						datas: []
+					});
+				} else {
+					res.json({
+						errorCode: 1,
+						errorMessage: "成功",
+						count: cnt,
+						resultcondition:resultcondition,
+						datas: DataByGroup(result)
+					});
+				}
+			});
 		});
 	});
 });
@@ -197,13 +200,13 @@ router.get('/insertOrUpdate', function(req, res) {
 				"SourceName": req.query.SourceName || '-',
 				"Price": parseFloat(req.query.Price || 0.0),
 				"SourceProductNo": req.query.SourceProductNo || '-',
-				"InsertUser":  req.query.InsertUser || '-',
+				"InsertUser": req.query.InsertUser || '-',
 				"Unit": req.query.Unit || '-',
 				"InsertDate": new Date((req.query.InsertDate || new Date())),
-				"Updatedate": new Date()
+				"UpdateDate": new Date()
 			};
 
-			
+
 
 			// console.log('3333333',updatedata)
 
@@ -229,23 +232,24 @@ router.get('/insertOrUpdate', function(req, res) {
 
 
 			var maxitem = _.sortBy(findresult, function(item) {
-				return -item['FollowId']
-			})
-
-			var maxfollowid = !maxitem || maxitem.length <= 0 ? 1 : parseInt(maxitem[0]["FollowId"]) + 1;
-
+					return -item['FollowId']
+				})
+				// console.log(maxitem)
+			var maxfollowid = !maxitem || maxitem.length <= 0 ? 100001 : parseInt(maxitem[0]["FollowId"]) + 1;
+			// maxfollowid=maxfollowid<10000?10000:maxfollowid+1;
 			// console.log("findresult max",maxitem[0], maxfollowid)
 			data = {
 				"FollowId": _FollowId > 0 ? _FollowId : maxfollowid,
+				"IsFirst": _FollowId > 0 ? false : true,
 				"Name": req.query.Name || "",
 				"SourceId": parseInt(req.query.SourceId || 5),
 				"SourceName": req.query.SourceName || '-',
 				"Price": parseFloat(req.query.Price || 0.0),
 				"SourceProductNo": req.query.SourceProductNo || '-',
-				"InsertUser":  req.query.InsertUser || '-',
+				"InsertUser": req.query.InsertUser || '-',
 				"Unit": req.query.Unit || '-',
 				"InsertDate": new Date((req.query.InsertDate || new Date())),
-				"Updatedate": new Date((req.query.Updatedate || new Date()))
+				"UpdateDate": new Date((req.query.UpdateDate || new Date()))
 			};
 
 			MongoDbHelper.save(TableName, data, function(saveerr, saveresult) {
@@ -277,7 +281,9 @@ function DataByGroup(_datas) {
 	var tempresult = [];
 	_.each(groupbyfollowids, function(item) {
 
-		var sorts = _.sortBy(item, function(item){ return -(new Date(item['InsertDate']))});
+		var sorts = _.sortBy(item, function(item) {
+			return -(new Date(item['InsertDate']))
+		});
 
 		var last = sorts[0]
 		var lasttwo = sorts.length <= 1 ? last : sorts[1]
@@ -292,17 +298,30 @@ function DataByGroup(_datas) {
 			changetype = 0;
 		}
 
+		var filterbase = _.filter(item, function(d) {
+			return d["IsFirst"]
+		});
+		// console.log(filterbase)
+		if (!filterbase || filterbase.length <= 0) filterbase = item;
+
+		var baseitem = _.first(filterbase);
+
+		_.each(sorts, function(item) {
+			item["Name"] = baseitem["Name"];
+		})
+
 		tempresult.push({
-			"Name": _.first(item)["Name"],
-			"FollowId": _.first(item)["FollowId"],
-			"InsertUser": _.first(item)["InsertUser"],
-			"Unit": _.first(item)["Unit"],
+			"Name": baseitem["Name"],
+			"FollowId": baseitem["FollowId"],
+			"InsertUser": baseitem["InsertUser"],
+			"Unit": baseitem["Unit"],
 			"Price": last["Price"],
-			"ChangeType":changetype,
-			"Change":change,
+			"ChangeType": changetype,
+			"Change": change,
 			"MinPrice": _.min(item, 'Price')["Price"],
 			"MaxPrice": _.max(item, 'Price')["Price"],
 			"InsertDate": last["InsertDate"],
+			"UpdateDate": last["UpdateDate"],
 			"Datas": sorts
 		})
 

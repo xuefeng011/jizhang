@@ -107,7 +107,7 @@ class ListModule extends Component {
     render() {
         // console.log(this.props)
         var props = this.props
-        // console.log("listmodule", props, this.state.datas)
+        console.log("listmodule", props, this.state.datas)
 
         let listhtml = "";
 

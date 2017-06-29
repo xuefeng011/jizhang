@@ -21,29 +21,49 @@ import ListModule from 'ListModule'
 
 // var tempdatas = []
 
+import service from '../../services/index'
+
+
 class SearchModule extends Component {
   constructor(props) {
     super(props)
-    // console.log("searchmodule",props)
+      // console.log("searchmodule",props)
     this.state = {
       value: '',
       focused: false,
-      datas: props.datas||[]
+      datas: props.datas || []
     };
   }
-  
-  onChange(value){
-    var temp = this.state.datas;
+
+  onChange(value) {
+
+    if (value && value.trim().length > 0) {
+
+      this.setState({
+        value: value
+      });
+    } else {
+      this.setState({
+        datas: [],
+        value: ""
+      });
+    }
+  }
+
+
+  onSubmit(value) {
+    // var temp = this.state.datas;
     // console.log('[' + value + ']', 'onChange', temp);
     if (value && value.trim().length > 0) {
-      temp.push(value)
+
+      this.fetch(value);
+    } else {
+      this.setState({
+        datas: []
+      });
     }
-     
-    this.setState({
-      value: value,
-      datas: temp
-    });
   }
+
   clear = () => {
     // tempdatas = []
     this.setState({
@@ -52,6 +72,30 @@ class SearchModule extends Component {
     });
   }
 
+  componentDidMount() {
+
+  }
+
+  fetch(key) {
+    // const key = "酱油";
+    service.getfollowgroup({
+      "$or": [{
+        "Name": {
+          "$regex": ".*" + key + ".*",
+          "$options": "i"
+        }
+      }]
+    }).then((datas) => {
+      // console.log("search",datas)
+      this.setState({
+        datas: datas
+      })
+    }).catch(() => {
+      console.log('error')
+    });
+  }
+
+
   render() {
     return (<div>
          {/* <WhiteSpace />
@@ -59,14 +103,14 @@ class SearchModule extends Component {
           <SearchBar
             value={this.state.value}
             placeholder="搜索"
-            onSubmit={value => {}}
+            onSubmit={this.onSubmit.bind(this)}
             onClear={this.clear.bind(this)}
             onFocus={() => {}}
             onBlur={() => {}}
             onCancel={this.clear.bind(this)}
             onChange={this.onChange.bind(this)}
             cancelText="X" />
-            <ListModule datas={this.state.datas}/>
+            <ListModule type="follows" datas={this.state.datas}/>
         </div>);
   }
 }

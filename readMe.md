@@ -236,10 +236,43 @@ insert({
     "InsertDate": "2017-06-07",
     "SourceId": 5,
     "SourceName": "食行生鲜",
+    "Price": 0,
+    "Unit": "个",
+    "Name": "酱油瓶子"
+});
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-07",
+    "SourceId": 5,
+    "SourceName": "食行生鲜",
+    "Price": 0,
+    "Unit": "斤",
+    "Name": "韭菜"
+});
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-10",
+    "SourceId": 6,
+    "SourceName": "永辉超市",
+    "Price": 0,
+    "Unit": "200g",
+    "Name": "吐司面包"
+});
+
+
+
+
+
+insert({
+    "InsertUser": "xue",
+    "InsertDate": "2017-06-07",
+    "SourceId": 5,
+    "SourceName": "食行生鲜",
     "Price": 0.99,
     "Unit": "个",
     "Name": "酱油瓶子",
-    "FollowId": "1001"
+    "FollowId": "100001"
 });
 
 insert({
@@ -250,7 +283,7 @@ insert({
     "Price": 1.55,
     "Unit": "个",
     "Name": "酱油瓶子",
-    "FollowId": "1001"
+    "FollowId": "100001"
 });
 
 insert({
@@ -261,7 +294,7 @@ insert({
     "Price": 1.08,
     "Unit": "个",
     "Name": "酱油瓶子",
-    "FollowId": "1001"
+    "FollowId": "100001"
 });
 
 insert({
@@ -272,7 +305,7 @@ insert({
     "Price": 1.56,
     "Unit": "个",
     "Name": "酱油瓶子",
-    "FollowId": "1001"
+    "FollowId": "100001"
 });
 
 insert({
@@ -283,7 +316,7 @@ insert({
     "Price": 1.57,
     "Unit": "个",
     "Name": "酱油瓶子",
-    "FollowId": "1001"
+    "FollowId": "100001"
 });
 
 /************/
@@ -297,7 +330,7 @@ insert({
     "Price": 12.4,
     "Unit": "斤",
     "Name": "韭菜",
-    "FollowId": "1002"
+    "FollowId": "100002"
 });
 
 insert({
@@ -308,7 +341,7 @@ insert({
     "Price": 22.3,
     "Unit": "斤",
     "Name": "韭菜",
-    "FollowId": "1002"
+    "FollowId": "100002"
 });
 
 insert({
@@ -319,7 +352,7 @@ insert({
     "Price": 11.2,
     "Unit": "斤",
     "Name": "韭菜",
-    "FollowId": "1002"
+    "FollowId": "100002"
 });
 
 insert({
@@ -330,7 +363,7 @@ insert({
     "Price": 13.2,
     "Unit": "斤",
     "Name": "韭菜",
-    "FollowId": "1002"
+    "FollowId": "100002"
 });
 
 insert({
@@ -341,7 +374,7 @@ insert({
     "Price": 11.3,
     "Unit": "斤",
     "Name": "韭菜",
-    "FollowId": "1002"
+    "FollowId": "100002"
 });
 
 
@@ -353,7 +386,7 @@ insert({
     "Price": 77,
     "Unit": "200g",
     "Name": "吐司面包",
-    "FollowId": "1003"
+    "FollowId": "100003"
 });
 
 
@@ -370,7 +403,8 @@ $.ajax({
     url: "http://localhost:18080/follows/getbygroup",
     data: {
       conditions: {
-             FollowId: [1001,1002],
+             FollowId: [100001,100002],
+            //"$or": [{"FollowId":100002},{"Name":{ "$regex" : ".*酱油.*" , "$options" : "i"}}]
         } 
     },
     success: function(res) {

@@ -53,16 +53,32 @@ class Detail extends React.Component {
   componentDidMount() {
 
     const props = this.props
-
+    this.props.changeTitle('详情');
   }
 
 
   checkinit() {
     if (!this.state) {
+      this.getSource();
       this.getData();
     }
   }
 
+  getSource() {
+
+    service.getSellections().then((datas) => {
+      // console.log("getSellections",datas)
+
+      this.setState({
+        source: datas
+      })
+
+    }).catch(() => {
+
+    });
+
+
+  }
   getData() {
 
     Toast.loading('Loading...', 1, () => {
@@ -112,7 +128,7 @@ class Detail extends React.Component {
           <InputItem editable={false} value={item.Unit} >单位</InputItem>
           <InputItem editable={false} value={item.MaxPrice}  extra="¥" >最大金额</InputItem>
           <InputItem editable={false} value={item.MinPrice}  extra="¥" >最小金额</InputItem>
-          <InputItem editable={false} value={co.getFullDate(item.InsertDate)["6"]} >最近更新</InputItem>
+          <InputItem editable={false} value={co.getFullDate(item.UpdateDate)["6"]} >最近更新</InputItem>
           <InputItem editable={false} value={item.InsertUser} >数据来源</InputItem>
           <WhiteSpace size="lgg" />
           <List.Item className={style.charts} >
@@ -120,7 +136,7 @@ class Detail extends React.Component {
           </List.Item>
           <WhiteSpace size="lgg" />
           <List.Item className={style.lists} >
-              <DatasListModule onfresh={()=>this.onflesh()} series={series} datas={item.Datas} itemData={item} />
+              <DatasListModule source={this.state.source} onfresh={()=>this.onflesh()} series={series} datas={item.Datas} itemData={item} />
           </List.Item>
           <WhiteSpace size="lgg" />
           <List.Item >
@@ -139,7 +155,8 @@ Detail.propTypes = {
   data: PropTypes.object,
   form: PropTypes.object,
   transDataGroup: PropTypes.func,
-  DetailItem: PropTypes.object
+  DetailItem: PropTypes.object,
+  changeTitle:PropTypes.func
 }
 
 export default Detail;

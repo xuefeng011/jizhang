@@ -5,6 +5,7 @@
     },
     "Follows": {
         "FollowId": "Number",
+        "IsFirst": "Boolean",
         "Name": "String",
         "SourceId": "Number",
         "SourceName": "String",
@@ -14,7 +15,7 @@
         "Img": "String",
         "InsertUser": "String",
         "InsertDate": "Date",
-        "Updatedate": "Date"
+        "UpdateDate": "Date"
     },
     "Products": {
         "Id": "Number",
@@ -25,7 +26,7 @@
         "Price": "Number",
         "Weight": "String",
         "InsertDate": "Date",
-        "Updatedate": "Date",
+        "UpdateDate": "Date",
         "Others": {
             "Url": "String",
             "PicContent": "String",
@@ -46,11 +47,10 @@
         "KeyWords": "String",
         "Version": "Number"
     },
-    "source": {
-        "name": "String",
-        "insertdate": "String",
-        "updatedate": "String",
-        "user": "String"
+    "sellections": {
+        "Type": "Number",
+        "Key": "String",
+        "Value": "String"
     },
     "type": {
         "name": "String",

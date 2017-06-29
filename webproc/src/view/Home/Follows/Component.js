@@ -49,6 +49,8 @@ class Home extends Component {
 		}
 	}
 	componentDidMount() {
+
+		this.props.changeTitle('列表');
 		// console.log("detail/component/index.js",this.props)
 		Toast.loading('Loading...', 1, () => {
 			this.fetch()
@@ -91,7 +93,8 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-	DataInfo: PropTypes.object
+	DataInfo: PropTypes.object,
+	changeTitle:PropTypes.func
 }
 
 export default Home
