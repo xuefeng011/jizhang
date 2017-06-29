@@ -30,3 +30,7 @@
 	    background: #f5f5f9;
     height: 30px;
 }
+.am-tab-bar-bar
+{
+	    max-width: 768px;
+}

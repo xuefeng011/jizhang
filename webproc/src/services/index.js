@@ -56,9 +56,14 @@ const service = {
 				data: data,
 				type: 'json'
 			}).then((data) => {
-				resolve(data)
-			}).catch(() => {
-				reject()
+
+				if (data.errorCode===1) {
+					resolve(data.datas)
+				} else {
+					reject(data.errorMessage)
+				}
+			}).catch((e) => {
+				reject(e)
 			});
 		})
 	}

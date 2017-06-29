@@ -187,6 +187,8 @@ router.get('/insertOrUpdate', function(req, res) {
 			Object.extend(data, req.query || {}),
 				data["Updatedate"] = new Date();
 
+				delete data._id
+
 			MongoDbHelper.update(TableName, conditions, data, function(updateerr, updateresult) {
 				if (updateerr) {
 					res.json({

@@ -50,17 +50,20 @@ class DatasListModule extends Component {
             const props = this.props;
             service.setFollowdataById(this.datas)
                 .then((result) => {
-                    console.log('fetchalldatas', result)
+                    // console.log('fetchalldatas', result)
 
-                    Toast.success('Load success !!!', 1, () => {
+                    Toast.success('Update success !!!', 1, () => {
                         this.onClose('cancel');
                         props.onfresh();
                     },true);
 
 
                 })
-                .catch(() => {
-                    console.log('error')
+                .catch((e) => {
+                    Toast.fail('Update fail '+e, 3, () => {
+                        this.onClose('cancel');
+                        props.onfresh();
+                    },true);
                 });
         },true);
 
