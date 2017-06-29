@@ -184,10 +184,13 @@ router.get('/insertOrUpdate', function(req, res) {
 		if (!!_ID) {
 			data = findresult[0] || {};
 
+			console.log('1111111111111',data)
 			Object.extend(data, req.query || {}),
 				data["Updatedate"] = new Date();
 
-				delete data._id
+			delete data._id
+
+			console.log('22222222222222',data)
 
 			MongoDbHelper.update(TableName, conditions, data, function(updateerr, updateresult) {
 				if (updateerr) {
