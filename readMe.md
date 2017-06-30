@@ -2,7 +2,12 @@
 
 # 引用
 
-[iisnode](http://www.heeroluo.net/article/detail/118/suffering-from-iisnode)
+* [cnodejs](https://cnodejs.org)
+* [iisnode](http://www.heeroluo.net/article/detail/118/suffering-from-iisnode)
+* [crawler](https://www.npmjs.com/package/crawler)
+* [awesome-nodejs](https://github.com/sindresorhus/awesome-nodejs)
+* [scrapy](https://scrapy.org/)
+* [eggjs](https://eggjs.org/)
 
 
 # API
