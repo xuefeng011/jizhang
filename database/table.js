@@ -1,7 +1,8 @@
 {
-    "users": {
-        "name": "String",
-        "password": "String"
+    "Account": {
+        "Name": "String",
+        "Password": "String",
+        "IsValid": "Boolean"
     },
     "Follows": {
         "FollowId": "Number",

@@ -10,16 +10,20 @@ var bodyParser = require('body-parser');
 // var numCPUs = require('os').cpus().length;
 
 var routes = require('./routes/index');
-var api = require('./routes/api');
 var sellect = require('./routes/sellect');
 var products = require('./routes/products');
 var spider = require('./routes/spider');
 var task = require('./routes/task');
 
 var follows = require('./routes/follows');
+var account = require('./routes/account');
 
 
- 
+var MongoDbHelper = require('./service/mongodbhelper');
+
+
+var TableName = "Account";
+
 
 
 // var logger = require('./service/logger').logger('sys');
@@ -50,7 +54,6 @@ var app = express();
 
 
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
@@ -65,7 +68,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 
 
@@ -89,9 +91,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-
-
-app.all('*', function (req, res, next) {
+app.all('*', function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
@@ -100,22 +100,46 @@ app.all('*', function (req, res, next) {
     // res.send(200);
     res.end()
   } else {
+
+
     next();
   }
 
 });
 
+
+app.use('*', function(req, res, next) {
+
+  var authresult = account.auth(req.baseUrl, req.cookies.ctoken).then(function(result) {
+    // console.log(1111111, result)
+    // console.log('权限成功')
+    next();
+  }).catch(function(err) {
+
+    console.log(`权限失败 baseurl=[${req.baseUrl}] ctoken=[${req.cookies.ctoken}] err=[${err}]`)
+    res.status(200);
+    res.json({
+      errorCode: -999,
+      errorMessage: "请重新登录",
+      datas: []
+    });
+    res.end();
+  });
+
+});
+
 app.use('/', routes);
-app.use('/api', api);
 app.use('/sellect', sellect);
 app.use('/products', products);
 app.use('/spider', spider);
 app.use('/task', task);
 app.use('/follows', follows);
+app.use('/account', account.router);
+
 
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -126,7 +150,7 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function (err, req, res, next) {
+  app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -138,14 +162,14 @@ if (app.get('env') === 'development') {
 
 
 
-console.log("[Env=PATH_JZ]",(!!process.env && !!process.env.PATH_JZ)?process.env.PATH_JZ:"none")
-console.log("[Env=NEEDLOG4JS]",(!!process.env && !!process.env.NEEDLOG4JS)?process.env.NEEDLOG4JS:"none")
+console.log("[Env=PATH_JZ]", (!!process.env && !!process.env.PATH_JZ) ? process.env.PATH_JZ : "none")
+console.log("[Env=NEEDLOG4JS]", (!!process.env && !!process.env.NEEDLOG4JS) ? process.env.NEEDLOG4JS : "none")
 
 
 // console.log(222222222222222, app.get('env'))
 // production error handler
 // no stacktraces leaked to user
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
